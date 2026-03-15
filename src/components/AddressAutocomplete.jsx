@@ -30,7 +30,7 @@ export default function AddressAutocomplete({ label, value, onChange }) {
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encoded}.json` +
       `?access_token=${MAPBOX_TOKEN}` +
       `&bbox=-74.25909,40.477399,-73.700272,40.917577` +
-      `&types=address,street` +
+      `&types=address` +
       `&limit=6` +
       `&country=US`
 
