@@ -32,7 +32,7 @@ Good luck with your appeal!
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'NYC Appeal Writer <appeals@nycappealwriter.com>',
+      from: 'NYC Appeal Writer <onboarding@resend.dev>',
       to: [to],
       subject: 'Your NYC Parking Ticket Appeal Letter',
       text: `Dear ${name || 'Driver'},\n\nHere is your completed NYC parking ticket appeal letter. Review it carefully before submitting.\n\n${'='.repeat(60)}\n\n${letterText}\n\n${'='.repeat(60)}\n${submissionTips}`,
