@@ -12,7 +12,7 @@ import {
   buildDateOptions,
   generateLetter,
 } from '../components/data'
-import { downloadPDF } from '../lib/pdf'
+import { downloadPDF, generatePDFBase64 } from '../lib/pdf'
 import { getSubscriber, upsertSubscriber, incrementLetterCount, saveSubmission } from '../lib/supabase'
 import { checkoutSession, PRICES } from '../lib/stripe'
 import { sendAppealEmail } from '../lib/email'
@@ -804,8 +804,10 @@ export default function AppealPage() {
       if (count === 0 || isAnnual) {
         // Free first letter or annual subscriber
         await incrementLetterCount(email).catch(() => {})
-        // Send email
-        sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter }).catch(() => {})
+        // Generate PDF and send email with attachment
+        generatePDFBase64(generatedLetter, form.name, exhibits)
+          .then(pdfBase64 => sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter, pdfBase64 }))
+          .catch(() => sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter }))
 
         if (count === 0 && !isAnnual) {
           setScreen('upsell')

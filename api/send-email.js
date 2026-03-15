@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { to, name, letterText } = req.body
+  const { to, name, letterText, pdfBase64 } = req.body
 
   if (!to || !letterText) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -31,11 +31,16 @@ Good luck with your appeal!
 `
 
   try {
+    const attachments = pdfBase64
+      ? [{ filename: 'appeal-letter.pdf', content: pdfBase64 }]
+      : []
+
     const { data, error } = await resend.emails.send({
       from: 'NYC Appeal Writer <onboarding@resend.dev>',
       to: [to],
       subject: 'Your NYC Parking Ticket Appeal Letter',
       text: `Dear ${name || 'Driver'},\n\nHere is your completed NYC parking ticket appeal letter. Review it carefully before submitting.\n\n${'='.repeat(60)}\n\n${letterText}\n\n${'='.repeat(60)}\n${submissionTips}`,
+      attachments,
     })
 
     if (error) throw error
