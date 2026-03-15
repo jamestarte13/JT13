@@ -174,9 +174,6 @@ function Hero({ onCTA }) {
             <YBtn onClick={onCTA} large>
               Generate My Free Letter →
             </YBtn>
-            <span style={{ color: '#555', fontSize: 12, fontFamily: mono }}>
-              No credit card required
-            </span>
           </div>
           <div style={{ display: 'flex', gap: 32, marginTop: 44 }}>
             {[
@@ -860,9 +857,6 @@ function FinalCTA({ onCTA }) {
           <YBtn onClick={onCTA} large dark>
             Generate My Free Letter →
           </YBtn>
-          <div style={{ marginTop: 16, fontFamily: mono, fontSize: 11, color: '#888', letterSpacing: 1 }}>
-            No credit card. No account. Just your letter.
-          </div>
         </FadeIn>
       </div>
     </section>
