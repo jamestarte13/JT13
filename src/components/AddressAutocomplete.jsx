@@ -2,56 +2,15 @@ import { useState, useEffect, useRef } from 'react'
 import { Y, mono } from './tokens'
 import { Lbl } from './UI'
 
-const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY
-
-// Fallback suggestions when Google API is not configured
-const NYC_FALLBACK = [
-  '42nd St & 5th Ave, Manhattan, NY',
-  'Broadway & Canal St, Manhattan, NY',
-  '5th Ave & 34th St, Manhattan, NY',
-  'Flatbush Ave & Atlantic Ave, Brooklyn, NY',
-  'Jamaica Ave & Sutphin Blvd, Queens, NY',
-  'Grand Concourse & 161st St, Bronx, NY',
-  'Hylan Blvd & Victory Blvd, Staten Island, NY',
-  'Park Ave & 86th St, Manhattan, NY',
-  'Lexington Ave & 59th St, Manhattan, NY',
-  '8th Ave & 14th St, Manhattan, NY',
-]
-
-function loadGoogleMaps() {
-  if (window.google?.maps?.places) return Promise.resolve()
-  if (!GOOGLE_API_KEY) return Promise.reject(new Error('No API key'))
-  return new Promise((resolve, reject) => {
-    const existing = document.getElementById('google-maps-script')
-    if (existing) { existing.addEventListener('load', resolve); return }
-    const script = document.createElement('script')
-    script.id = 'google-maps-script'
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`
-    script.async = true
-    script.defer = true
-    script.onload = resolve
-    script.onerror = reject
-    document.head.appendChild(script)
-  })
-}
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
 export default function AddressAutocomplete({ label, value, onChange }) {
   const [query, setQuery]       = useState(value || '')
   const [suggestions, setSugg]  = useState([])
   const [focused, setFocused]   = useState(false)
   const [showList, setShowList] = useState(false)
-  const [useGoogle, setUseGoogle] = useState(false)
   const containerRef = useRef(null)
-  const sessionToken = useRef(null)
-
-  useEffect(() => {
-    loadGoogleMaps()
-      .then(() => {
-        setUseGoogle(true)
-        sessionToken.current = new window.google.maps.places.AutocompleteSessionToken()
-      })
-      .catch(() => setUseGoogle(false))
-  }, [])
+  const debounceRef  = useRef(null)
 
   // Close on outside click
   useEffect(() => {
@@ -65,43 +24,33 @@ export default function AddressAutocomplete({ label, value, onChange }) {
 
   const fetchSuggestions = q => {
     if (!q || q.length < 2) { setSugg([]); return }
+    if (!MAPBOX_TOKEN) { setSugg([]); return }
 
-    if (useGoogle && window.google?.maps?.places) {
-      const service = new window.google.maps.places.AutocompleteService()
-      service.getPlacePredictions(
-        {
-          input: q,
-          sessionToken: sessionToken.current,
-          componentRestrictions: { country: 'us' },
-          // Restrict to NYC boroughs
-          bounds: new window.google.maps.LatLngBounds(
-            { lat: 40.477399, lng: -74.25909 },
-            { lat: 40.917577, lng: -73.700272 }
-          ),
-          types: ['address', 'route', 'intersection'],
-        },
-        (predictions, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
-            setSugg(predictions.map(p => p.description))
-          } else {
-            setSugg([])
-          }
+    const encoded = encodeURIComponent(q)
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encoded}.json` +
+      `?access_token=${MAPBOX_TOKEN}` +
+      `&bbox=-74.25909,40.477399,-73.700272,40.917577` +
+      `&types=address,street` +
+      `&limit=6` +
+      `&country=US`
+
+    fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        if (data.features) {
+          setSugg(data.features.map(f => f.place_name))
         }
-      )
-    } else {
-      // Fallback: filter from static list
-      setSugg(
-        NYC_FALLBACK.filter(s => s.toLowerCase().includes(q.toLowerCase())).slice(0, 6)
-      )
-    }
+      })
+      .catch(() => setSugg([]))
   }
 
   const handleChange = e => {
     const v = e.target.value
     setQuery(v)
     onChange(v)
-    fetchSuggestions(v)
     setShowList(true)
+    clearTimeout(debounceRef.current)
+    debounceRef.current = setTimeout(() => fetchSuggestions(v), 300)
   }
 
   const pick = v => {
