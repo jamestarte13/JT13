@@ -78,7 +78,11 @@ function EmailGate({ onSubmit }) {
     if (!valid) { setErr('Please enter a valid email address.'); return }
     setErr('')
     setLoading(true)
-    await upsertSubscriber(email, { plan: 'free', letter_count: 0 }).catch(() => {})
+    // Only create subscriber if they don't exist — never overwrite letter_count
+    const existing = await getSubscriber(email).catch(() => null)
+    if (!existing) {
+      await upsertSubscriber(email, { plan: 'free', letter_count: 0 }).catch(() => {})
+    }
     setLoading(false)
     onSubmit(email)
   }
