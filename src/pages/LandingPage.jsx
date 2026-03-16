@@ -286,9 +286,8 @@ function Hero({ onCTA }) {
 
 function HowItWorks() {
   const steps = [
-    { n: '01', icon: '🎫', title: 'Enter Ticket Details', body: 'Ticket number, date, location, violation type, fine amount. About 30 seconds.' },
-    { n: '02', icon: '⚖️', title: 'Choose Your Defense', body: 'Pick the reason that fits your case. 10 common NYC defenses backed by real traffic law.' },
-    { n: '03', icon: '📄', title: 'Get Your Letter', body: 'A complete, professionally formatted appeal letter ready to submit online, by mail, or in person.' },
+    { n: '01', icon: '📋', title: 'Fill Out Your Info', body: 'Enter your ticket details and pick your defense. Takes about a minute.' },
+    { n: '02', icon: '📄', title: 'Submit Your Letter', body: 'Get a professionally written appeal letter and submit it to NYC online, by mail, or in person.' },
   ]
   return (
     <section id="how-it-works" style={{ background: '#0a0a0a', padding: '90px 32px' }}>
@@ -299,13 +298,13 @@ function HowItWorks() {
               HOW IT WORKS
             </div>
             <h2 style={{ fontFamily: display, fontSize: 60, color: '#fff', margin: 0, letterSpacing: 2 }}>
-              THREE STEPS. TWO MINUTES.
+              2 STEPS. 1 MINUTE.
             </h2>
           </div>
         </FadeIn>
         <div
           className="three-col"
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2 }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2, maxWidth: 800, margin: '0 auto' }}
         >
           {steps.map((s, i) => (
             <FadeIn key={s.n} delay={i * 0.1}>
