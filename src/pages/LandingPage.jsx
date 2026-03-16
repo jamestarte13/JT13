@@ -144,32 +144,19 @@ function Hero({ onCTA }) {
           <h1
             style={{
               fontFamily: display,
-              fontSize: 86,
+              fontSize: 56,
               lineHeight: 0.9,
               letterSpacing: 2,
               margin: '0 0 24px',
               color: '#fff',
             }}
           >
-            GOT A NYC
+            Hit with a NYC Parking Ticket?
             <br />
-            PARKING
+            <span style={{ color: Y }}>Win your case in 2 easy steps</span>
             <br />
-            <span style={{ color: Y }}>TICKET?</span>
+            — no lawyer, no court, no hassle.
           </h1>
-          <p
-            style={{
-              fontFamily: serif,
-              fontSize: 20,
-              color: '#888',
-              lineHeight: 1.6,
-              margin: '0 0 36px',
-              maxWidth: 440,
-            }}
-          >
-            Generate a professional, lawyer-quality appeal letter in under 2 minutes. Cite real NYC
-            Traffic Rules. Win your case.
-          </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
             <YBtn onClick={onCTA} large>
               Generate My Free Letter →
