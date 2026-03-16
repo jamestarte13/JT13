@@ -911,7 +911,7 @@ function Footer() {
           </span>
           <span style={{ fontFamily: mono, fontSize: 11, color: '#333', letterSpacing: 1, lineHeight: 1.8, textAlign: 'right' }}>
             NOT LEGAL ADVICE — FOR INFORMATIONAL PURPOSES ONLY
-            <br />© 2026 NYC Appeal Writer. All rights reserved.
+            <br />© 2026 Dismiss It. All rights reserved.
           </span>
         </div>
       </div>

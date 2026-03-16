@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Y, mono, display } from './tokens'
+import { Y, mono, display, serif } from './tokens'
 
 // ── Intersection observer fade-in ─────────────────────────────────────────────
 function useInView(threshold = 0.1) {
@@ -194,8 +194,8 @@ export function Logo({ size = 22 }) {
       >
         NYC
       </div>
-      <span style={{ fontFamily: display, fontSize: size, letterSpacing: 2, color: '#fff' }}>
-        APPEALWRITER
+      <span style={{ fontFamily: serif, fontSize: size + 4, letterSpacing: 1, color: '#ffffff', fontStyle: 'italic', fontWeight: 700 }}>
+        Dismiss It
       </span>
     </div>
   )
