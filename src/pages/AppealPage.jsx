@@ -243,20 +243,51 @@ function UpsellScreen({ email, onContinueFree, onUpgrade }) {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
+      {/* Teaser letter preview */}
       <div
         style={{
-          fontFamily: display,
-          fontSize: 40,
-          color: '#fff',
-          letterSpacing: 2,
-          marginBottom: 8,
-          lineHeight: 1,
+          position: 'relative',
+          background: '#141414',
+          border: '1px solid #2a2a2a',
+          borderRadius: 10,
+          padding: '28px 32px',
+          marginBottom: 32,
+          textAlign: 'left',
+          overflow: 'hidden',
+          userSelect: 'none',
         }}
       >
-        YOUR FREE LETTER
-        <br />
-        IS READY.
+        {/* Letter text — blurred */}
+        <div style={{ filter: 'blur(4px)', opacity: 0.45, pointerEvents: 'none', fontFamily: 'Georgia, serif', fontSize: 13, color: '#ccc', lineHeight: 1.8 }}>
+          <div style={{ marginBottom: 16, fontSize: 11, fontFamily: 'monospace', color: '#888' }}>
+            NYC Dept. of Finance — Parking Violations Bureau<br />
+            P.O. Box 3600, New York, NY 10008-3600
+          </div>
+          <div style={{ marginBottom: 16, fontSize: 11, fontFamily: 'monospace', color: '#888' }}>
+            Re: Appeal of Parking Summons<br />
+            Summons Number: #8734-2291-04<br />
+            Violation Date: March 8, 2026 · Location: 5th Ave &amp; 42nd St
+          </div>
+          <p style={{ margin: '0 0 12px' }}>To Whom It May Concern:</p>
+          <p style={{ margin: '0 0 12px' }}>I am writing to formally appeal the above-referenced parking summons issued on March 8, 2026 at 5th Ave &amp; 42nd St. I respectfully contest this violation on the following grounds:</p>
+          <p style={{ margin: '0 0 12px' }}>At the time of the alleged violation, the posted signage at this location was obscured and not clearly visible from the roadway. The sign indicating parking restrictions was partially blocked and could not reasonably be read by a driver exercising ordinary care. Under NYC Traffic Rules §4-08, a parking violation cannot be sustained where the relevant signage fails to provide adequate notice to the public.</p>
+          <p style={{ margin: 0 }}>I have been a law-abiding motorist and have no interest in evading legitimate parking enforcement. However, in this instance, I firmly believe the summons was issued under circumstances that do not justify a penalty, and I respectfully request that it be dismissed in full.</p>
+        </div>
+        {/* Overlay: lock message */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'linear-gradient(to bottom, transparent 0%, rgba(14,14,14,0.7) 40%, rgba(14,14,14,0.95) 100%)',
+          }}
+        >
+          <div style={{ fontFamily: mono, fontSize: 11, color: '#555', letterSpacing: 2, marginBottom: 8 }}>YOUR LETTER IS READY</div>
+          <div style={{ fontFamily: display, fontSize: 32, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>UNLOCK TO READ</div>
+        </div>
       </div>
       <p
         style={{
@@ -267,7 +298,7 @@ function UpsellScreen({ email, onContinueFree, onUpgrade }) {
           marginBottom: 32,
         }}
       >
-        Before we show it to you — NYC drivers average 2–3 tickets per year.
+        NYC drivers average 2–3 tickets per year.
         <br />
         An annual plan covers them all for less than the cost of one extra ticket.
       </p>
