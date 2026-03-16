@@ -153,9 +153,9 @@ function Hero({ onCTA }) {
           >
             Hit with a NYC Parking Ticket?
             <br />
-            <span style={{ color: Y }}>Win your case in 2 easy steps</span>
+            <span style={{ color: Y, fontSize: 36 }}>Win your case in 2 easy steps</span>
             <br />
-            — no lawyer, no court, no hassle.
+            <span style={{ fontSize: 36 }}>— no lawyer, no court, no hassle.</span>
           </h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
             <YBtn onClick={onCTA} large>
