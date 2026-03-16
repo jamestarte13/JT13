@@ -51,10 +51,10 @@ export const defenseArguments = {
 }
 
 export const teaserTips = [
-  { number: '01', icon: '⏰', title: 'You Have 30 Days. Not 31.', body: 'Miss the 30-day deadline from your ticket date and you permanently lose the right to contest it. The ticket goes to judgment and late fees begin immediately.' },
-  { number: '02', icon: '📸', title: 'Photos Win Cases.', body: 'A dated photo showing an obscured, missing, or contradictory sign is nearly impossible for a judge to ignore. Take photos immediately, before anything changes.' },
-  { number: '03', icon: '🚫', title: 'Never Pay Before You Appeal.', body: 'Paying your ticket — even partially — is legally treated as a guilty plea. Once you pay, you forfeit your right to contest the ticket entirely.' },
-  { number: '04', icon: '🔍', title: 'Errors on the Ticket = Automatic Dismissal.', body: 'Any factual error — even a single wrong digit on your plate — can be grounds for immediate dismissal. Read every field on your ticket carefully.' },
+  { number: '01', icon: '⏰', title: 'Submit Within 30 Days.', body: 'If you miss your deadline you won\'t be eligible to fight. Submit the same week you get it.' },
+  { number: '02', icon: '🚫', title: 'Never Pay Before You Appeal.', body: 'Any payment is treated as a guilty plea. You forfeit your right to contest the moment you pay.' },
+  { number: '03', icon: '📸', title: 'Photos Win Cases.', body: 'A dated photo of a missing or obscured sign will help your case. Document everything immediately before anything changes.' },
+  { number: '04', icon: '🔍', title: 'Check for Ticket Errors.', body: 'Incorrect plate number, date, wrong location — any factual error on the ticket is grounds for immediate dismissal.' },
 ]
 
 export const testimonials = [
