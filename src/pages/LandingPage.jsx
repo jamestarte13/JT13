@@ -287,7 +287,7 @@ function Hero({ onCTA }) {
             >
               <div style={{ color: '#f97316', fontSize: 18 }}>✓</div>
               <div style={{ fontFamily: mono, fontSize: 11, color: '#888', letterSpacing: 1 }}>
-                THIS COULD BE YOUR RESULT
+                DON&apos;T PAY A DIME.
               </div>
             </div>
           </div>
