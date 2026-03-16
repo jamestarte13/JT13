@@ -375,7 +375,7 @@ function TeaserGuide({ onCTA }) {
           >
             <div>
               <div style={{ fontFamily: mono, fontSize: 11, color: Y, letterSpacing: 4, marginBottom: 14 }}>
-                KNOW BEFORE YOU SUBMIT
+                WHAT TO KNOW
               </div>
               <h2
                 style={{
@@ -387,9 +387,9 @@ function TeaserGuide({ onCTA }) {
                   lineHeight: 0.95,
                 }}
               >
-                4 THINGS THAT
+                HOW TO WIN
                 <br />
-                <span style={{ color: Y }}>WIN APPEALS.</span>
+                <span style={{ color: Y }}>A DISPUTE.</span>
               </h2>
             </div>
             <p
