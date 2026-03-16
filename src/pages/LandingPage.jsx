@@ -287,7 +287,7 @@ function Hero({ onCTA }) {
 function HowItWorks() {
   const steps = [
     { n: '01', icon: '📋', title: 'Share Your Ticket Details', body: 'Enter your ticket info and pick your defense. Takes about a minute.' },
-    { n: '02', icon: '📄', title: 'Submit Your Letter', body: 'We generate a professionally written appeal citing real NYC Traffic Rules — then you submit it online, by mail, or in person.' },
+    { n: '02', icon: '📄', title: 'Submit Your Letter', body: <>We generate a professionally written appeal citing real NYC Traffic Rules — then submit it directly via the <a href="https://www.nyc.gov/site/finance/vehicles/dispute-web.page" target="_blank" rel="noopener noreferrer" style={{ color: Y }}>NYC dispute portal</a>, by mail, or in person.</> },
   ]
   return (
     <section id="how-it-works" style={{ background: '#0a0a0a', padding: '90px 32px' }}>
