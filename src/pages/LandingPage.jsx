@@ -191,8 +191,8 @@ function Hero({ onCTA }) {
         <div>
           <div
             style={{
-              background: '#0d1a00',
-              border: '1px solid #2a4a00',
+              background: '#1a0d00',
+              border: '1px solid #4a2a00',
               borderRadius: 16,
               padding: 32,
               position: 'relative',
@@ -206,29 +206,29 @@ function Hero({ onCTA }) {
                 left: 0,
                 right: 0,
                 height: 4,
-                background: `linear-gradient(90deg, #a3e635, #fff)`,
+                background: `linear-gradient(90deg, #f97316, #fff)`,
               }}
             />
             {/* Status header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
               <div>
-                <div style={{ fontFamily: mono, fontSize: 10, color: '#4a6a00', letterSpacing: 2, marginBottom: 4 }}>
+                <div style={{ fontFamily: mono, fontSize: 10, color: '#7a4a00', letterSpacing: 2, marginBottom: 4 }}>
                   NYC PARKING VIOLATIONS BUREAU
                 </div>
-                <div style={{ fontFamily: display, fontSize: 26, color: '#a3e635', letterSpacing: 2 }}>
+                <div style={{ fontFamily: display, fontSize: 26, color: '#f97316', letterSpacing: 2 }}>
                   SUMMONS DISMISSED
                 </div>
               </div>
               <div
                 style={{
-                  background: '#1a3a00',
-                  border: '1px solid #3a6a00',
+                  background: '#0f1a00',
+                  border: '1px solid #2a4a00',
                   borderRadius: 6,
                   padding: '5px 10px',
                 }}
               >
                 <div style={{ fontFamily: mono, fontSize: 10, color: '#a3e635', letterSpacing: 1 }}>
-                  APPEAL GRANTED
+                  APPROVED
                 </div>
               </div>
             </div>
@@ -245,11 +245,11 @@ function Hero({ onCTA }) {
                   display: 'flex',
                   justifyContent: 'space-between',
                   padding: '10px 0',
-                  borderBottom: '1px solid #1a2a00',
+                  borderBottom: '1px solid #2a1a00',
                 }}
               >
-                <span style={{ fontFamily: mono, fontSize: 11, color: '#4a6a00' }}>{k}</span>
-                <span style={{ fontFamily: mono, fontSize: 12, color: '#a3e635' }}>{v}</span>
+                <span style={{ fontFamily: mono, fontSize: 11, color: '#7a4a00' }}>{k}</span>
+                <span style={{ fontFamily: mono, fontSize: 12, color: '#f97316' }}>{v}</span>
               </div>
             ))}
             <div
@@ -264,7 +264,7 @@ function Hero({ onCTA }) {
                 gap: 10,
               }}
             >
-              <div style={{ color: '#a3e635', fontSize: 18 }}>✓</div>
+              <div style={{ color: '#f97316', fontSize: 18 }}>✓</div>
               <div style={{ fontFamily: mono, fontSize: 11, color: '#888', letterSpacing: 1 }}>
                 THIS COULD BE YOUR RESULT
               </div>
