@@ -286,7 +286,7 @@ function Hero({ onCTA }) {
 
 function HowItWorks() {
   const steps = [
-    { n: '01', icon: '📋', title: 'Fill Out Your Info', body: 'Enter your ticket details and pick your defense. Takes about a minute.' },
+    { n: '01', icon: '📋', title: 'Share Your Ticket Details', body: 'Enter your ticket info and pick your defense. Takes about a minute.' },
     { n: '02', icon: '📄', title: 'Submit Your Letter', body: 'Get a professionally written appeal letter and submit it to NYC online, by mail, or in person.' },
   ]
   return (
