@@ -187,12 +187,12 @@ function Hero({ onCTA }) {
             ))}
           </div>
         </div>
-        {/* Ticket preview card */}
+        {/* Outcome card */}
         <div>
           <div
             style={{
-              background: '#141414',
-              border: '1px solid #2a2a2a',
+              background: '#0d1a00',
+              border: '1px solid #2a4a00',
               borderRadius: 16,
               padding: 32,
               position: 'relative',
@@ -206,45 +206,38 @@ function Hero({ onCTA }) {
                 left: 0,
                 right: 0,
                 height: 4,
-                background: `linear-gradient(90deg, ${Y}, #fff)`,
+                background: `linear-gradient(90deg, #a3e635, #fff)`,
               }}
             />
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                marginBottom: 20,
-              }}
-            >
+            {/* Status header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
               <div>
-                <div
-                  style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 4 }}
-                >
-                  NYC PARKING SUMMONS
+                <div style={{ fontFamily: mono, fontSize: 10, color: '#4a6a00', letterSpacing: 2, marginBottom: 4 }}>
+                  NYC PARKING VIOLATIONS BUREAU
                 </div>
-                <div style={{ fontFamily: display, fontSize: 26, color: '#fff', letterSpacing: 2 }}>
-                  VIOLATION NOTICE
+                <div style={{ fontFamily: display, fontSize: 26, color: '#a3e635', letterSpacing: 2 }}>
+                  SUMMONS DISMISSED
                 </div>
               </div>
               <div
                 style={{
-                  background: '#2a0000',
-                  border: '1px solid #5a0000',
+                  background: '#1a3a00',
+                  border: '1px solid #3a6a00',
                   borderRadius: 6,
                   padding: '5px 10px',
                 }}
               >
-                <div style={{ fontFamily: mono, fontSize: 10, color: '#ff6b6b', letterSpacing: 1 }}>
-                  UNPAID
+                <div style={{ fontFamily: mono, fontSize: 10, color: '#a3e635', letterSpacing: 1 }}>
+                  APPEAL GRANTED
                 </div>
               </div>
             </div>
+            {/* Details */}
             {[
               ['Violation', 'Alternate Side Parking'],
-              ['Fine Amount', '$65.00'],
-              ['Date Issued', 'March 8, 2026'],
-              ['Location', '5th Ave & 42nd St'],
+              ['Fine Amount', '$65.00 waived'],
+              ['Decision', 'Appeal granted — insufficient evidence'],
+              ['Time to Decision', '8 days after submission'],
             ].map(([k, v]) => (
               <div
                 key={k}
@@ -252,28 +245,28 @@ function Hero({ onCTA }) {
                   display: 'flex',
                   justifyContent: 'space-between',
                   padding: '10px 0',
-                  borderBottom: '1px solid #1e1e1e',
+                  borderBottom: '1px solid #1a2a00',
                 }}
               >
-                <span style={{ fontFamily: mono, fontSize: 11, color: '#555' }}>{k}</span>
-                <span style={{ fontFamily: mono, fontSize: 12, color: '#ccc' }}>{v}</span>
+                <span style={{ fontFamily: mono, fontSize: 11, color: '#4a6a00' }}>{k}</span>
+                <span style={{ fontFamily: mono, fontSize: 12, color: '#a3e635' }}>{v}</span>
               </div>
             ))}
             <div
               style={{
                 marginTop: 20,
                 padding: 14,
-                background: '#0f1a00',
-                border: '1px solid #1a3a00',
+                background: '#111',
+                border: '1px solid #2a2a2a',
                 borderRadius: 8,
                 display: 'flex',
                 alignItems: 'center',
                 gap: 10,
               }}
             >
-              <div style={{ color: '#a3e635' }}>✓</div>
-              <div style={{ fontFamily: mono, fontSize: 11, color: '#a3e635', letterSpacing: 1 }}>
-                APPEAL LETTER READY TO SUBMIT
+              <div style={{ color: '#a3e635', fontSize: 18 }}>✓</div>
+              <div style={{ fontFamily: mono, fontSize: 11, color: '#888', letterSpacing: 1 }}>
+                THIS COULD BE YOUR RESULT
               </div>
             </div>
           </div>
