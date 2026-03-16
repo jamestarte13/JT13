@@ -110,8 +110,8 @@ function Hero({ onCTA }) {
           maxWidth: 1100,
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 80,
+          gridTemplateColumns: '1fr auto 1fr',
+          gap: 0,
           alignItems: 'center',
         }}
       >
@@ -187,6 +187,11 @@ function Hero({ onCTA }) {
             ))}
           </div>
         </div>
+        {/* Arrow connector */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 28px', gap: 6 }}>
+          <div style={{ fontFamily: mono, fontSize: 9, color: '#444', letterSpacing: 2, textAlign: 'center' }}>THIS<br/>COULD<br/>BE YOU</div>
+          <div style={{ color: '#555', fontSize: 28, lineHeight: 1 }}>→</div>
+        </div>
         {/* Outcome card */}
         <div>
           <div
@@ -215,7 +220,23 @@ function Hero({ onCTA }) {
                 <div style={{ fontFamily: mono, fontSize: 10, color: '#7a4a00', letterSpacing: 2, marginBottom: 4 }}>
                   NYC PARKING VIOLATIONS BUREAU
                 </div>
-                <div style={{ fontFamily: display, fontSize: 26, color: '#f97316', letterSpacing: 2 }}>
+                <div
+                  style={{
+                    display: 'inline-block',
+                    fontFamily: display,
+                    fontSize: 22,
+                    color: '#f97316',
+                    letterSpacing: 3,
+                    border: '3px solid #f97316',
+                    outline: '1px solid #f97316',
+                    outlineOffset: 3,
+                    padding: '6px 14px',
+                    transform: 'rotate(-4deg)',
+                    transformOrigin: 'left center',
+                    marginTop: 6,
+                    opacity: 0.92,
+                  }}
+                >
                   SUMMONS DISMISSED
                 </div>
               </div>
