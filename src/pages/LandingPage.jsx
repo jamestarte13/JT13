@@ -155,7 +155,7 @@ function Hero({ onCTA }) {
             <br />
             <span style={{ color: Y, fontSize: 36 }}>Win your case in 2 easy steps</span>
             <br />
-            <span style={{ fontSize: 36 }}>— no lawyer, no court, no hassle.</span>
+            <span style={{ fontSize: 36 }}>— hassle free.</span>
           </h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
             <YBtn onClick={onCTA} large>
