@@ -110,8 +110,8 @@ function Hero({ onCTA }) {
           maxWidth: 1100,
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: '1fr auto 1fr',
-          gap: 0,
+          gridTemplateColumns: '1fr 1fr',
+          gap: 80,
           alignItems: 'center',
         }}
       >
@@ -186,11 +186,6 @@ function Hero({ onCTA }) {
               </div>
             ))}
           </div>
-        </div>
-        {/* Arrow connector */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 28px', gap: 6 }}>
-          <div style={{ fontFamily: mono, fontSize: 9, color: '#444', letterSpacing: 2, textAlign: 'center' }}>THIS<br/>COULD<br/>BE YOU</div>
-          <div style={{ color: '#555', fontSize: 28, lineHeight: 1 }}>→</div>
         </div>
         {/* Outcome card */}
         <div>
