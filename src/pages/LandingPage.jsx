@@ -838,7 +838,7 @@ function FinalCTA({ onCTA }) {
               maxWidth: 500,
             }}
           >
-            Your first appeal letter is free. Takes 2 minutes. Could save you hundreds.
+            Professionally written appeal letters that cite real NYC Traffic Rules — built to maximize your chances of dismissal.
           </p>
           <YBtn onClick={onCTA} large dark>
             Generate My Free Letter →
