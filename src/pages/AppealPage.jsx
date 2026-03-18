@@ -251,12 +251,12 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             borderRadius: '8px 8px 0 0',
             padding: '20px 28px',
             textAlign: 'left',
-            maxHeight: 160,
+            maxHeight: 210,
             overflow: 'hidden',
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}
         >
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap' }}>
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3px)', userSelect: 'none' }}>
             {letter}
           </div>
         </div>
@@ -439,12 +439,12 @@ function PaymentGate({ email, letter, onSuccess }) {
             borderRadius: '8px 8px 0 0',
             padding: '20px 28px',
             textAlign: 'left',
-            maxHeight: 160,
+            maxHeight: 210,
             overflow: 'hidden',
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}
         >
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap' }}>
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3px)', userSelect: 'none' }}>
             {letter}
           </div>
         </div>
@@ -772,6 +772,7 @@ export default function AppealPage() {
     plateNumber: '',
     amount: '',
     defense: '',
+    otherDefense: '',
     extraDetails: '',
     name: '',
   })
@@ -782,7 +783,7 @@ export default function AppealPage() {
   const set = k => v => setForm(f => ({ ...f, [k]: v }))
 
   const canNext0 = form.ticketNumber && form.date && form.location && form.violation && form.amount
-  const canNext1 = form.defense && form.name
+  const canNext1 = form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim())
 
   const stepNum = screen === 'gate' ? 0 : screen === 'form' ? (step === 0 ? 1 : 2) : 3
 
@@ -919,6 +920,30 @@ export default function AppealPage() {
                 <TInput label="Your Full Name" value={form.name} onChange={set('name')} placeholder="e.g. Jane Smith" />
                 <TInput label="Vehicle Plate Number" value={form.plateNumber} onChange={set('plateNumber')} placeholder="e.g. ABC1234" />
                 <TSel label="Primary Defense Reason" value={form.defense} onChange={set('defense')} options={defenseReasons} />
+                {form.defense === 'Other' && (
+                  <div style={{ marginBottom: 20 }}>
+                    <Lbl>Describe Your Defense</Lbl>
+                    <textarea
+                      value={form.otherDefense}
+                      onChange={e => set('otherDefense')(e.target.value)}
+                      placeholder="Explain why this ticket should be dismissed..."
+                      rows={4}
+                      style={{
+                        width: '100%',
+                        background: '#1a1a1a',
+                        border: '1px solid #333',
+                        borderRadius: 8,
+                        padding: '14px 16px',
+                        color: '#fff',
+                        fontFamily: 'Georgia, serif',
+                        fontSize: 14,
+                        lineHeight: 1.6,
+                        resize: 'vertical',
+                        boxSizing: 'border-box',
+                      }}
+                    />
+                  </div>
+                )}
                 <SuccessMeter defense={form.defense} />
                 <ExhibitUploader exhibits={exhibits} onChange={setExhibits} />
                 <div style={{ marginBottom: 20 }}>

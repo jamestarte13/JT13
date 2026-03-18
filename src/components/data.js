@@ -106,7 +106,9 @@ export function buildDateOptions() {
 
 export function generateLetter(form, exhibits = []) {
   const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-  const defenseText = defenseArguments[form.defense] || defenseArguments['Other']
+  const defenseText = (form.defense === 'Other' && form.otherDefense?.trim())
+    ? form.otherDefense.trim()
+    : (defenseArguments[form.defense] || defenseArguments['Other'])
   const extra = form.extraDetails ? `\nAdditional context: ${form.extraDetails}\n` : ''
   const enclosures =
     exhibits.length > 0
