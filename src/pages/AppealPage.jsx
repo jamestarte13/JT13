@@ -243,53 +243,36 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      {/* Teaser letter preview */}
-      <div
-        style={{
-          position: 'relative',
-          background: '#141414',
-          border: '1px solid #2a2a2a',
-          borderRadius: 10,
-          padding: '28px 32px',
-          marginBottom: 32,
-          textAlign: 'left',
-          overflow: 'hidden',
-          userSelect: 'none',
-        }}
-      >
-        {/* Real letter text — blurred */}
-        <div style={{ filter: 'blur(5px)', opacity: 0.5, pointerEvents: 'none', fontFamily: 'Georgia, serif', fontSize: 13, color: '#ccc', lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>
-          {letter}
+      {/* Letter paper preview — fades into pricing cards */}
+      <div style={{ position: 'relative', marginBottom: 0, userSelect: 'none' }}>
+        <div
+          style={{
+            background: '#fff',
+            borderRadius: '8px 8px 0 0',
+            padding: '32px 36px',
+            textAlign: 'left',
+            maxHeight: 280,
+            overflow: 'hidden',
+            boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
+          }}
+        >
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap' }}>
+            {letter}
+          </div>
         </div>
-        {/* Overlay: lock message */}
+        {/* Gradient fade from white paper into dark page */}
         <div
           style={{
             position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(14,14,14,0.7) 40%, rgba(14,14,14,0.95) 100%)',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 160,
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 40%, #0e0e0e 100%)',
+            pointerEvents: 'none',
           }}
-        >
-          <div style={{ fontFamily: mono, fontSize: 11, color: '#555', letterSpacing: 2, marginBottom: 8 }}>YOUR LETTER IS READY</div>
-          <div style={{ fontFamily: display, fontSize: 32, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>UNLOCK TO READ</div>
-        </div>
+        />
       </div>
-      <p
-        style={{
-          fontFamily: 'Georgia, serif',
-          fontSize: 15,
-          color: '#666',
-          lineHeight: 1.7,
-          marginBottom: 32,
-        }}
-      >
-        NYC drivers average 2–3 tickets per year.
-        <br />
-        An annual plan covers them all for less than the cost of one extra ticket.
-      </p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
         {/* Free option */}
         <div
@@ -448,39 +431,36 @@ function PaymentGate({ email, letter, onSuccess }) {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      {/* Blurred real letter teaser */}
-      <div
-        style={{
-          position: 'relative',
-          background: '#141414',
-          border: '1px solid #2a2a2a',
-          borderRadius: 10,
-          padding: '28px 32px',
-          marginBottom: 32,
-          textAlign: 'left',
-          overflow: 'hidden',
-          userSelect: 'none',
-        }}
-      >
-        <div style={{ filter: 'blur(5px)', opacity: 0.5, pointerEvents: 'none', fontFamily: 'Georgia, serif', fontSize: 13, color: '#ccc', lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>
-          {letter}
+      {/* Letter paper preview — fades into pricing cards */}
+      <div style={{ position: 'relative', marginBottom: 0, userSelect: 'none' }}>
+        <div
+          style={{
+            background: '#fff',
+            borderRadius: '8px 8px 0 0',
+            padding: '32px 36px',
+            textAlign: 'left',
+            maxHeight: 280,
+            overflow: 'hidden',
+            boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
+          }}
+        >
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap' }}>
+            {letter}
+          </div>
         </div>
         <div
           style={{
             position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(14,14,14,0.7) 40%, rgba(14,14,14,0.95) 100%)',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 160,
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 40%, #0e0e0e 100%)',
+            pointerEvents: 'none',
           }}
-        >
-          <div style={{ fontFamily: mono, fontSize: 11, color: '#555', letterSpacing: 2, marginBottom: 8 }}>YOUR LETTER IS READY</div>
-          <div style={{ fontFamily: display, fontSize: 32, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>UNLOCK TO READ</div>
-        </div>
+        />
       </div>
-      <p style={{ fontFamily: serif, fontSize: 15, color: '#666', lineHeight: 1.7, marginBottom: 32 }}>
+      <p style={{ fontFamily: serif, fontSize: 15, color: '#666', lineHeight: 1.7, marginBottom: 24, marginTop: 24 }}>
         Your first letter was free. Additional letters are $9.99 each,
         <br />or get unlimited access for just $39.99/year.
       </p>
