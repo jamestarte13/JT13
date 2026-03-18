@@ -250,10 +250,10 @@ function Hero({ onCTA }) {
             </div>
             {/* Details */}
             {[
-              ['Violation', 'Alternate Side Parking'],
-              ['Fine Amount', '$65.00 waived'],
-              ['Decision', 'Appeal granted — insufficient evidence'],
-              ['Time to Decision', '8 days after submission'],
+              ['Violation', 'Double Parking'],
+              ['Fine Amount', '$165.00 waived'],
+              ['Decision', 'Appeal granted — signage obstruction'],
+              ['Time to Decision', '11 days after submission'],
             ].map(([k, v]) => (
               <div
                 key={k}
