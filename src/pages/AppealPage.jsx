@@ -249,9 +249,9 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
           style={{
             background: '#fff',
             borderRadius: '8px 8px 0 0',
-            padding: '32px 36px',
+            padding: '20px 28px',
             textAlign: 'left',
-            maxHeight: 280,
+            maxHeight: 160,
             overflow: 'hidden',
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}
@@ -267,8 +267,8 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             bottom: 0,
             left: 0,
             right: 0,
-            height: 160,
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 40%, #0e0e0e 100%)',
+            height: 100,
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, #0e0e0e 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -437,9 +437,9 @@ function PaymentGate({ email, letter, onSuccess }) {
           style={{
             background: '#fff',
             borderRadius: '8px 8px 0 0',
-            padding: '32px 36px',
+            padding: '20px 28px',
             textAlign: 'left',
-            maxHeight: 280,
+            maxHeight: 160,
             overflow: 'hidden',
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}
@@ -454,16 +454,12 @@ function PaymentGate({ email, letter, onSuccess }) {
             bottom: 0,
             left: 0,
             right: 0,
-            height: 160,
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 40%, #0e0e0e 100%)',
+            height: 100,
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, #0e0e0e 100%)',
             pointerEvents: 'none',
           }}
         />
       </div>
-      <p style={{ fontFamily: serif, fontSize: 15, color: '#666', lineHeight: 1.7, marginBottom: 24, marginTop: 24 }}>
-        Your first letter was free. Additional letters are $9.99 each,
-        <br />or get unlimited access for just $39.99/year.
-      </p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
         <div style={{ background: '#141414', border: '1px solid #222', borderRadius: 10, padding: 24, textAlign: 'left' }}>
           <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 10 }}>ONE LETTER</div>
