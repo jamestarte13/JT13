@@ -119,7 +119,7 @@ function EmailGate({ onSubmit }) {
           onKeyDown={e => e.key === 'Enter' && go()}
           style={{
             width: '100%',
-            background: '#1a1a1a',
+            background: '#2c2c30',
             border: `1px solid ${err ? '#ef4444' : focused ? Y : '#333'}`,
             borderRadius: 8,
             padding: '14px 16px',
@@ -162,7 +162,7 @@ function SuccessMeter({ defense }) {
           marginBottom: 20,
           padding: 16,
           background: '#161616',
-          border: '1px solid #222',
+          border: '1px solid #2e2e32',
           borderRadius: 10,
         }}
       >
@@ -204,7 +204,7 @@ function SuccessMeter({ defense }) {
           </span>
         </div>
       </div>
-      <div style={{ height: 6, background: '#222', borderRadius: 3, marginBottom: 12, overflow: 'hidden' }}>
+      <div style={{ height: 6, background: '#2e2e32', borderRadius: 3, marginBottom: 12, overflow: 'hidden' }}>
         <div
           style={{
             height: '100%',
@@ -268,7 +268,7 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
       <div style={{ position: 'absolute', top: 200, left: 0, right: 0, background: 'rgba(12,12,12,0.93)', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a', padding: '20px 16px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           {/* Free option */}
-          <div style={{ background: '#141414', border: '1px solid #222', borderRadius: 10, padding: 20, textAlign: 'left' }}>
+          <div style={{ background: '#1f1f23', border: '1px solid #2e2e32', borderRadius: 10, padding: 20, textAlign: 'left' }}>
             <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 8 }}>THIS LETTER ONLY</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>FREE</div>
             <div style={{ fontFamily: mono, fontSize: 11, color: '#555', marginBottom: 16 }}>First letter only</div>
@@ -278,13 +278,13 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
                 <span style={{ fontFamily: mono, fontSize: 11, color: '#777' }}>{f}</span>
               </div>
             ))}
-            <button onClick={onContinueFree} style={{ width: '100%', marginTop: 16, background: 'transparent', color: '#666', border: '1px solid #333', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', cursor: 'pointer' }}>
+            <button onClick={onContinueFree} style={{ width: '100%', marginTop: 16, background: 'transparent', color: '#666', border: '1px solid #3f3f46', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', cursor: 'pointer' }}>
               Continue Free
             </button>
           </div>
 
           {/* Annual option */}
-          <div style={{ background: '#111', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
+          <div style={{ background: '#252529', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
             <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
             <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL PLAN</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>$39.99</div>
@@ -360,15 +360,15 @@ function PaymentGate({ email, letter, onSuccess }) {
       {/* Belt — absolute over the letter, centered vertically in the 500px letter */}
       <div style={{ position: 'absolute', top: 180, left: 0, right: 0, background: 'rgba(12,12,12,0.93)', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a', padding: '20px 16px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div style={{ background: '#141414', border: '1px solid #222', borderRadius: 10, padding: 20, textAlign: 'left' }}>
+          <div style={{ background: '#1f1f23', border: '1px solid #2e2e32', borderRadius: 10, padding: 20, textAlign: 'left' }}>
             <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 8 }}>ONE LETTER</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$9.99</div>
             <button onClick={handlePay} disabled={loading}
-              style={{ width: '100%', background: '#333', color: '#fff', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
+              style={{ width: '100%', background: '#3f3f46', color: '#fff', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
               {loading ? 'Redirecting...' : 'Buy This Letter'}
             </button>
           </div>
-          <div style={{ background: '#111', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
+          <div style={{ background: '#252529', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
             <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
             <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL — UNLIMITED</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$39.99/yr</div>
@@ -407,7 +407,7 @@ function GuideTab() {
           key={i}
           style={{
             marginBottom: 6,
-            border: `1px solid ${open === i ? '#333' : '#222'}`,
+            border: `1px solid ${open === i ? '#333' : '#2e2e32'}`,
             borderRadius: 8,
             overflow: 'hidden',
           }}
@@ -420,10 +420,10 @@ function GuideTab() {
               gap: 12,
               padding: '14px 18px',
               cursor: 'pointer',
-              background: open === i ? '#1a1a1a' : '#141414',
+              background: open === i ? '#2c2c30' : '#1f1f23',
             }}
-            onMouseEnter={e => (e.currentTarget.style.background = '#1a1a1a')}
-            onMouseLeave={e => (e.currentTarget.style.background = open === i ? '#1a1a1a' : '#141414')}
+            onMouseEnter={e => (e.currentTarget.style.background = '#2c2c30')}
+            onMouseLeave={e => (e.currentTarget.style.background = open === i ? '#2c2c30' : '#1f1f23')}
           >
             <span style={{ fontSize: 18 }}>{s.icon}</span>
             <span style={{ flex: 1, color: '#ddd', fontSize: 13, fontFamily: mono }}>{s.title}</span>
@@ -442,7 +442,7 @@ function GuideTab() {
             <div
               style={{
                 padding: '0 18px 18px 50px',
-                background: '#1a1a1a',
+                background: '#2c2c30',
                 color: '#999',
                 fontSize: 13,
                 lineHeight: 1.8,
@@ -459,7 +459,7 @@ function GuideTab() {
           marginTop: 16,
           padding: '12px 14px',
           background: '#161616',
-          border: '1px solid #222',
+          border: '1px solid #2e2e32',
           borderRadius: 8,
         }}
       >
@@ -517,7 +517,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
           background: '#161616',
           padding: 3,
           borderRadius: 8,
-          border: '1px solid #222',
+          border: '1px solid #2e2e32',
         }}
       >
         {[
@@ -560,7 +560,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
               fontFamily: 'Georgia, serif',
               fontSize: 13,
               lineHeight: 1.9,
-              color: '#222',
+              color: '#2e2e32',
               whiteSpace: 'pre-wrap',
               boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
             }}
@@ -572,7 +572,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
               onClick={copy}
               style={{
                 flex: 1,
-                background: copied ? '#1a3a1a' : Y,
+                background: copied ? '#1e3626' : Y,
                 color: copied ? '#22c55e' : '#111',
                 border: copied ? '1px solid #22c55e' : 'none',
                 borderRadius: 8,
@@ -593,7 +593,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
               disabled={pdfLoading}
               style={{
                 flex: 1,
-                background: '#1a1a1a',
+                background: '#2c2c30',
                 color: pdfLoading ? '#666' : '#fff',
                 border: '1px solid #444',
                 borderRadius: 8,
@@ -639,7 +639,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
           width: '100%',
           background: 'transparent',
           color: '#444',
-          border: '1px solid #222',
+          border: '1px solid #2e2e32',
           borderRadius: 8,
           padding: '12px',
           fontFamily: mono,
@@ -763,7 +763,7 @@ export default function AppealPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0d1512', color: '#fff', fontFamily: mono, padding: '32px 20px' }}>
+    <div style={{ minHeight: '100vh', background: '#18181b', color: '#fff', fontFamily: mono, padding: '32px 20px' }}>
       <div style={{ maxWidth: 560, margin: '0 auto' }}>
 
         {/* Top bar */}
@@ -772,7 +772,7 @@ export default function AppealPage() {
             onClick={() => navigate('/')}
             style={{
               background: 'transparent',
-              border: '1px solid #333',
+              border: '1px solid #3f3f46',
               borderRadius: 6,
               padding: '8px 14px',
               color: '#666',
@@ -827,8 +827,8 @@ export default function AppealPage() {
                       rows={4}
                       style={{
                         width: '100%',
-                        background: '#1a1a1a',
-                        border: '1px solid #333',
+                        background: '#2c2c30',
+                        border: '1px solid #3f3f46',
                         borderRadius: 8,
                         padding: '14px 16px',
                         color: '#fff',
@@ -855,8 +855,8 @@ export default function AppealPage() {
                     rows={4}
                     style={{
                       width: '100%',
-                      background: '#1a1a1a',
-                      border: '1px solid #333',
+                      background: '#2c2c30',
+                      border: '1px solid #3f3f46',
                       borderRadius: 8,
                       padding: '14px 16px',
                       color: '#fff',
@@ -878,7 +878,7 @@ export default function AppealPage() {
                       flex: 1,
                       background: 'transparent',
                       color: '#666',
-                      border: '1px solid #333',
+                      border: '1px solid #3f3f46',
                       borderRadius: 8,
                       padding: '14px',
                       fontFamily: mono,

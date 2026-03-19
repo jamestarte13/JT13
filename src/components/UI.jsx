@@ -41,7 +41,7 @@ export function YBtn({ children, onClick, large, dark, style = {} }) {
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
       style={{
-        background: dark ? (h ? '#000' : '#111') : (h ? '#fff' : Y),
+        background: dark ? (h ? '#1a1a1a' : '#252529') : (h ? '#fff' : Y),
         color: dark ? Y : '#111',
         border: 'none',
         borderRadius: 6,
@@ -67,7 +67,7 @@ export function PBtn({ onClick, disabled, children, style = {} }) {
       onClick={onClick}
       disabled={disabled}
       style={{
-        background: disabled ? '#222' : Y,
+        background: disabled ? '#2e2e32' : Y,
         color: disabled ? '#444' : '#111',
         border: 'none',
         borderRadius: 8,
@@ -120,8 +120,8 @@ export function TInput({ label, value, onChange, placeholder, type = 'text' }) {
         onBlur={() => setF(false)}
         style={{
           width: '100%',
-          background: '#1a1a1a',
-          border: `1px solid ${f ? Y : '#333'}`,
+          background: '#2c2c30',
+          border: `1px solid ${f ? Y : '#3f3f46'}`,
           borderRadius: 8,
           padding: '14px 16px',
           color: '#fff',
@@ -148,8 +148,8 @@ export function TSel({ label, value, onChange, options, placeholder = 'Select on
         onBlur={() => setF(false)}
         style={{
           width: '100%',
-          background: '#1a1a1a',
-          border: `1px solid ${f ? Y : '#333'}`,
+          background: '#2c2c30',
+          border: `1px solid ${f ? Y : '#3f3f46'}`,
           borderRadius: 8,
           padding: '14px 16px',
           color: value ? '#fff' : '#555',
