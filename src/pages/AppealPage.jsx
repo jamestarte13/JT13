@@ -222,6 +222,15 @@ function SuccessMeter({ defense }) {
   )
 }
 
+// Returns the letter header + first 3 body lines for the blurred teaser preview
+function getLetterPreview(letter) {
+  const lines = letter.split('\n')
+  const dearIdx = lines.findIndex(l => l.startsWith('Dear Hearing Officer'))
+  if (dearIdx === -1) return lines.slice(0, 18).join('\n')
+  const bodyStart = dearIdx + 2 // skip blank line after salutation
+  return lines.slice(0, bodyStart + 3).join('\n')
+}
+
 // ── Upsell screen ─────────────────────────────────────────────────────────────
 function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
   const [loading, setLoading] = useState(false)
@@ -251,13 +260,12 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             borderRadius: '8px 8px 0 0',
             padding: '20px 28px',
             textAlign: 'left',
-            maxHeight: 210,
             overflow: 'hidden',
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}
         >
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3px)', userSelect: 'none' }}>
-            {letter}
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(5px)', userSelect: 'none' }}>
+            {getLetterPreview(letter)}
           </div>
         </div>
         {/* Gradient fade from white paper into dark page */}
@@ -439,13 +447,12 @@ function PaymentGate({ email, letter, onSuccess }) {
             borderRadius: '8px 8px 0 0',
             padding: '20px 28px',
             textAlign: 'left',
-            maxHeight: 210,
             overflow: 'hidden',
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}
         >
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3px)', userSelect: 'none' }}>
-            {letter}
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(5px)', userSelect: 'none' }}>
+            {getLetterPreview(letter)}
           </div>
         </div>
         <div
