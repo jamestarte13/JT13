@@ -21,7 +21,7 @@ const dateOptions = buildDateOptions()
 
 // ── Step indicator ────────────────────────────────────────────────────────────
 function StepBar({ current }) {
-  const labels = ['Your Info', 'Ticket Info', 'Defense', 'Appeal Letter']
+  const labels = ['Ticket Info', 'Defense']
   return (
     <div style={{ display: 'flex', alignItems: 'center', marginBottom: 36 }}>
       {labels.map((l, i) => (
@@ -661,7 +661,7 @@ export default function AppealPage() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
-  const [screen, setScreen] = useState('gate')   // gate | form | payment | upsell | result
+  const [screen, setScreen] = useState('form')   // form | payment | upsell | result
   const [step, setStep] = useState(0)             // 0 = ticket info, 1 = defense
   const [email, setEmail] = useState('')
   const [form, setForm] = useState({
@@ -683,23 +683,24 @@ export default function AppealPage() {
   const set = k => v => setForm(f => ({ ...f, [k]: v }))
 
   const canNext0 = form.ticketNumber && form.date && form.location && form.violation && form.amount
-  const canNext1 = form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim())
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const canNext1 = form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim()) && validEmail
 
-  const stepNum = screen === 'gate' ? 0 : screen === 'form' ? (step === 0 ? 1 : 2) : 3
+  const stepNum = step === 0 ? 0 : 1
 
   // Handle return from Stripe
   if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'true') {
     if (screen !== 'result' && letter) setScreen('result')
   }
 
-  const handleEmailSubmit = async emailVal => {
-    setEmail(emailVal)
-    setScreen('form')
-  }
-
   const handleGenerateAttempt = async () => {
     setGenerating(true)
     try {
+      // Create subscriber if new (email collected at end of form)
+      const existing = await getSubscriber(email).catch(() => null)
+      if (!existing) {
+        await upsertSubscriber(email, { plan: 'free', letter_count: 0 }).catch(() => {})
+      }
       const sub = await getSubscriber(email)
       const count = sub?.letter_count ?? 0
       const isAnnual = sub?.plan === 'annual'
@@ -796,10 +797,6 @@ export default function AppealPage() {
         <StepBar current={stepNum} />
 
         {/* Screens */}
-        {screen === 'gate' && (
-          <EmailGate onSubmit={handleEmailSubmit} />
-        )}
-
         {screen === 'form' && (
           <div>
             {step === 0 && (
@@ -873,6 +870,7 @@ export default function AppealPage() {
                     onBlur={e => (e.target.style.borderColor = '#333')}
                   />
                 </div>
+                <TInput label="Your Email" value={email} onChange={setEmail} placeholder="e.g. you@email.com" type="email" />
                 <div style={{ display: 'flex', gap: 10 }}>
                   <button
                     onClick={() => setStep(0)}
