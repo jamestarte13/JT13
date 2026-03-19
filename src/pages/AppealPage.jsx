@@ -251,62 +251,58 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
   }
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      {/* Letter paper with belt overlay */}
-      {/* Clipping window — letter flows naturally, gets clipped; belt sits in the middle */}
-      <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24, height: 700, overflow: 'hidden', borderRadius: 8, boxShadow: '0 2px 24px rgba(0,0,0,0.5)' }}>
+    <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24 }}>
 
-        {/* Letter paper — normal flow, clipped by overflow:hidden above */}
-        <div style={{ background: '#fff', padding: '24px 28px', textAlign: 'left' }}>
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3.5px)', userSelect: 'none' }}>
-            {letter}
-          </div>
+      {/* Letter paper — height+overflow clipped HERE */}
+      <div style={{ height: 600, overflow: 'hidden', borderRadius: 8, boxShadow: '0 2px 24px rgba(0,0,0,0.5)', background: '#fff', padding: '24px 28px', textAlign: 'left' }}>
+        <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3.5px)', userSelect: 'none' }}>
+          {letter}
         </div>
-
-        {/* Top + bottom fades */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to bottom, rgba(14,14,14,0.5) 0%, transparent 100%)', pointerEvents: 'none', zIndex: 2 }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to top, rgba(14,14,14,0.5) 0%, transparent 100%)', pointerEvents: 'none', zIndex: 2 }} />
-
-        {/* Belt — pinned at exact pixel from top so letter shows above AND below */}
-        <div style={{ position: 'absolute', top: 220, left: 0, right: 0, zIndex: 3, background: 'rgba(12,12,12,0.93)', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a', padding: '20px 16px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-              {/* Free option */}
-              <div style={{ background: '#141414', border: '1px solid #222', borderRadius: 10, padding: 20, textAlign: 'left' }}>
-                <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 8 }}>THIS LETTER ONLY</div>
-                <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>FREE</div>
-                <div style={{ fontFamily: mono, fontSize: 11, color: '#555', marginBottom: 16 }}>First letter only</div>
-                {['This appeal letter', 'Submission guide', 'PDF download'].map(f => (
-                  <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
-                    <span style={{ color: '#4ade80', fontSize: 11 }}>✓</span>
-                    <span style={{ fontFamily: mono, fontSize: 11, color: '#777' }}>{f}</span>
-                  </div>
-                ))}
-                <button onClick={onContinueFree} style={{ width: '100%', marginTop: 16, background: 'transparent', color: '#666', border: '1px solid #333', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', cursor: 'pointer' }}>
-                  Continue Free
-                </button>
-              </div>
-
-              {/* Annual option */}
-              <div style={{ background: '#111', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
-                <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL PLAN</div>
-                <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>$39.99</div>
-                <div style={{ fontFamily: mono, fontSize: 11, color: '#666', marginBottom: 16 }}>Per year · unlimited letters</div>
-                {['Unlimited appeal letters', 'Submission guide', 'PDF download', 'Denial follow-up template', 'Hearing prep guide'].map(f => (
-                  <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
-                    <span style={{ color: Y, fontSize: 11 }}>✓</span>
-                    <span style={{ fontFamily: mono, fontSize: 11, color: '#aaa' }}>{f}</span>
-                  </div>
-                ))}
-                <button onClick={handleUpgrade} disabled={loading} style={{ width: '100%', marginTop: 16, background: loading ? '#999' : Y, color: '#111', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
-                  {loading ? 'Redirecting...' : 'Upgrade to Annual →'}
-                </button>
-              </div>
-            </div>
-          </div>
       </div>
 
-      <div style={{ fontFamily: mono, fontSize: 10, color: '#444', letterSpacing: 1 }}>
+      {/* Top + bottom fades */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 60, borderRadius: '8px 8px 0 0', background: 'linear-gradient(to bottom, rgba(14,14,14,0.4) 0%, transparent 100%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, borderRadius: '0 0 8px 8px', background: 'linear-gradient(to top, rgba(14,14,14,0.4) 0%, transparent 100%)', pointerEvents: 'none' }} />
+
+      {/* Belt — absolute over the letter, centered in the 600px letter height */}
+      <div style={{ position: 'absolute', top: 200, left: 0, right: 0, background: 'rgba(12,12,12,0.93)', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a', padding: '20px 16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          {/* Free option */}
+          <div style={{ background: '#141414', border: '1px solid #222', borderRadius: 10, padding: 20, textAlign: 'left' }}>
+            <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 8 }}>THIS LETTER ONLY</div>
+            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>FREE</div>
+            <div style={{ fontFamily: mono, fontSize: 11, color: '#555', marginBottom: 16 }}>First letter only</div>
+            {['This appeal letter', 'Submission guide', 'PDF download'].map(f => (
+              <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
+                <span style={{ color: '#4ade80', fontSize: 11 }}>✓</span>
+                <span style={{ fontFamily: mono, fontSize: 11, color: '#777' }}>{f}</span>
+              </div>
+            ))}
+            <button onClick={onContinueFree} style={{ width: '100%', marginTop: 16, background: 'transparent', color: '#666', border: '1px solid #333', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', cursor: 'pointer' }}>
+              Continue Free
+            </button>
+          </div>
+
+          {/* Annual option */}
+          <div style={{ background: '#111', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
+            <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL PLAN</div>
+            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>$39.99</div>
+            <div style={{ fontFamily: mono, fontSize: 11, color: '#666', marginBottom: 16 }}>Per year · unlimited letters</div>
+            {['Unlimited appeal letters', 'Submission guide', 'PDF download', 'Denial follow-up template', 'Hearing prep guide'].map(f => (
+              <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
+                <span style={{ color: Y, fontSize: 11 }}>✓</span>
+                <span style={{ fontFamily: mono, fontSize: 11, color: '#aaa' }}>{f}</span>
+              </div>
+            ))}
+            <button onClick={handleUpgrade} disabled={loading} style={{ width: '100%', marginTop: 16, background: loading ? '#999' : Y, color: '#111', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
+              {loading ? 'Redirecting...' : 'Upgrade to Annual →'}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ fontFamily: mono, fontSize: 10, color: '#444', letterSpacing: 1, marginTop: 8 }}>
         $39.99/year = $3.33/month · Cancel anytime
       </div>
     </div>
@@ -348,42 +344,38 @@ function PaymentGate({ email, letter, onSuccess }) {
   }
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      {/* Letter paper with belt overlay */}
-      {/* Clipping window — letter flows naturally, belt pinned at exact px from top */}
-      <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24, height: 500, overflow: 'hidden', borderRadius: 8, boxShadow: '0 2px 24px rgba(0,0,0,0.5)' }}>
+    <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24 }}>
 
-        {/* Letter paper — normal flow, clipped by overflow:hidden */}
-        <div style={{ background: '#fff', padding: '24px 28px', textAlign: 'left' }}>
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3.5px)', userSelect: 'none' }}>
-            {letter}
-          </div>
+      {/* Letter paper — height+overflow clipped HERE, not on a wrapper */}
+      <div style={{ height: 500, overflow: 'hidden', borderRadius: 8, boxShadow: '0 2px 24px rgba(0,0,0,0.5)', background: '#fff', padding: '24px 28px', textAlign: 'left' }}>
+        <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3.5px)', userSelect: 'none' }}>
+          {letter}
         </div>
+      </div>
 
-        {/* Top + bottom fades */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to bottom, rgba(14,14,14,0.5) 0%, transparent 100%)', pointerEvents: 'none', zIndex: 2 }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to top, rgba(14,14,14,0.5) 0%, transparent 100%)', pointerEvents: 'none', zIndex: 2 }} />
+      {/* Top + bottom fades */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 60, borderRadius: '8px 8px 0 0', background: 'linear-gradient(to bottom, rgba(14,14,14,0.4) 0%, transparent 100%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, borderRadius: '0 0 8px 8px', background: 'linear-gradient(to top, rgba(14,14,14,0.4) 0%, transparent 100%)', pointerEvents: 'none' }} />
 
-        {/* Belt — pinned 170px from top so letter shows clearly above AND below */}
-        <div style={{ position: 'absolute', top: 170, left: 0, right: 0, zIndex: 3, background: 'rgba(12,12,12,0.93)', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a', padding: '20px 16px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            <div style={{ background: '#141414', border: '1px solid #222', borderRadius: 10, padding: 20, textAlign: 'left' }}>
-              <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 8 }}>ONE LETTER</div>
-              <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$9.99</div>
-              <button onClick={handlePay} disabled={loading}
-                style={{ width: '100%', background: '#333', color: '#fff', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
-                {loading ? 'Redirecting...' : 'Buy This Letter'}
-              </button>
-            </div>
-            <div style={{ background: '#111', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
-              <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
-              <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL — UNLIMITED</div>
-              <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$39.99/yr</div>
-              <button onClick={handleAnnual} disabled={loading}
-                style={{ width: '100%', background: Y, color: '#111', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
-                {loading ? 'Redirecting...' : 'Go Unlimited →'}
-              </button>
-            </div>
+      {/* Belt — absolute over the letter, centered vertically in the 500px letter */}
+      <div style={{ position: 'absolute', top: 180, left: 0, right: 0, background: 'rgba(12,12,12,0.93)', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a', padding: '20px 16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div style={{ background: '#141414', border: '1px solid #222', borderRadius: 10, padding: 20, textAlign: 'left' }}>
+            <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 8 }}>ONE LETTER</div>
+            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$9.99</div>
+            <button onClick={handlePay} disabled={loading}
+              style={{ width: '100%', background: '#333', color: '#fff', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
+              {loading ? 'Redirecting...' : 'Buy This Letter'}
+            </button>
+          </div>
+          <div style={{ background: '#111', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
+            <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL — UNLIMITED</div>
+            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$39.99/yr</div>
+            <button onClick={handleAnnual} disabled={loading}
+              style={{ width: '100%', background: Y, color: '#111', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
+              {loading ? 'Redirecting...' : 'Go Unlimited →'}
+            </button>
           </div>
         </div>
       </div>
