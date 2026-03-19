@@ -253,7 +253,7 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
   return (
     <div style={{ textAlign: 'center' }}>
       {/* Letter paper with belt overlay */}
-      <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24 }}>
+      <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24, height: 420, overflow: 'hidden', borderRadius: 8 }}>
         {/* Full letter — blurred background */}
         <div
           style={{
@@ -262,17 +262,16 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             padding: '24px 28px',
             textAlign: 'left',
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
-            overflow: 'hidden',
           }}
         >
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3px)', userSelect: 'none' }}>
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3.5px)', userSelect: 'none' }}>
             {letter}
           </div>
         </div>
 
         {/* Top + bottom letter fade */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 48, background: 'linear-gradient(to bottom, rgba(14,14,14,0.45) 0%, transparent 100%)', pointerEvents: 'none', borderRadius: '8px 8px 0 0' }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 48, background: 'linear-gradient(to top, rgba(14,14,14,0.45) 0%, transparent 100%)', pointerEvents: 'none', borderRadius: '0 0 8px 8px' }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to bottom, rgba(14,14,14,0.5) 0%, transparent 100%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to top, rgba(14,14,14,0.5) 0%, transparent 100%)', pointerEvents: 'none' }} />
 
         {/* Belt — payment options centered over the letter */}
         <div
@@ -377,7 +376,7 @@ function PaymentGate({ email, letter, onSuccess }) {
   return (
     <div style={{ textAlign: 'center' }}>
       {/* Letter paper with belt overlay */}
-      <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24 }}>
+      <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24, height: 420, overflow: 'hidden', borderRadius: 8 }}>
         {/* Full letter — blurred background */}
         <div
           style={{
@@ -386,17 +385,16 @@ function PaymentGate({ email, letter, onSuccess }) {
             padding: '24px 28px',
             textAlign: 'left',
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
-            overflow: 'hidden',
           }}
         >
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3px)', userSelect: 'none' }}>
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3.5px)', userSelect: 'none' }}>
             {letter}
           </div>
         </div>
 
         {/* Top + bottom letter fade */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 48, background: 'linear-gradient(to bottom, rgba(14,14,14,0.45) 0%, transparent 100%)', pointerEvents: 'none', borderRadius: '8px 8px 0 0' }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 48, background: 'linear-gradient(to top, rgba(14,14,14,0.45) 0%, transparent 100%)', pointerEvents: 'none', borderRadius: '0 0 8px 8px' }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to bottom, rgba(14,14,14,0.5) 0%, transparent 100%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to top, rgba(14,14,14,0.5) 0%, transparent 100%)', pointerEvents: 'none' }} />
 
         {/* Belt — payment options centered over the letter */}
         <div
