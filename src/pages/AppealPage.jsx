@@ -228,7 +228,7 @@ function getLetterPreview(letter) {
   const dearIdx = lines.findIndex(l => l.startsWith('Dear Hearing Officer'))
   if (dearIdx === -1) return lines.slice(0, 18).join('\n')
   const bodyStart = dearIdx + 2 // skip blank line after salutation
-  return lines.slice(0, bodyStart + 3).join('\n')
+  return lines.slice(0, bodyStart + 2).join('\n')
 }
 
 // ── Upsell screen ─────────────────────────────────────────────────────────────
@@ -264,7 +264,7 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}
         >
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(5px)', userSelect: 'none' }}>
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(2.5px)', userSelect: 'none' }}>
             {getLetterPreview(letter)}
           </div>
         </div>
@@ -451,7 +451,7 @@ function PaymentGate({ email, letter, onSuccess }) {
             boxShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}
         >
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(5px)', userSelect: 'none' }}>
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(2.5px)', userSelect: 'none' }}>
             {getLetterPreview(letter)}
           </div>
         </div>
