@@ -274,7 +274,7 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             <div style={{ fontFamily: mono, fontSize: 11, color: '#555', marginBottom: 16 }}>First letter only</div>
             {['This appeal letter', 'Submission guide', 'PDF download'].map(f => (
               <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
-                <span style={{ color: '#4ade80', fontSize: 11 }}>✓</span>
+                <span style={{ color: '#22c55e', fontSize: 11 }}>✓</span>
                 <span style={{ fontFamily: mono, fontSize: 11, color: '#777' }}>{f}</span>
               </div>
             ))}
@@ -503,8 +503,8 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
           padding: '12px 14px',
         }}
       >
-        <div style={{ color: '#4ade80', fontSize: 16 }}>✓</div>
-        <div style={{ color: '#4ade80', fontSize: 12, letterSpacing: 1, fontFamily: mono }}>
+        <div style={{ color: '#22c55e', fontSize: 16 }}>✓</div>
+        <div style={{ color: '#22c55e', fontSize: 12, letterSpacing: 1, fontFamily: mono }}>
           APPEAL LETTER GENERATED — READY TO SUBMIT
         </div>
       </div>
@@ -573,8 +573,8 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
               style={{
                 flex: 1,
                 background: copied ? '#1a3a1a' : Y,
-                color: copied ? '#4ade80' : '#111',
-                border: copied ? '1px solid #4ade80' : 'none',
+                color: copied ? '#22c55e' : '#111',
+                border: copied ? '1px solid #22c55e' : 'none',
                 borderRadius: 8,
                 padding: '14px',
                 fontFamily: mono,
@@ -763,7 +763,7 @@ export default function AppealPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#111', color: '#fff', fontFamily: mono, padding: '32px 20px' }}>
+    <div style={{ minHeight: '100vh', background: '#0d1512', color: '#fff', fontFamily: mono, padding: '32px 20px' }}>
       <div style={{ maxWidth: 560, margin: '0 auto' }}>
 
         {/* Top bar */}
