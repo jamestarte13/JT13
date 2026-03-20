@@ -799,7 +799,7 @@ export default function AppealPage() {
           <div>
             {step === 0 && (
               <div>
-                <div style={{ maxWidth: 280, margin: '0 auto' }}>
+                <div style={{ maxWidth: 322, margin: '0 auto' }}>
                   <TInput label="Ticket Number" value={form.ticketNumber} onChange={set('ticketNumber')} placeholder="e.g. 1234567890" />
                   <CalendarPicker label="Date of Violation" value={form.date} onChange={set('date')} />
                   <AddressAutocomplete label="Location / Street" value={form.location} onChange={set('location')} />
