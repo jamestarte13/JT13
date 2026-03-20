@@ -1,5 +1,13 @@
 import { useRef } from 'react'
-import { Y, mono } from './tokens'
+import { mono } from './tokens'
+
+const BLUE   = '#2563eb'
+const BLUE_L = '#eff6ff'
+const WHITE  = '#ffffff'
+const GRAY   = '#f5f5f7'
+const TEXT   = '#1d1d1f'
+const MUTED  = '#6e6e73'
+const BORDER = '#e5e5e7'
 
 export default function ExhibitUploader({ exhibits, onChange }) {
   const fileRef = useRef(null)
@@ -28,7 +36,7 @@ export default function ExhibitUploader({ exhibits, onChange }) {
       <label
         style={{
           display: 'block',
-          color: '#ffffff',
+          color: TEXT,
           fontSize: 11,
           letterSpacing: 2,
           textTransform: 'uppercase',
@@ -37,34 +45,35 @@ export default function ExhibitUploader({ exhibits, onChange }) {
         }}
       >
         Supporting Evidence / Exhibits{' '}
-        <span style={{ color: '#ffffff', textTransform: 'none', letterSpacing: 0 }}>(optional)</span>
+        <span style={{ color: MUTED, textTransform: 'none', letterSpacing: 0 }}>(optional)</span>
       </label>
 
       {exhibits.length === 0 && (
         <div
           onClick={() => fileRef.current.click()}
           style={{
-            border: '2px dashed #2a2a2a',
+            border: `2px dashed ${BORDER}`,
             borderRadius: 10,
             padding: '28px 20px',
             textAlign: 'center',
             cursor: 'pointer',
             transition: 'all 0.2s',
+            background: GRAY,
           }}
           onMouseEnter={e => {
-            e.currentTarget.style.borderColor = Y
-            e.currentTarget.style.background = '#111'
+            e.currentTarget.style.borderColor = BLUE
+            e.currentTarget.style.background = BLUE_L
           }}
           onMouseLeave={e => {
-            e.currentTarget.style.borderColor = '#2a2a2a'
-            e.currentTarget.style.background = 'transparent'
+            e.currentTarget.style.borderColor = BORDER
+            e.currentTarget.style.background = GRAY
           }}
         >
           <div style={{ fontSize: 28, marginBottom: 8 }}>📎</div>
-          <div style={{ fontFamily: mono, fontSize: 12, color: '#ffffff', letterSpacing: 1 }}>
+          <div style={{ fontFamily: mono, fontSize: 12, color: TEXT, letterSpacing: 1 }}>
             CLICK TO UPLOAD PHOTOS OR DOCUMENTS
           </div>
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#ffffff', marginTop: 6 }}>
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: MUTED, marginTop: 6 }}>
             Signs, meter receipts, repair records, photos of your vehicle
           </div>
         </div>
@@ -80,10 +89,11 @@ export default function ExhibitUploader({ exhibits, onChange }) {
                 alignItems: 'center',
                 gap: 10,
                 marginBottom: 8,
-                background: '#161616',
-                border: '1px solid #2a2a2a',
+                background: WHITE,
+                border: `1px solid ${BORDER}`,
                 borderRadius: 8,
                 padding: '10px 12px',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
               }}
             >
               <div
@@ -93,7 +103,7 @@ export default function ExhibitUploader({ exhibits, onChange }) {
                   borderRadius: 6,
                   overflow: 'hidden',
                   flexShrink: 0,
-                  background: '#222',
+                  background: GRAY,
                 }}
               >
                 {ex.file?.type?.startsWith('image/') ? (
@@ -110,7 +120,6 @@ export default function ExhibitUploader({ exhibits, onChange }) {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#666',
                       fontSize: 18,
                     }}
                   >
@@ -118,7 +127,7 @@ export default function ExhibitUploader({ exhibits, onChange }) {
                   </div>
                 )}
               </div>
-              <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, flexShrink: 0, width: 22 }}>
+              <div style={{ fontFamily: mono, fontSize: 10, color: BLUE, letterSpacing: 2, flexShrink: 0, width: 22 }}>
                 {letter(i)}
               </div>
               <input
@@ -126,17 +135,17 @@ export default function ExhibitUploader({ exhibits, onChange }) {
                 onChange={e => updateLabel(ex.id, e.target.value)}
                 style={{
                   flex: 1,
-                  background: '#1a1a1a',
-                  border: '1px solid #333',
+                  background: GRAY,
+                  border: `1px solid ${BORDER}`,
                   borderRadius: 6,
                   padding: '8px 10px',
-                  color: '#ffffff',
+                  color: TEXT,
                   fontSize: 12,
                   fontFamily: mono,
                   outline: 'none',
                 }}
-                onFocus={e => (e.target.style.borderColor = Y)}
-                onBlur={e => (e.target.style.borderColor = '#333')}
+                onFocus={e => (e.target.style.borderColor = BLUE)}
+                onBlur={e => (e.target.style.borderColor = BORDER)}
                 placeholder="Describe this exhibit..."
               />
               <button
@@ -144,14 +153,15 @@ export default function ExhibitUploader({ exhibits, onChange }) {
                 style={{
                   background: 'transparent',
                   border: 'none',
-                  color: '#ffffff',
+                  color: MUTED,
                   cursor: 'pointer',
-                  fontSize: 16,
+                  fontSize: 18,
                   padding: '0 4px',
                   flexShrink: 0,
+                  lineHeight: 1,
                 }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#ef4444')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#ffffff')}
+                onMouseLeave={e => (e.currentTarget.style.color = MUTED)}
               >
                 ×
               </button>
@@ -162,23 +172,23 @@ export default function ExhibitUploader({ exhibits, onChange }) {
             style={{
               width: '100%',
               background: 'transparent',
-              border: '1px dashed #333',
+              border: `1px dashed ${BORDER}`,
               borderRadius: 8,
               padding: '10px',
               fontFamily: mono,
               fontSize: 11,
-              color: '#ffffff',
+              color: MUTED,
               letterSpacing: 1,
               textTransform: 'uppercase',
               cursor: 'pointer',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.borderColor = Y
-              e.currentTarget.style.color = Y
+              e.currentTarget.style.borderColor = BLUE
+              e.currentTarget.style.color = BLUE
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.borderColor = '#333'
-              e.currentTarget.style.color = '#ffffff'
+              e.currentTarget.style.borderColor = BORDER
+              e.currentTarget.style.color = MUTED
             }}
           >
             + Add Another Exhibit
@@ -199,13 +209,13 @@ export default function ExhibitUploader({ exhibits, onChange }) {
         <div
           style={{
             padding: '10px 14px',
-            background: '#0f1a00',
-            border: '1px solid #1a3a00',
+            background: BLUE_L,
+            border: '1px solid #bfdbfe',
             borderRadius: 8,
             marginTop: 8,
           }}
         >
-          <div style={{ fontFamily: mono, fontSize: 11, color: '#a3e635', letterSpacing: 1 }}>
+          <div style={{ fontFamily: mono, fontSize: 11, color: BLUE, letterSpacing: 1 }}>
             ✓ {exhibits.length} exhibit{exhibits.length > 1 ? 's' : ''} will be listed in your
             letter and appended to the PDF
           </div>

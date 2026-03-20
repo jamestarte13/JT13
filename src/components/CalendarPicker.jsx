@@ -1,5 +1,13 @@
 import { useState } from 'react'
-import { Y, mono } from './tokens'
+import { mono } from './tokens'
+
+const NAVY   = '#1a2744'
+const BLUE   = '#2563eb'
+const WHITE  = '#ffffff'
+const GRAY   = '#f5f5f7'
+const TEXT   = '#1d1d1f'
+const MUTED  = '#6e6e73'
+const BORDER = '#e5e5e7'
 
 const MONTHS   = ['January','February','March','April','May','June','July','August','September','October','November','December']
 const DAY_HDRS = ['S','M','T','W','T','F','S']
@@ -29,7 +37,6 @@ export default function CalendarPicker({ label, value, onChange }) {
     const daysInMonth = new Date(view.year, view.month + 1, 0).getDate()
     const cells = Array(firstDow).fill(null)
     for (let d = 1; d <= daysInMonth; d++) cells.push(d)
-    // pad to complete last row
     while (cells.length % 7 !== 0) cells.push(null)
     return cells
   }
@@ -65,35 +72,62 @@ export default function CalendarPicker({ label, value, onChange }) {
 
   return (
     <div style={{ marginBottom: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* Label */}
-      <label style={{ display: 'block', color: '#aaa', fontSize: 11, letterSpacing: 2, textTransform: 'uppercase', fontFamily: mono, marginBottom: 10, alignSelf: 'flex-start' }}>
+      <label
+        style={{
+          display: 'block',
+          color: TEXT,
+          fontSize: 11,
+          letterSpacing: 2,
+          textTransform: 'uppercase',
+          fontFamily: mono,
+          marginBottom: 10,
+          alignSelf: 'flex-start',
+        }}
+      >
         {label}
       </label>
 
       {/* Calendar card */}
-      <div style={{ background: '#1f1f23', border: `1px solid #3f3f46`, borderRadius: 10, padding: '10px', width: 220, flexShrink: 0 }}>
-
+      <div
+        style={{
+          background: WHITE,
+          border: `1px solid ${BORDER}`,
+          borderRadius: 12,
+          padding: 12,
+          width: 220,
+          flexShrink: 0,
+          boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+        }}
+      >
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
           <button
             type="button"
             onClick={prevMonth}
             disabled={!canPrev}
-            style={{ background: 'none', border: 'none', color: canPrev ? '#ccc' : '#3f3f46', fontSize: 14, cursor: canPrev ? 'pointer' : 'default', lineHeight: 1, padding: '0 2px' }}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: canPrev ? TEXT : BORDER,
+              fontSize: 14,
+              cursor: canPrev ? 'pointer' : 'default',
+              lineHeight: 1,
+              padding: '0 4px',
+            }}
           >‹</button>
 
           <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-            <span style={{ fontFamily: mono, fontSize: 10, fontWeight: 700, color: '#fff', letterSpacing: 1 }}>
+            <span style={{ fontFamily: mono, fontSize: 10, fontWeight: 700, color: NAVY, letterSpacing: 1 }}>
               {MONTHS[view.month]}
             </span>
             <select
               value={view.year}
               onChange={e => setView(v => ({ ...v, year: +e.target.value }))}
               style={{
-                background: '#2c2c30',
-                border: '1px solid #3f3f46',
+                background: GRAY,
+                border: `1px solid ${BORDER}`,
                 borderRadius: 4,
-                color: '#fff',
+                color: TEXT,
                 fontFamily: mono,
                 fontSize: 10,
                 padding: '2px 4px',
@@ -109,14 +143,34 @@ export default function CalendarPicker({ label, value, onChange }) {
             type="button"
             onClick={nextMonth}
             disabled={!canNext}
-            style={{ background: 'none', border: 'none', color: canNext ? '#ccc' : '#3f3f46', fontSize: 14, cursor: canNext ? 'pointer' : 'default', lineHeight: 1, padding: '0 2px' }}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: canNext ? TEXT : BORDER,
+              fontSize: 14,
+              cursor: canNext ? 'pointer' : 'default',
+              lineHeight: 1,
+              padding: '0 4px',
+            }}
           >›</button>
         </div>
 
         {/* Day-of-week headers */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', marginBottom: 3 }}>
-          {DAY_HDRS.map(d => (
-            <div key={d} style={{ textAlign: 'center', fontFamily: mono, fontSize: 11, fontWeight: 700, color: '#ffffff', letterSpacing: 0.5, paddingBottom: 4, borderBottom: '1px solid #2e2e32' }}>
+          {DAY_HDRS.map((d, i) => (
+            <div
+              key={i}
+              style={{
+                textAlign: 'center',
+                fontFamily: mono,
+                fontSize: 10,
+                fontWeight: 700,
+                color: MUTED,
+                letterSpacing: 0.5,
+                paddingBottom: 4,
+                borderBottom: `1px solid ${BORDER}`,
+              }}
+            >
               {d}
             </div>
           ))}
@@ -135,23 +189,23 @@ export default function CalendarPicker({ label, value, onChange }) {
                 onClick={() => select(d)}
                 disabled={!d || dis}
                 style={{
-                  background:  sel ? Y : 'transparent',
-                  color:       !d  ? 'transparent'
-                             : sel ? '#111'
-                             : dis ? '#3a3a3e'
-                             : tod ? Y
-                             :       '#ffffff',
-                  border:      tod && !sel ? `1px solid ${Y}` : '1px solid transparent',
+                  background:   sel ? NAVY : 'transparent',
+                  color:        !d  ? 'transparent'
+                              : sel ? WHITE
+                              : dis ? BORDER
+                              : tod ? BLUE
+                              :       TEXT,
+                  border:       tod && !sel ? `1px solid ${BLUE}` : '1px solid transparent',
                   borderRadius: 4,
-                  padding:     '4px 0',
-                  fontFamily:  mono,
-                  fontSize:    10,
-                  fontWeight:  sel || tod ? 700 : 400,
-                  cursor:      d && !dis ? 'pointer' : 'default',
-                  textAlign:   'center',
-                  transition:  'background 0.12s, color 0.12s',
+                  padding:      '4px 0',
+                  fontFamily:   mono,
+                  fontSize:     10,
+                  fontWeight:   sel || tod ? 700 : 400,
+                  cursor:       d && !dis ? 'pointer' : 'default',
+                  textAlign:    'center',
+                  transition:   'background 0.12s, color 0.12s',
                 }}
-                onMouseEnter={e => { if (d && !dis && !sel) e.currentTarget.style.background = '#2c2c30' }}
+                onMouseEnter={e => { if (d && !dis && !sel) e.currentTarget.style.background = GRAY }}
                 onMouseLeave={e => { if (!sel) e.currentTarget.style.background = 'transparent' }}
               >
                 {d || ''}
@@ -162,7 +216,18 @@ export default function CalendarPicker({ label, value, onChange }) {
 
         {/* Selected date display */}
         {value && (
-          <div style={{ marginTop: 8, paddingTop: 6, borderTop: '1px solid #2e2e32', fontFamily: mono, fontSize: 9, color: Y, letterSpacing: 1, textAlign: 'center' }}>
+          <div
+            style={{
+              marginTop: 8,
+              paddingTop: 6,
+              borderTop: `1px solid ${BORDER}`,
+              fontFamily: mono,
+              fontSize: 9,
+              color: BLUE,
+              letterSpacing: 1,
+              textAlign: 'center',
+            }}
+          >
             {value}
           </div>
         )}

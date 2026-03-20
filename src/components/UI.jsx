@@ -67,8 +67,8 @@ export function PBtn({ onClick, disabled, children, style = {} }) {
       onClick={onClick}
       disabled={disabled}
       style={{
-        background: disabled ? '#2e2e32' : Y,
-        color: disabled ? '#444' : '#111',
+        background: disabled ? '#e5e5e7' : '#2563eb',
+        color: disabled ? '#6e6e73' : '#ffffff',
         border: 'none',
         borderRadius: 8,
         padding: '16px',
@@ -93,7 +93,7 @@ export function Lbl({ children }) {
     <label
       style={{
         display: 'block',
-        color: '#ffffff',
+        color: '#1d1d1f',
         fontSize: 11,
         letterSpacing: 2,
         textTransform: 'uppercase',
@@ -120,11 +120,11 @@ export function TInput({ label, value, onChange, placeholder, type = 'text' }) {
         onBlur={() => setF(false)}
         style={{
           width: '100%',
-          background: '#2c2c30',
-          border: `1px solid ${f ? Y : '#3f3f46'}`,
+          background: '#ffffff',
+          border: `1px solid ${f ? '#2563eb' : '#e5e5e7'}`,
           borderRadius: 8,
           padding: '14px 16px',
-          color: '#fff',
+          color: '#1d1d1f',
           fontSize: 15,
           fontFamily: mono,
           outline: 'none',
@@ -148,17 +148,17 @@ export function TSel({ label, value, onChange, options, placeholder = 'Select on
         onBlur={() => setF(false)}
         style={{
           width: '100%',
-          background: '#2c2c30',
-          border: `1px solid ${f ? Y : '#3f3f46'}`,
+          background: '#ffffff',
+          border: `1px solid ${f ? '#2563eb' : '#e5e5e7'}`,
           borderRadius: 8,
           padding: '14px 16px',
-          color: value ? '#fff' : '#555',
+          color: value ? '#1d1d1f' : '#6e6e73',
           fontSize: 15,
           fontFamily: mono,
           outline: 'none',
           boxSizing: 'border-box',
           appearance: 'none',
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236e6e73' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'right 16px center',
           cursor: 'pointer',
