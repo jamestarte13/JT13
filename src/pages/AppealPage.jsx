@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Y, mono, display, serif } from '../components/tokens'
 import { Lbl, PBtn, TSel, TInput } from '../components/UI'
+import CalendarPicker from '../components/CalendarPicker'
 import AddressAutocomplete from '../components/AddressAutocomplete'
 import ExhibitUploader from '../components/ExhibitUploader'
 import {
@@ -9,15 +10,12 @@ import {
   defenseReasons,
   successLikelihood,
   guideSteps,
-  buildDateOptions,
   generateLetter,
 } from '../components/data'
 import { downloadPDF, generatePDFBase64 } from '../lib/pdf'
 import { getSubscriber, upsertSubscriber, incrementLetterCount, saveSubmission } from '../lib/supabase'
 import { checkoutSession, PRICES } from '../lib/stripe'
 import { sendAppealEmail } from '../lib/email'
-
-const dateOptions = buildDateOptions()
 
 // ── Step indicator ────────────────────────────────────────────────────────────
 function StepBar({ current }) {
@@ -802,7 +800,7 @@ export default function AppealPage() {
             {step === 0 && (
               <div>
                 <TInput label="Ticket Number" value={form.ticketNumber} onChange={set('ticketNumber')} placeholder="e.g. 1234567890" />
-                <TSel label="Date of Violation" value={form.date} onChange={set('date')} options={dateOptions} placeholder="Select date..." />
+                <CalendarPicker label="Date of Violation" value={form.date} onChange={set('date')} />
                 <AddressAutocomplete label="Location / Street" value={form.location} onChange={set('location')} />
                 <TSel label="Violation Type" value={form.violation} onChange={set('violation')} options={violationTypes} />
                 <TInput label="Fine Amount ($)" value={form.amount} onChange={set('amount')} placeholder="e.g. 115" type="number" />
