@@ -589,7 +589,7 @@ function Pricing({ onCTA }) {
       name: 'Annual Plan',
       price: '$36.99',
       desc: 'Per year. Unlimited letters.',
-      features: ['Unlimited appeal letters', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery', 'Denial follow-up template', 'Priority support'],
+      features: ['Unlimited appeal letters', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery', 'Denial follow-up template', 'NYC drivers average 2–3 tickets per year'],
       cta: 'Get Annual Access',
       hi: true,
       badge: 'BEST VALUE',
