@@ -591,9 +591,9 @@ function Pricing({ onCTA }) {
           className="three-plans"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3,1fr)',
+            gridTemplateColumns: 'repeat(2,1fr)',
             gap: 2,
-            maxWidth: 960,
+            maxWidth: 640,
             margin: '0 auto',
           }}
         >
