@@ -1,34 +1,67 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FadeIn, YBtn } from '../components/UI'
-import { Y, BG, mono, display, serif } from '../components/tokens'
+import { FadeIn } from '../components/UI'
+import { mono, display, serif } from '../components/tokens'
 import { teaserTips, testimonials, faqs } from '../components/data'
 
-// ── Nav helpers ───────────────────────────────────────────────────────────────
-function scrollTo(id) {
-  const el = document.getElementById(id)
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-}
+// ── Light-mode design tokens ───────────────────────────────────────────────────
+const NAVY   = '#1a2744'
+const BLUE   = '#2563eb'
+const BLUE_L = '#eff6ff'
+const GOLD   = '#b08d57'
+const WHITE  = '#ffffff'
+const GRAY   = '#f5f5f7'
+const TEXT   = '#1d1d1f'
+const MUTED  = '#6e6e73'
+const BORDER = '#e5e5e7'
+const SHADOW = '0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.08)'
 
+// ── Nav ───────────────────────────────────────────────────────────────────────
 function NavLink({ children, id }) {
   const [h, setH] = useState(false)
   return (
     <span
-      onClick={() => scrollTo(id)}
+      onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
       style={{
-        color: h ? Y : '#888',
-        fontSize: 12,
+        color: h ? BLUE : MUTED,
+        fontSize: 13,
         fontFamily: mono,
         cursor: 'pointer',
-        letterSpacing: 1,
+        letterSpacing: 0.5,
         transition: 'color 0.2s',
         userSelect: 'none',
       }}
     >
       {children}
     </span>
+  )
+}
+
+function NavCTA({ onClick }) {
+  const [h, setH] = useState(false)
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        background: h ? NAVY : BLUE,
+        color: WHITE,
+        border: 'none',
+        borderRadius: 8,
+        padding: '10px 22px',
+        fontFamily: mono,
+        fontSize: 12,
+        fontWeight: 700,
+        letterSpacing: 1,
+        cursor: 'pointer',
+        transition: 'background 0.2s',
+      }}
+    >
+      Fight My Ticket
+    </button>
   )
 }
 
@@ -39,9 +72,9 @@ function Nav({ onCTA }) {
         position: 'sticky',
         top: 0,
         zIndex: 200,
-        background: 'rgba(14,14,14,0.96)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid #1e1e1e',
+        background: 'rgba(255,255,255,0.96)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: `1px solid ${BORDER}`,
         padding: '0 32px',
       }}
     >
@@ -52,58 +85,100 @@ function Nav({ onCTA }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: 60,
+          height: 64,
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div
             style={{
-              background: Y,
-              color: '#111',
-              fontSize: 10,
+              background: NAVY,
+              color: WHITE,
+              fontSize: 9,
               fontWeight: 700,
               letterSpacing: 3,
               padding: '3px 8px',
-              borderRadius: 3,
+              borderRadius: 4,
               fontFamily: mono,
             }}
           >
             NYC
           </div>
-          <span style={{ fontFamily: display, fontSize: 22, letterSpacing: 2, color: '#fff' }}>
+          <span style={{ fontFamily: display, fontSize: 22, letterSpacing: 2, color: NAVY }}>
             APPEALWRITER
           </span>
         </div>
-        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
           <NavLink id="how-it-works">How It Works</NavLink>
           <NavLink id="pricing">Pricing</NavLink>
           <NavLink id="faq">FAQ</NavLink>
-          <YBtn onClick={onCTA}>Fight My Ticket</YBtn>
+          <NavCTA onClick={onCTA} />
         </div>
       </div>
     </nav>
   )
 }
 
-// ── Sections ──────────────────────────────────────────────────────────────────
+// ── CTA Button ────────────────────────────────────────────────────────────────
+function CTABtn({ onClick, large, outline, children }) {
+  const [h, setH] = useState(false)
+  if (outline) {
+    return (
+      <button
+        onClick={onClick}
+        onMouseEnter={() => setH(true)}
+        onMouseLeave={() => setH(false)}
+        style={{
+          background: 'transparent',
+          color: h ? BLUE : NAVY,
+          border: `2px solid ${h ? BLUE : NAVY}`,
+          borderRadius: 10,
+          padding: large ? '18px 44px' : '14px 32px',
+          fontFamily: mono,
+          fontSize: large ? 14 : 13,
+          fontWeight: 700,
+          letterSpacing: 1,
+          cursor: 'pointer',
+          transition: 'all 0.2s',
+        }}
+      >
+        {children}
+      </button>
+    )
+  }
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        background: h ? NAVY : BLUE,
+        color: WHITE,
+        border: 'none',
+        borderRadius: 10,
+        padding: large ? '18px 44px' : '14px 32px',
+        fontFamily: mono,
+        fontSize: large ? 14 : 13,
+        fontWeight: 700,
+        letterSpacing: 1,
+        cursor: 'pointer',
+        transition: 'background 0.2s',
+        boxShadow: '0 2px 12px rgba(37,99,235,0.3)',
+      }}
+    >
+      {children}
+    </button>
+  )
+}
+
+// ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero({ onCTA }) {
   return (
     <section
       style={{
-        background: BG,
-        padding: '90px 32px 80px',
-        position: 'relative',
-        overflow: 'hidden',
+        background: `linear-gradient(160deg, ${WHITE} 60%, ${BLUE_L} 100%)`,
+        padding: '100px 32px 90px',
       }}
     >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(232,255,0,0.04) 0%, transparent 60%)',
-          pointerEvents: 'none',
-        }}
-      />
       <div
         className="hero-grid"
         style={{
@@ -115,150 +190,170 @@ function Hero({ onCTA }) {
           alignItems: 'center',
         }}
       >
+        {/* Left: copy */}
         <div>
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: 8,
-              background: '#1a1a00',
-              border: '1px solid #3a3a00',
+              background: BLUE_L,
+              border: `1px solid #bfdbfe`,
               borderRadius: 20,
-              padding: '6px 14px',
-              marginBottom: 28,
+              padding: '6px 16px',
+              marginBottom: 32,
             }}
           >
             <div
               style={{
-                width: 6,
-                height: 6,
+                width: 7,
+                height: 7,
                 borderRadius: '50%',
-                background: Y,
+                background: BLUE,
                 animation: 'pulse 2s infinite',
               }}
             />
-            <span style={{ color: Y, fontSize: 11, fontFamily: mono, letterSpacing: 2 }}>
+            <span style={{ color: BLUE, fontSize: 12, fontFamily: mono, letterSpacing: 1 }}>
               2,400+ APPEALS GENERATED
             </span>
           </div>
+
           <h1
             style={{
-              fontFamily: display,
-              fontSize: 56,
-              lineHeight: 0.9,
-              letterSpacing: 2,
-              margin: '0 0 24px',
-              color: '#fff',
+              fontFamily: serif,
+              fontSize: 58,
+              lineHeight: 1.08,
+              margin: '0 0 20px',
+              color: NAVY,
+              fontWeight: 700,
             }}
           >
-            Hit with a NYC Parking Ticket?
+            Got a NYC Parking Ticket?
             <br />
-            <span style={{ color: Y, fontSize: 36 }}>Win your case in 2 easy steps</span>
-            <br />
-            <span style={{ fontSize: 36 }}>— hassle free.</span>
+            <span style={{ color: BLUE, fontStyle: 'italic' }}>Fight it in 2 steps.</span>
           </h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-            <YBtn onClick={onCTA} large>
-              Generate My Free Letter →
-            </YBtn>
+
+          <p
+            style={{
+              fontFamily: serif,
+              fontSize: 20,
+              color: MUTED,
+              lineHeight: 1.65,
+              margin: '0 0 36px',
+              maxWidth: 420,
+            }}
+          >
+            Professionally written appeals that cite real NYC Traffic Rules — built to maximize your
+            chances of dismissal.
+          </p>
+
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+            <CTABtn onClick={onCTA} large>
+              Generate My Appeal Letter →
+            </CTABtn>
+            <span style={{ fontFamily: mono, fontSize: 11, color: MUTED, letterSpacing: 0.5 }}>
+              No account required
+            </span>
           </div>
         </div>
-        {/* Outcome card */}
+
+        {/* Right: outcome card styled like an official document */}
         <div>
           <div
             style={{
-              background: '#1a0d00',
-              border: '1px solid #4a2a00',
+              background: WHITE,
               borderRadius: 16,
-              padding: 32,
-              position: 'relative',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.04), 0 24px 64px rgba(26,39,68,0.12)',
               overflow: 'hidden',
             }}
           >
+            {/* Document header bar */}
             <div
               style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 4,
-                background: `linear-gradient(90deg, #f97316, #fff)`,
+                background: NAVY,
+                padding: '20px 28px',
               }}
-            />
-            {/* Status header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
-              <div>
-                <div style={{ fontFamily: mono, fontSize: 10, color: '#7a4a00', letterSpacing: 2, marginBottom: 4 }}>
-                  NYC PARKING VIOLATIONS BUREAU
+            >
+              <div style={{ fontFamily: mono, fontSize: 10, color: 'rgba(255,255,255,0.5)', letterSpacing: 3, marginBottom: 4 }}>
+                NYC PARKING VIOLATIONS BUREAU
+              </div>
+              <div style={{ fontFamily: display, fontSize: 20, color: WHITE, letterSpacing: 2 }}>
+                NOTICE OF DETERMINATION
+              </div>
+            </div>
+
+            {/* Document body */}
+            <div style={{ padding: '28px 28px 20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+                <div>
+                  <div style={{ fontFamily: mono, fontSize: 10, color: MUTED, letterSpacing: 1, marginBottom: 6 }}>
+                    DECISION
+                  </div>
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      fontFamily: display,
+                      fontSize: 26,
+                      color: '#16a34a',
+                      letterSpacing: 3,
+                      border: '2.5px solid #16a34a',
+                      padding: '5px 14px',
+                      transform: 'rotate(-2deg)',
+                      transformOrigin: 'left center',
+                    }}
+                  >
+                    DISMISSED
+                  </div>
                 </div>
                 <div
                   style={{
-                    display: 'inline-block',
-                    fontFamily: display,
-                    fontSize: 22,
-                    color: '#f97316',
-                    letterSpacing: 3,
-                    border: '3px solid #f97316',
-                    outline: '1px solid #f97316',
-                    outlineOffset: 3,
-                    padding: '6px 14px',
-                    transform: 'rotate(-4deg)',
-                    transformOrigin: 'left center',
-                    marginTop: 6,
-                    opacity: 0.92,
+                    background: '#f0fdf4',
+                    border: '1px solid #bbf7d0',
+                    borderRadius: 6,
+                    padding: '5px 12px',
                   }}
                 >
-                  SUMMONS DISMISSED
+                  <div style={{ fontFamily: mono, fontSize: 10, color: '#16a34a', letterSpacing: 1 }}>
+                    APPROVED
+                  </div>
                 </div>
               </div>
-              <div
-                style={{
-                  background: '#0f1a00',
-                  border: '1px solid #2a4a00',
-                  borderRadius: 6,
-                  padding: '5px 10px',
-                }}
-              >
-                <div style={{ fontFamily: mono, fontSize: 10, color: '#a3e635', letterSpacing: 1 }}>
-                  APPROVED
+
+              {[
+                ['Violation', 'Double Parking'],
+                ['Fine Amount', '$165.00 waived'],
+                ['Decision', 'Signage obstruction — appeal granted'],
+                ['Time to Decision', '11 days after submission'],
+              ].map(([k, v]) => (
+                <div
+                  key={k}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '11px 0',
+                    borderBottom: `1px solid ${BORDER}`,
+                  }}
+                >
+                  <span style={{ fontFamily: mono, fontSize: 11, color: MUTED }}>{k}</span>
+                  <span style={{ fontFamily: mono, fontSize: 12, color: TEXT, fontWeight: 600 }}>{v}</span>
                 </div>
-              </div>
-            </div>
-            {/* Details */}
-            {[
-              ['Violation', 'Double Parking'],
-              ['Fine Amount', '$165.00 waived'],
-              ['Decision', 'Appeal granted — signage obstruction'],
-              ['Time to Decision', '11 days after submission'],
-            ].map(([k, v]) => (
+              ))}
+
               <div
-                key={k}
                 style={{
+                  marginTop: 20,
+                  padding: '12px 16px',
+                  background: BLUE_L,
+                  borderRadius: 8,
                   display: 'flex',
-                  justifyContent: 'space-between',
-                  padding: '10px 0',
-                  borderBottom: '1px solid #2a1a00',
+                  alignItems: 'center',
+                  gap: 10,
                 }}
               >
-                <span style={{ fontFamily: mono, fontSize: 11, color: '#7a4a00' }}>{k}</span>
-                <span style={{ fontFamily: mono, fontSize: 12, color: '#f97316' }}>{v}</span>
-              </div>
-            ))}
-            <div
-              style={{
-                marginTop: 20,
-                padding: 14,
-                background: '#111',
-                border: '1px solid #2a2a2a',
-                borderRadius: 8,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-              }}
-            >
-              <div style={{ color: '#f97316', fontSize: 18 }}>✓</div>
-              <div style={{ fontFamily: mono, fontSize: 11, color: '#888', letterSpacing: 1 }}>
-                DON&apos;T PAY A DIME.
+                <div style={{ color: BLUE, fontSize: 16, fontWeight: 700 }}>✓</div>
+                <div style={{ fontFamily: mono, fontSize: 11, color: BLUE, letterSpacing: 0.5 }}>
+                  YOU OWE NOTHING. CASE CLOSED.
+                </div>
               </div>
             </div>
           </div>
@@ -269,71 +364,129 @@ function Hero({ onCTA }) {
   )
 }
 
+// ── How It Works ──────────────────────────────────────────────────────────────
 function HowItWorks() {
   const steps = [
-    { n: '01', icon: '📋', title: 'Share Your Ticket Details', body: 'Enter your ticket info and pick your defense. Takes about a minute.' },
-    { n: '02', icon: '📄', title: 'Submit Your Letter', body: <>We generate a professionally written appeal citing real NYC Traffic Rules — then submit it directly via the <a href="https://www.nyc.gov/site/finance/vehicles/dispute-web.page" target="_blank" rel="noopener noreferrer" style={{ color: Y }}>NYC dispute portal</a>, by mail, or in person.</> },
+    {
+      n: '01',
+      icon: '📋',
+      title: 'Share Your Ticket Details',
+      body: 'Enter your ticket info and pick your defense. Takes about a minute.',
+    },
+    {
+      n: '02',
+      icon: '📄',
+      title: 'Submit Your Letter',
+      body: (
+        <>
+          We generate a professionally written appeal citing real NYC Traffic Rules — then submit it
+          directly via the{' '}
+          <a
+            href="https://www.nyc.gov/site/finance/vehicles/dispute-web.page"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: BLUE, textDecoration: 'none' }}
+          >
+            NYC dispute portal
+          </a>
+          , by mail, or in person.
+        </>
+      ),
+    },
   ]
+
   return (
-    <section id="how-it-works" style={{ background: '#0a0a0a', padding: '90px 32px' }}>
+    <section id="how-it-works" style={{ background: GRAY, padding: '100px 32px' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <FadeIn>
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <div style={{ fontFamily: mono, fontSize: 11, color: Y, letterSpacing: 4, marginBottom: 14 }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <div
+              style={{
+                display: 'inline-block',
+                fontFamily: mono,
+                fontSize: 11,
+                color: BLUE,
+                letterSpacing: 3,
+                marginBottom: 16,
+                background: BLUE_L,
+                padding: '4px 12px',
+                borderRadius: 20,
+              }}
+            >
               HOW IT WORKS
             </div>
-            <h2 style={{ fontFamily: display, fontSize: 60, color: '#fff', margin: 0, letterSpacing: 2 }}>
-              2 STEPS. 1 MINUTE.
+            <h2
+              style={{
+                fontFamily: serif,
+                fontSize: 52,
+                color: NAVY,
+                margin: '0 0 16px',
+                fontWeight: 700,
+              }}
+            >
+              Two steps. One minute.
             </h2>
+            <p style={{ fontFamily: serif, fontSize: 19, color: MUTED, margin: 0 }}>
+              No legal knowledge required.
+            </p>
           </div>
         </FadeIn>
+
         <div
           className="three-col"
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2, maxWidth: 800, margin: '0 auto' }}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2,1fr)',
+            gap: 24,
+            maxWidth: 800,
+            margin: '0 auto',
+          }}
         >
           {steps.map((s, i) => (
             <FadeIn key={s.n} delay={i * 0.1}>
               <div
                 style={{
-                  background: '#111',
-                  border: '1px solid #1e1e1e',
-                  padding: 36,
+                  background: WHITE,
+                  borderRadius: 16,
+                  padding: 40,
+                  boxShadow: SHADOW,
+                  border: `1px solid ${BORDER}`,
+                  height: '100%',
+                  boxSizing: 'border-box',
                   position: 'relative',
                   overflow: 'hidden',
-                  height: '100%',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = '#333')}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = '#1e1e1e')}
               >
                 <div
                   style={{
                     fontFamily: display,
-                    fontSize: 72,
-                    color: '#1a1a1a',
+                    fontSize: 88,
+                    color: BLUE_L,
                     position: 'absolute',
-                    top: 12,
-                    right: 20,
+                    top: 8,
+                    right: 16,
                     lineHeight: 1,
+                    userSelect: 'none',
                   }}
                 >
                   {s.n}
                 </div>
-                <div style={{ fontSize: 32, marginBottom: 16 }}>{s.icon}</div>
+                <div style={{ fontSize: 34, marginBottom: 18 }}>{s.icon}</div>
                 <h3
                   style={{
-                    fontFamily: display,
-                    fontSize: 26,
-                    color: '#fff',
-                    margin: '0 0 10px',
-                    letterSpacing: 1,
+                    fontFamily: serif,
+                    fontSize: 24,
+                    color: NAVY,
+                    margin: '0 0 12px',
+                    fontWeight: 700,
                   }}
                 >
                   {s.title}
                 </h3>
-                <p style={{ fontFamily: serif, fontSize: 16, color: '#666', lineHeight: 1.6, margin: 0 }}>
+                <p style={{ fontFamily: serif, fontSize: 16, color: MUTED, lineHeight: 1.7, margin: 0 }}>
                   {s.body}
                 </p>
-                <div style={{ width: 36, height: 3, background: Y, marginTop: 20 }} />
+                <div style={{ width: 36, height: 3, background: BLUE, marginTop: 24, borderRadius: 2 }} />
               </div>
             </FadeIn>
           ))}
@@ -343,9 +496,10 @@ function HowItWorks() {
   )
 }
 
+// ── Teaser Guide ──────────────────────────────────────────────────────────────
 function TeaserGuide({ onCTA }) {
   return (
-    <section style={{ background: BG, padding: '90px 32px', borderTop: '1px solid #1a1a1a' }}>
+    <section style={{ background: WHITE, padding: '100px 32px', borderTop: `1px solid ${BORDER}` }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <FadeIn>
           <div
@@ -359,31 +513,44 @@ function TeaserGuide({ onCTA }) {
             }}
           >
             <div>
-              <div style={{ fontFamily: mono, fontSize: 11, color: Y, letterSpacing: 4, marginBottom: 14 }}>
+              <div
+                style={{
+                  display: 'inline-block',
+                  fontFamily: mono,
+                  fontSize: 11,
+                  color: GOLD,
+                  letterSpacing: 3,
+                  marginBottom: 16,
+                  background: '#faf7f0',
+                  padding: '4px 12px',
+                  borderRadius: 20,
+                  border: '1px solid #e8d9b8',
+                }}
+              >
                 WHAT TO KNOW
               </div>
               <h2
                 style={{
-                  fontFamily: display,
-                  fontSize: 60,
-                  color: '#fff',
+                  fontFamily: serif,
+                  fontSize: 52,
+                  color: NAVY,
                   margin: 0,
-                  letterSpacing: 2,
-                  lineHeight: 0.95,
+                  fontWeight: 700,
+                  lineHeight: 1.1,
                 }}
               >
-                HOW TO WIN
+                How to win
                 <br />
-                <span style={{ color: Y }}>A DISPUTE.</span>
+                <span style={{ color: GOLD, fontStyle: 'italic' }}>a dispute.</span>
               </h2>
             </div>
             <p
               style={{
                 fontFamily: serif,
-                fontSize: 18,
-                color: '#666',
-                maxWidth: 340,
-                lineHeight: 1.6,
+                fontSize: 19,
+                color: MUTED,
+                maxWidth: 360,
+                lineHeight: 1.65,
                 margin: 0,
               }}
             >
@@ -392,59 +559,72 @@ function TeaserGuide({ onCTA }) {
             </p>
           </div>
         </FadeIn>
+
         <div
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2, marginBottom: 56 }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 20, marginBottom: 48 }}
           className="two-col"
         >
           {teaserTips.map((t, i) => (
-            <FadeIn key={t.number} delay={i * 0.1}>
+            <FadeIn key={t.number} delay={i * 0.08}>
               <div
                 style={{
-                  background: '#111',
-                  border: '1px solid #1e1e1e',
+                  background: WHITE,
+                  border: `1px solid ${BORDER}`,
+                  borderRadius: 14,
                   padding: 36,
-                  transition: 'all 0.2s',
+                  boxShadow: SHADOW,
+                  transition: 'box-shadow 0.2s, border-color 0.2s',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = Y
-                  e.currentTarget.style.background = '#131300'
+                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0,0,0,0.06), 0 20px 48px rgba(37,99,235,0.12)'
+                  e.currentTarget.style.borderColor = '#bfdbfe'
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = '#1e1e1e'
-                  e.currentTarget.style.background = '#111'
+                  e.currentTarget.style.boxShadow = SHADOW
+                  e.currentTarget.style.borderColor = BORDER
                 }}
               >
-                <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 14 }}>
-                  <span style={{ fontFamily: mono, fontSize: 11, color: Y, letterSpacing: 2 }}>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 16 }}>
+                  <span
+                    style={{
+                      fontFamily: mono,
+                      fontSize: 11,
+                      color: BLUE,
+                      letterSpacing: 2,
+                      background: BLUE_L,
+                      padding: '3px 8px',
+                      borderRadius: 4,
+                    }}
+                  >
                     {t.number}
                   </span>
                   <span style={{ fontSize: 18 }}>{t.icon}</span>
                 </div>
                 <h3
                   style={{
-                    fontFamily: display,
-                    fontSize: 24,
-                    color: '#fff',
+                    fontFamily: serif,
+                    fontSize: 22,
+                    color: NAVY,
                     margin: '0 0 10px',
-                    letterSpacing: 1,
+                    fontWeight: 700,
                   }}
                 >
                   {t.title}
                 </h3>
-                <p style={{ fontFamily: serif, fontSize: 15, color: '#666', lineHeight: 1.7, margin: 0 }}>
+                <p style={{ fontFamily: serif, fontSize: 15, color: MUTED, lineHeight: 1.7, margin: 0 }}>
                   {t.body}
                 </p>
               </div>
             </FadeIn>
           ))}
         </div>
+
         <FadeIn>
           <div
             style={{
-              background: '#111',
-              border: '1px solid #2a2a00',
-              borderRadius: 12,
-              padding: '28px 36px',
+              background: NAVY,
+              borderRadius: 16,
+              padding: '32px 40px',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -454,15 +634,15 @@ function TeaserGuide({ onCTA }) {
           >
             <div>
               <div
-                style={{ fontFamily: display, fontSize: 26, color: '#fff', letterSpacing: 1, marginBottom: 4 }}
+                style={{ fontFamily: serif, fontSize: 26, color: WHITE, fontWeight: 700, marginBottom: 6 }}
               >
-                READY TO FIGHT YOUR TICKET?
+                Ready to fight your ticket?
               </div>
-              <div style={{ fontFamily: serif, fontSize: 15, color: '#666' }}>
-                Once your letter is generated, submit it directly to the NYC Department of Finance at nyc.gov/finance.
+              <div style={{ fontFamily: serif, fontSize: 15, color: 'rgba(255,255,255,0.55)' }}>
+                Submit directly to the NYC Department of Finance at nyc.gov/finance.
               </div>
             </div>
-            <YBtn onClick={onCTA}>Generate My Letter →</YBtn>
+            <CTABtn onClick={onCTA}>Generate My Letter →</CTABtn>
           </div>
         </FadeIn>
       </div>
@@ -470,39 +650,58 @@ function TeaserGuide({ onCTA }) {
   )
 }
 
+// ── Testimonials ──────────────────────────────────────────────────────────────
 function Testimonials() {
   return (
-    <section style={{ background: '#080808', padding: '90px 32px', borderTop: '1px solid #1a1a1a' }}>
+    <section style={{ background: GRAY, padding: '100px 32px', borderTop: `1px solid ${BORDER}` }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <FadeIn>
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <div style={{ fontFamily: mono, fontSize: 11, color: Y, letterSpacing: 4, marginBottom: 14 }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <div
+              style={{
+                display: 'inline-block',
+                fontFamily: mono,
+                fontSize: 11,
+                color: BLUE,
+                letterSpacing: 3,
+                marginBottom: 16,
+                background: BLUE_L,
+                padding: '4px 12px',
+                borderRadius: 20,
+              }}
+            >
               REAL NEW YORKERS
             </div>
-            <h2 style={{ fontFamily: display, fontSize: 60, color: '#fff', margin: 0, letterSpacing: 2 }}>
-              THEY FOUGHT BACK.
-              <br />
-              <span style={{ color: Y }}>THEY WON.</span>
+            <h2 style={{ fontFamily: serif, fontSize: 52, color: NAVY, margin: 0, fontWeight: 700 }}>
+              They fought back.{' '}
+              <span style={{ color: GOLD, fontStyle: 'italic' }}>They won.</span>
             </h2>
           </div>
         </FadeIn>
+
         <div
           className="two-col"
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 20 }}
         >
           {testimonials.map((t, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
+            <FadeIn key={i} delay={i * 0.08}>
               <div
-                style={{ background: '#0f0f0f', border: '1px solid #1e1e1e', padding: 36 }}
+                style={{
+                  background: WHITE,
+                  border: `1px solid ${BORDER}`,
+                  borderRadius: 16,
+                  padding: 36,
+                  boxShadow: SHADOW,
+                }}
               >
                 <div
                   style={{
-                    fontFamily: display,
-                    fontSize: 56,
-                    color: Y,
-                    lineHeight: 0.8,
-                    marginBottom: 14,
-                    opacity: 0.3,
+                    fontFamily: serif,
+                    fontSize: 72,
+                    color: BLUE,
+                    lineHeight: 0.75,
+                    marginBottom: 16,
+                    opacity: 0.18,
                   }}
                 >
                   &ldquo;
@@ -511,34 +710,34 @@ function Testimonials() {
                   style={{
                     fontFamily: serif,
                     fontSize: 19,
-                    color: '#ccc',
-                    lineHeight: 1.6,
-                    margin: '0 0 20px',
+                    color: TEXT,
+                    lineHeight: 1.65,
+                    margin: '0 0 24px',
                     fontStyle: 'italic',
                   }}
                 >
                   {t.quote}
                 </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div
                     style={{
-                      width: 34,
-                      height: 34,
+                      width: 38,
+                      height: 38,
                       borderRadius: '50%',
-                      background: '#1e1e1e',
+                      background: NAVY,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontFamily: display,
                       fontSize: 16,
-                      color: Y,
+                      color: WHITE,
                     }}
                   >
                     {t.name[0]}
                   </div>
                   <div>
-                    <div style={{ fontFamily: mono, fontSize: 12, color: '#fff' }}>{t.name}</div>
-                    <div style={{ fontFamily: mono, fontSize: 11, color: '#555' }}>{t.location}</div>
+                    <div style={{ fontFamily: mono, fontSize: 12, color: TEXT, fontWeight: 600 }}>{t.name}</div>
+                    <div style={{ fontFamily: mono, fontSize: 11, color: MUTED }}>{t.location}</div>
                   </div>
                 </div>
               </div>
@@ -550,13 +749,19 @@ function Testimonials() {
   )
 }
 
+// ── Pricing ───────────────────────────────────────────────────────────────────
 function Pricing({ onCTA }) {
   const plans = [
     {
       name: 'Pay Per Letter',
       price: '$6.99',
       desc: 'Per letter. No commitment.',
-      features: ['1 appeal letter', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery'],
+      features: [
+        '1 appeal letter',
+        'Direct submission to nyc.gov/finance',
+        'PDF download',
+        'Email delivery',
+      ],
       cta: 'Get Started',
       hi: false,
       badge: null,
@@ -565,35 +770,56 @@ function Pricing({ onCTA }) {
       name: 'Annual Plan',
       price: '$36.99',
       desc: 'Per year. Unlimited letters.',
-      features: ['Unlimited appeal letters', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery', 'Denial follow-up template', 'NYC drivers average 2–3 tickets per year'],
+      features: [
+        'Unlimited appeal letters',
+        'Direct submission to nyc.gov/finance',
+        'PDF download',
+        'Email delivery',
+        'Denial follow-up template',
+        'NYC drivers average 2–3 tickets per year',
+      ],
       cta: 'Get Annual Access',
       hi: true,
       badge: 'BEST VALUE',
     },
   ]
+
   return (
-    <section id="pricing" style={{ background: BG, padding: '90px 32px', borderTop: '1px solid #1a1a1a' }}>
+    <section id="pricing" style={{ background: WHITE, padding: '100px 32px', borderTop: `1px solid ${BORDER}` }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <FadeIn>
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <div style={{ fontFamily: mono, fontSize: 11, color: Y, letterSpacing: 4, marginBottom: 14 }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <div
+              style={{
+                display: 'inline-block',
+                fontFamily: mono,
+                fontSize: 11,
+                color: BLUE,
+                letterSpacing: 3,
+                marginBottom: 16,
+                background: BLUE_L,
+                padding: '4px 12px',
+                borderRadius: 20,
+              }}
+            >
               PRICING
             </div>
-            <h2 style={{ fontFamily: display, fontSize: 60, color: '#fff', margin: '0 0 14px', letterSpacing: 2 }}>
-              SIMPLE. FAIR. OBVIOUS.
+            <h2 style={{ fontFamily: serif, fontSize: 52, color: NAVY, margin: '0 0 16px', fontWeight: 700 }}>
+              Simple. Fair. Obvious.
             </h2>
-            <p style={{ fontFamily: serif, fontSize: 19, color: '#666' }}>
+            <p style={{ fontFamily: serif, fontSize: 19, color: MUTED }}>
               Spending $6.99 to fight a $115 fine is the easiest decision you&apos;ll make today.
             </p>
           </div>
         </FadeIn>
+
         <div
           className="three-plans"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2,1fr)',
-            gap: 2,
-            maxWidth: 640,
+            gap: 24,
+            maxWidth: 680,
             margin: '0 auto',
           }}
         >
@@ -601,38 +827,31 @@ function Pricing({ onCTA }) {
             <FadeIn key={p.name} delay={i * 0.1}>
               <div
                 style={{
-                  background: p.hi ? '#111' : '#0a0a0a',
-                  border: `1px solid ${p.hi ? Y : '#222'}`,
+                  background: p.hi ? NAVY : WHITE,
+                  border: `1px solid ${p.hi ? NAVY : BORDER}`,
+                  borderRadius: 18,
                   padding: 36,
                   position: 'relative',
                   height: '100%',
+                  boxSizing: 'border-box',
+                  boxShadow: p.hi
+                    ? '0 8px 16px rgba(26,39,68,0.2), 0 32px 64px rgba(26,39,68,0.15)'
+                    : SHADOW,
                 }}
               >
-                {p.hi && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: -1,
-                      left: 0,
-                      right: 0,
-                      height: 3,
-                      background: Y,
-                    }}
-                  />
-                )}
                 {p.badge && (
                   <div
                     style={{
                       position: 'absolute',
-                      top: 16,
-                      right: 16,
-                      background: Y,
-                      color: '#111',
+                      top: 20,
+                      right: 20,
+                      background: GOLD,
+                      color: WHITE,
                       fontSize: 9,
                       fontWeight: 700,
                       letterSpacing: 2,
-                      padding: '3px 8px',
-                      borderRadius: 3,
+                      padding: '3px 10px',
+                      borderRadius: 20,
                       fontFamily: mono,
                     }}
                   >
@@ -643,56 +862,82 @@ function Pricing({ onCTA }) {
                   style={{
                     fontFamily: mono,
                     fontSize: 11,
-                    color: p.hi ? Y : '#555',
-                    letterSpacing: 3,
+                    color: p.hi ? 'rgba(255,255,255,0.6)' : MUTED,
+                    letterSpacing: 2,
                     textTransform: 'uppercase',
-                    marginBottom: 14,
+                    marginBottom: 16,
                   }}
                 >
                   {p.name}
                 </div>
                 <div
                   style={{
-                    fontFamily: display,
-                    fontSize: 48,
-                    color: '#fff',
-                    letterSpacing: 2,
+                    fontFamily: serif,
+                    fontSize: 52,
+                    color: p.hi ? WHITE : NAVY,
+                    fontWeight: 700,
                     lineHeight: 1,
-                    marginBottom: 4,
+                    marginBottom: 6,
                   }}
                 >
                   {p.price}
                 </div>
-                <div style={{ fontFamily: serif, fontSize: 14, color: '#666', marginBottom: 28 }}>
+                <div
+                  style={{
+                    fontFamily: mono,
+                    fontSize: 12,
+                    color: p.hi ? 'rgba(255,255,255,0.5)' : MUTED,
+                    marginBottom: 30,
+                  }}
+                >
                   {p.desc}
                 </div>
+
                 {p.features.map(f => (
                   <div
                     key={f}
-                    style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 10 }}
+                    style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 12 }}
                   >
-                    <div style={{ color: Y, fontSize: 11, marginTop: 2, flexShrink: 0 }}>✓</div>
-                    <span style={{ fontFamily: mono, fontSize: 11, color: '#888', lineHeight: 1.5 }}>
+                    <div
+                      style={{
+                        color: p.hi ? '#86efac' : BLUE,
+                        fontSize: 13,
+                        marginTop: 1,
+                        flexShrink: 0,
+                        fontWeight: 700,
+                      }}
+                    >
+                      ✓
+                    </div>
+                    <span
+                      style={{
+                        fontFamily: mono,
+                        fontSize: 12,
+                        color: p.hi ? 'rgba(255,255,255,0.75)' : MUTED,
+                        lineHeight: 1.5,
+                      }}
+                    >
                       {f}
                     </span>
                   </div>
                 ))}
-                <div style={{ marginTop: 28 }}>
+
+                <div style={{ marginTop: 30 }}>
                   <button
                     onClick={onCTA}
                     style={{
                       width: '100%',
-                      background: Y,
-                      color: '#111',
+                      background: p.hi ? WHITE : BLUE,
+                      color: p.hi ? NAVY : WHITE,
                       border: 'none',
-                      borderRadius: 8,
+                      borderRadius: 10,
                       padding: '16px',
                       fontFamily: mono,
                       fontSize: 13,
                       fontWeight: 700,
-                      letterSpacing: 2,
-                      textTransform: 'uppercase',
+                      letterSpacing: 1,
                       cursor: 'pointer',
+                      boxShadow: p.hi ? 'none' : '0 2px 8px rgba(37,99,235,0.25)',
                     }}
                   >
                     {p.cta}
@@ -702,19 +947,21 @@ function Pricing({ onCTA }) {
             </FadeIn>
           ))}
         </div>
+
         <FadeIn>
           <div
             style={{
               textAlign: 'center',
-              marginTop: 32,
+              marginTop: 28,
               fontFamily: mono,
-              fontSize: 11,
-              color: '#444',
-              letterSpacing: 1,
+              fontSize: 12,
+              color: MUTED,
+              letterSpacing: 0.5,
             }}
           >
-            Annual plan works out to just <span style={{ color: Y }}>$3.08/month</span>. NYC
-            drivers average 2–3 tickets per year.
+            Annual plan works out to just{' '}
+            <span style={{ color: NAVY, fontWeight: 600 }}>$3.08/month</span>. NYC drivers average
+            2–3 tickets per year.
           </div>
         </FadeIn>
       </div>
@@ -722,43 +969,65 @@ function Pricing({ onCTA }) {
   )
 }
 
+// ── FAQ ───────────────────────────────────────────────────────────────────────
 function FAQ() {
   const [open, setOpen] = useState(null)
   return (
-    <section id="faq" style={{ background: '#080808', padding: '90px 32px', borderTop: '1px solid #1a1a1a' }}>
+    <section id="faq" style={{ background: GRAY, padding: '100px 32px', borderTop: `1px solid ${BORDER}` }}>
       <div style={{ maxWidth: 720, margin: '0 auto' }}>
         <FadeIn>
           <div style={{ marginBottom: 56 }}>
-            <div style={{ fontFamily: mono, fontSize: 11, color: Y, letterSpacing: 4, marginBottom: 14 }}>
+            <div
+              style={{
+                display: 'inline-block',
+                fontFamily: mono,
+                fontSize: 11,
+                color: BLUE,
+                letterSpacing: 3,
+                marginBottom: 16,
+                background: BLUE_L,
+                padding: '4px 12px',
+                borderRadius: 20,
+              }}
+            >
               FAQ
             </div>
-            <h2 style={{ fontFamily: display, fontSize: 60, color: '#fff', margin: 0, letterSpacing: 2 }}>
-              QUESTIONS?
-              <br />
-              <span style={{ color: Y }}>ANSWERED.</span>
+            <h2 style={{ fontFamily: serif, fontSize: 52, color: NAVY, margin: 0, fontWeight: 700 }}>
+              Questions?{' '}
+              <span style={{ color: GOLD, fontStyle: 'italic' }}>Answered.</span>
             </h2>
           </div>
         </FadeIn>
+
         {faqs.map((f, i) => (
-          <FadeIn key={i} delay={i * 0.05}>
-            <div style={{ borderBottom: '1px solid #1e1e1e' }}>
+          <FadeIn key={i} delay={i * 0.04}>
+            <div
+              style={{
+                background: WHITE,
+                borderRadius: 12,
+                marginBottom: 8,
+                border: `1px solid ${BORDER}`,
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                overflow: 'hidden',
+              }}
+            >
               <div
                 onClick={() => setOpen(open === i ? null : i)}
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  padding: '22px 0',
+                  padding: '22px 28px',
                   cursor: 'pointer',
                   gap: 16,
                 }}
               >
-                <span style={{ fontFamily: display, fontSize: 20, color: '#fff', letterSpacing: 1 }}>
+                <span style={{ fontFamily: serif, fontSize: 18, color: NAVY, fontWeight: 600 }}>
                   {f.q}
                 </span>
                 <span
                   style={{
-                    color: open === i ? Y : '#444',
+                    color: open === i ? BLUE : MUTED,
                     fontSize: 22,
                     transform: open === i ? 'rotate(45deg)' : 'none',
                     transition: 'all 0.2s',
@@ -769,8 +1038,8 @@ function FAQ() {
                 </span>
               </div>
               {open === i && (
-                <div style={{ paddingBottom: 22 }}>
-                  <p style={{ fontFamily: serif, fontSize: 16, color: '#777', lineHeight: 1.7, margin: 0 }}>
+                <div style={{ padding: '0 28px 22px' }}>
+                  <p style={{ fontFamily: serif, fontSize: 16, color: MUTED, lineHeight: 1.7, margin: 0 }}>
                     {f.a}
                   </p>
                 </div>
@@ -783,52 +1052,65 @@ function FAQ() {
   )
 }
 
+// ── Final CTA ─────────────────────────────────────────────────────────────────
 function FinalCTA({ onCTA }) {
   return (
-    <section style={{ background: Y, padding: '90px 32px' }}>
+    <section style={{ background: NAVY, padding: '110px 32px' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', textAlign: 'center' }}>
         <FadeIn>
-          <div style={{ fontFamily: mono, fontSize: 11, color: '#666', letterSpacing: 4, marginBottom: 20 }}>
+          <div
+            style={{
+              display: 'inline-block',
+              fontFamily: mono,
+              fontSize: 11,
+              color: 'rgba(255,255,255,0.45)',
+              letterSpacing: 3,
+              marginBottom: 24,
+            }}
+          >
             DON&apos;T JUST PAY IT
           </div>
           <h2
             style={{
-              fontFamily: display,
-              fontSize: 92,
-              color: '#111',
+              fontFamily: serif,
+              fontSize: 76,
+              color: WHITE,
               margin: '0 0 20px',
-              letterSpacing: 2,
-              lineHeight: 0.9,
+              fontWeight: 700,
+              lineHeight: 1.05,
             }}
           >
-            FIGHT YOUR
+            Fight your ticket.
             <br />
-            TICKET.
+            <span style={{ color: GOLD, fontStyle: 'italic' }}>Win your case.</span>
           </h2>
           <p
             style={{
               fontFamily: serif,
               fontSize: 21,
-              color: '#555',
-              margin: '0 auto 36px',
-              maxWidth: 500,
+              color: 'rgba(255,255,255,0.6)',
+              margin: '0 auto 40px',
+              maxWidth: 520,
+              lineHeight: 1.65,
             }}
           >
-            Professionally written appeal letters that cite real NYC Traffic Rules — built to maximize your chances of dismissal.
+            Professionally written appeal letters that cite real NYC Traffic Rules — built to
+            maximize your chances of dismissal.
           </p>
-          <YBtn onClick={onCTA} large dark>
+          <CTABtn onClick={onCTA} large>
             Generate My Free Letter →
-          </YBtn>
+          </CTABtn>
         </FadeIn>
       </div>
     </section>
   )
 }
 
+// ── Footer ────────────────────────────────────────────────────────────────────
 function Footer() {
   const navigate = useNavigate()
   return (
-    <footer style={{ background: '#060606', borderTop: '1px solid #1a1a1a', padding: '36px 32px' }}>
+    <footer style={{ background: GRAY, borderTop: `1px solid ${BORDER}`, padding: '36px 32px' }}>
       <div
         style={{
           maxWidth: 1100,
@@ -843,40 +1125,49 @@ function Footer() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div
             style={{
-              background: Y,
-              color: '#111',
-              fontSize: 10,
+              background: NAVY,
+              color: WHITE,
+              fontSize: 9,
               fontWeight: 700,
               letterSpacing: 3,
               padding: '3px 8px',
-              borderRadius: 3,
+              borderRadius: 4,
               fontFamily: mono,
             }}
           >
             NYC
           </div>
-          <span style={{ fontFamily: display, fontSize: 18, letterSpacing: 2, color: '#444' }}>
+          <span style={{ fontFamily: display, fontSize: 18, letterSpacing: 2, color: NAVY }}>
             APPEALWRITER
           </span>
         </div>
         <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
           <span
             onClick={() => navigate('/privacy')}
-            style={{ fontFamily: mono, fontSize: 11, color: '#444', cursor: 'pointer', letterSpacing: 1 }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#888')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#444')}
+            style={{ fontFamily: mono, fontSize: 12, color: MUTED, cursor: 'pointer', letterSpacing: 0.5 }}
+            onMouseEnter={e => (e.currentTarget.style.color = NAVY)}
+            onMouseLeave={e => (e.currentTarget.style.color = MUTED)}
           >
             Privacy
           </span>
           <span
             onClick={() => navigate('/terms')}
-            style={{ fontFamily: mono, fontSize: 11, color: '#444', cursor: 'pointer', letterSpacing: 1 }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#888')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#444')}
+            style={{ fontFamily: mono, fontSize: 12, color: MUTED, cursor: 'pointer', letterSpacing: 0.5 }}
+            onMouseEnter={e => (e.currentTarget.style.color = NAVY)}
+            onMouseLeave={e => (e.currentTarget.style.color = MUTED)}
           >
             Terms
           </span>
-          <span style={{ fontFamily: mono, fontSize: 11, color: '#333', letterSpacing: 1, lineHeight: 1.8, textAlign: 'right' }}>
+          <span
+            style={{
+              fontFamily: mono,
+              fontSize: 11,
+              color: MUTED,
+              letterSpacing: 0.5,
+              lineHeight: 1.8,
+              textAlign: 'right',
+            }}
+          >
             NOT LEGAL ADVICE — FOR INFORMATIONAL PURPOSES ONLY
             <br />© 2026 Dismiss It. All rights reserved.
           </span>
@@ -892,7 +1183,7 @@ export default function LandingPage() {
   const goTool = () => navigate('/appeal')
 
   return (
-    <div style={{ background: BG, minHeight: '100vh' }}>
+    <div style={{ background: WHITE, minHeight: '100vh' }}>
       <Nav onCTA={goTool} />
       <Hero onCTA={goTool} />
       <HowItWorks />
