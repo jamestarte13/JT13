@@ -8,7 +8,7 @@ import ExhibitUploader from '../components/ExhibitUploader'
 import {
   violationTypes,
   defenseReasons,
-  successLikelihood,
+  violationTips,
   guideSteps,
   generateLetter,
 } from '../components/data'
@@ -151,70 +151,32 @@ function EmailGate({ onSubmit }) {
   )
 }
 
-// ── Success meter ─────────────────────────────────────────────────────────────
-function SuccessMeter({ defense }) {
-  if (!defense) {
-    return (
-      <div
-        style={{
-          marginBottom: 20,
-          padding: 16,
-          background: '#161616',
-          border: '1px solid #2e2e32',
-          borderRadius: 10,
-        }}
-      >
-        <div style={{ fontFamily: mono, fontSize: 11, color: '#555', letterSpacing: 1 }}>
-          SELECT A DEFENSE REASON TO SEE YOUR SUCCESS LIKELIHOOD
-        </div>
-      </div>
-    )
-  }
-  const data = successLikelihood[defense] || successLikelihood['Other']
+// ── Violation tips ─────────────────────────────────────────────────────────────
+function ViolationTips({ violation }) {
+  const tips = violationTips[violation] || violationTips['Other']
   return (
     <div
       style={{
         marginBottom: 20,
-        padding: 18,
+        padding: 16,
         background: '#161616',
-        border: `1px solid ${data.color}33`,
+        border: '1px solid #2e2e32',
         borderRadius: 10,
-        transition: 'all 0.3s',
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: 10,
-        }}
-      >
-        <div style={{ fontFamily: mono, fontSize: 10, color: '#666', letterSpacing: 2, textTransform: 'uppercase' }}>
-          Appeal Success Likelihood
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontFamily: mono, fontSize: 11, color: data.color, letterSpacing: 1 }}>
-            {data.label}
-          </span>
-          <span style={{ fontFamily: display, fontSize: 22, color: data.color, letterSpacing: 1 }}>
-            {data.pct}%
-          </span>
-        </div>
+      <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 10 }}>
+        📸 Strengthen Your Case
       </div>
-      <div style={{ height: 6, background: '#2e2e32', borderRadius: 3, marginBottom: 12, overflow: 'hidden' }}>
-        <div
-          style={{
-            height: '100%',
-            width: `${data.pct}%`,
-            background: data.color,
-            borderRadius: 3,
-            transition: 'width 0.6s ease',
-          }}
-        />
+      <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#bbb', lineHeight: 1.7, marginBottom: 10 }}>
+        Have pictures that support your case? Add them above and describe them in the box below.
       </div>
-      <div style={{ fontFamily: 'Georgia, serif', fontSize: 12, color: '#777', lineHeight: 1.6 }}>
-        💡 {data.tip}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {tips.map((tip, i) => (
+          <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+            <span style={{ color: Y, fontFamily: mono, fontSize: 11, minWidth: 18, paddingTop: 1 }}>{i + 1}.</span>
+            <span style={{ fontFamily: 'Georgia, serif', fontSize: 12, color: '#888', lineHeight: 1.6 }}>{tip}</span>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -507,6 +469,39 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
         </div>
       </div>
 
+      {/* What now? */}
+      <div
+        style={{
+          marginBottom: 18,
+          padding: '14px 16px',
+          background: '#0d1f2e',
+          border: '1px solid #1a3a5c',
+          borderRadius: 8,
+        }}
+      >
+        <div style={{ fontFamily: mono, fontSize: 10, color: '#60a5fa', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 6 }}>
+          What Now?
+        </div>
+        <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#93c5fd', lineHeight: 1.7, marginBottom: 8 }}>
+          Download your letter and submit it directly to the NYC Department of Finance.
+        </div>
+        <a
+          href="https://www.nyc.gov/site/finance/vehicles/parking-violations-hearing-online.page"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            fontFamily: mono,
+            fontSize: 11,
+            color: '#60a5fa',
+            letterSpacing: 1,
+            textDecoration: 'underline',
+          }}
+        >
+          → Submit your appeal at nyc.gov/finance
+        </a>
+      </div>
+
       <div
         style={{
           display: 'flex',
@@ -701,7 +696,9 @@ export default function AppealPage() {
       }
       const sub = await getSubscriber(email)
       const count = sub?.letter_count ?? 0
-      const isAnnual = sub?.plan === 'annual'
+      const devEmail = import.meta.env.VITE_DEV_EMAIL
+      const isDevBypass = devEmail && email.trim().toLowerCase() === devEmail.trim().toLowerCase()
+      const isAnnual = sub?.plan === 'annual' || isDevBypass
 
       const generatedLetter = generateLetter(form, exhibits)
       setLetter(generatedLetter)
@@ -732,7 +729,7 @@ export default function AppealPage() {
           .then(pdfBase64 => sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter, pdfBase64 }))
           .catch(() => sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter }))
 
-        if (count === 0 && !isAnnual) {
+        if (count === 0 && !isAnnual && !isDevBypass) {
           setScreen('upsell')
         } else {
           setScreen('result')
@@ -841,7 +838,7 @@ export default function AppealPage() {
                     />
                   </div>
                 )}
-                <SuccessMeter defense={form.defense} />
+                <ViolationTips violation={form.violation} />
                 <ExhibitUploader exhibits={exhibits} onChange={setExhibits} />
                 <div style={{ marginBottom: 20 }}>
                   <Lbl>

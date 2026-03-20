@@ -50,6 +50,59 @@ export const defenseArguments = {
   'Other': `I am writing to contest this parking summons in good faith. After careful review of the circumstances surrounding the alleged violation, I believe this ticket was issued in error or under circumstances that do not warrant a penalty. I respectfully request that a hearing officer review the details of this case and consider dismissal of this summons based on the facts as I have presented them.`,
 }
 
+export const violationTips = {
+  'Alternate Side Parking': [
+    'Photo of the street sign showing alternate side parking hours — especially if partially obscured, faded, or hard to read.',
+    'Screenshot of the NYC 311 or DOT alternate side parking suspension calendar showing parking was suspended on that date.',
+    'Timestamped receipt or parking app record showing you moved or paid before the restriction began.',
+  ],
+  'Expired Meter': [
+    'Photo of the meter display showing a malfunction, error message, or your payment receipt from the transaction.',
+    'Screenshot of your bank or credit card statement showing the meter charge successfully processed.',
+    'A 311 complaint log or photo of an "Out of Service" notice if the meter was broken or not accepting payment.',
+  ],
+  'No Standing Zone': [
+    'Photo of the no standing sign — especially if it was obscured, missing, or contradicted by a nearby sign.',
+    'Photo or timestamped image showing active loading or unloading activity at the time of the alleged violation.',
+    'Timestamped photo of your vehicle\'s position relative to the nearest intersection or landmark.',
+  ],
+  'Fire Hydrant': [
+    'Photo showing the measured or estimated distance between your vehicle and the hydrant (15 feet is the legal minimum clearance).',
+    'Photo showing if the hydrant was recessed, painted over, or otherwise not clearly visible from the street.',
+    'Photo of the curb showing faded or missing yellow markings that would indicate the hydrant zone.',
+  ],
+  'Bus Stop': [
+    'Photo of the bus stop sign — especially if it was missing, damaged, or had faded pavement markings.',
+    'Timestamped photo or receipt showing you were present for only a brief moment (loading/unloading exception applies).',
+    'Witness statement or documentation confirming there was no bus actively using that stop at the time.',
+  ],
+  'Blocked Driveway': [
+    'Photo showing your vehicle\'s exact position relative to the driveway — pay attention to whether the curb cut was fully blocked.',
+    'Written permission or communication from the property owner confirming they authorized your vehicle to be there.',
+    'Photo showing the curb cut was poorly marked, faded, or indistinguishable from a regular curb at that location.',
+  ],
+  'Double Parking': [
+    'Photo showing your vehicle was parallel to the curb and not obstructing the flow of traffic in the travel lane.',
+    'Timestamped receipt, delivery confirmation, or bill of lading showing this was a required commercial loading stop.',
+    'Witness statement or note from a nearby business confirming you were actively loading or unloading at the time.',
+  ],
+  'Street Cleaning': [
+    'Screenshot of the NYC 311 or DOT announcement confirming street cleaning was suspended on that specific day.',
+    'Photo of the street cleaning sign — especially if the hours or days were unclear, contradicted by another sign, or obscured.',
+    'Bank statement, parking app receipt, or meter receipt showing you moved or paid before the restriction began.',
+  ],
+  'No Parking Zone': [
+    'Photo of the no parking sign — especially if obscured by a tree, large vehicle, or contradicted by a nearby sign.',
+    'Timestamped photo showing your vehicle arrived and parked before the restriction hours began.',
+    'Documentation of an emergency, authorized permit, or delivery that legally required you to stop at that location.',
+  ],
+  'Other': [
+    'Timestamped photos of the exact location where your vehicle was parked and all surrounding signage.',
+    'Any receipts, transaction records, or documentation relevant to your specific reason for being parked there.',
+    'A written witness statement from anyone who can corroborate your account of the situation.',
+  ],
+}
+
 export const teaserTips = [
   { number: '01', icon: '⏰', title: 'Submit Within 30 Days.', body: 'If you miss your deadline you won\'t be eligible to fight. Submit the same week you get it.' },
   { number: '02', icon: '🚫', title: 'Never Pay Before You Appeal.', body: 'Any payment is treated as a guilty plea. You forfeit your right to contest the moment you pay.' },

@@ -15,19 +15,31 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
-  const submissionTips = `
----
-SUBMISSION TIPS:
+  const govLink = 'https://www.nyc.gov/site/finance/vehicles/parking-violations-hearing-online.page'
 
-1. DEADLINE: You have 30 days from the ticket date to appeal. Act now.
-2. ONLINE: Visit nyc.gov/finance → "Dispute a Ticket" to upload your letter.
-3. BY MAIL: NYC Dept of Finance, Hearings By Mail Unit, P.O. Box 29021, Cadman Plaza Station, Brooklyn, NY 11202-9021
-4. IN PERSON: Any NYC Finance Business Center, Mon–Fri 8:30am–4:30pm.
-5. Include all evidence (photos, receipts) with your submission — copies only, never originals.
-6. Never pay the ticket before appealing — it's treated as a guilty plea.
+  const whatNow = `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHAT NOW? SUBMIT YOUR LETTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Download your attached letter and submit it directly to the NYC Department of Finance:
+
+  → ${govLink}
+
+You can also submit by mail:
+  NYC Dept of Finance, Hearings By Mail Unit
+  P.O. Box 29021, Cadman Plaza Station, Brooklyn, NY 11202-9021
+
+Or in person at any NYC Finance Business Center, Mon–Fri 8:30am–4:30pm.
+
+REMINDERS:
+  • Submit within 30 days of your ticket date — don't wait.
+  • Never pay the ticket before your appeal — it is treated as a guilty plea.
+  • Include all evidence (photos, receipts) — copies only, never originals.
 
 Good luck with your appeal!
 — NYC Appeal Writer Team
+nycappealwriter.com
 `
 
   try {
@@ -38,8 +50,8 @@ Good luck with your appeal!
     const { data, error } = await resend.emails.send({
       from: 'NYC Appeal Writer <onboarding@resend.dev>',
       to: [to],
-      subject: 'Your NYC Parking Ticket Appeal Letter',
-      text: `Dear ${name || 'Driver'},\n\nHere is your completed NYC parking ticket appeal letter. Review it carefully before submitting.\n\n${'='.repeat(60)}\n\n${letterText}\n\n${'='.repeat(60)}\n${submissionTips}`,
+      subject: 'Your NYC Parking Ticket Appeal Letter — NYC Appeal Writer',
+      text: `Dear ${name || 'Driver'},\n\nThank you for using NYC Appeal Writer!\n\nYour completed parking ticket appeal letter is attached to this email as a PDF.\n\n${'='.repeat(60)}\n\n${letterText}\n\n${'='.repeat(60)}\n${whatNow}`,
       attachments,
     })
 
