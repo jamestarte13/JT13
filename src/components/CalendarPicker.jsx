@@ -64,14 +64,14 @@ export default function CalendarPicker({ label, value, onChange }) {
   const grid = buildGrid()
 
   return (
-    <div style={{ marginBottom: 20 }}>
+    <div style={{ marginBottom: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {/* Label */}
-      <label style={{ display: 'block', color: '#aaa', fontSize: 11, letterSpacing: 2, textTransform: 'uppercase', fontFamily: mono, marginBottom: 10 }}>
+      <label style={{ display: 'block', color: '#aaa', fontSize: 11, letterSpacing: 2, textTransform: 'uppercase', fontFamily: mono, marginBottom: 10, alignSelf: 'flex-start' }}>
         {label}
       </label>
 
       {/* Calendar card */}
-      <div style={{ background: '#1f1f23', border: `1px solid #3f3f46`, borderRadius: 10, padding: '10px 10px' }}>
+      <div style={{ background: '#1f1f23', border: `1px solid #3f3f46`, borderRadius: 10, padding: '10px 10px', width: '50%' }}>
 
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
@@ -140,7 +140,7 @@ export default function CalendarPicker({ label, value, onChange }) {
                              : sel ? '#111'
                              : dis ? '#3a3a3e'
                              : tod ? Y
-                             :       '#e0e0e0',
+                             :       '#ffffff',
                   border:      tod && !sel ? `1px solid ${Y}` : '1px solid transparent',
                   borderRadius: 4,
                   padding:     '4px 0',
