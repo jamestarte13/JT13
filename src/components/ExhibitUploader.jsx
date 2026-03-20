@@ -28,7 +28,7 @@ export default function ExhibitUploader({ exhibits, onChange }) {
       <label
         style={{
           display: 'block',
-          color: '#aaa',
+          color: '#ffffff',
           fontSize: 11,
           letterSpacing: 2,
           textTransform: 'uppercase',
@@ -37,7 +37,7 @@ export default function ExhibitUploader({ exhibits, onChange }) {
         }}
       >
         Supporting Evidence / Exhibits{' '}
-        <span style={{ color: '#555', textTransform: 'none', letterSpacing: 0 }}>(optional)</span>
+        <span style={{ color: '#ffffff', textTransform: 'none', letterSpacing: 0 }}>(optional)</span>
       </label>
 
       {exhibits.length === 0 && (
@@ -61,10 +61,10 @@ export default function ExhibitUploader({ exhibits, onChange }) {
           }}
         >
           <div style={{ fontSize: 28, marginBottom: 8 }}>📎</div>
-          <div style={{ fontFamily: mono, fontSize: 12, color: '#555', letterSpacing: 1 }}>
+          <div style={{ fontFamily: mono, fontSize: 12, color: '#ffffff', letterSpacing: 1 }}>
             CLICK TO UPLOAD PHOTOS OR DOCUMENTS
           </div>
-          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#444', marginTop: 6 }}>
+          <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#ffffff', marginTop: 6 }}>
             Signs, meter receipts, repair records, photos of your vehicle
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function ExhibitUploader({ exhibits, onChange }) {
                   border: '1px solid #333',
                   borderRadius: 6,
                   padding: '8px 10px',
-                  color: '#ccc',
+                  color: '#ffffff',
                   fontSize: 12,
                   fontFamily: mono,
                   outline: 'none',
@@ -144,14 +144,14 @@ export default function ExhibitUploader({ exhibits, onChange }) {
                 style={{
                   background: 'transparent',
                   border: 'none',
-                  color: '#555',
+                  color: '#ffffff',
                   cursor: 'pointer',
                   fontSize: 16,
                   padding: '0 4px',
                   flexShrink: 0,
                 }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#ef4444')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#555')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#ffffff')}
               >
                 ×
               </button>
@@ -167,7 +167,7 @@ export default function ExhibitUploader({ exhibits, onChange }) {
               padding: '10px',
               fontFamily: mono,
               fontSize: 11,
-              color: '#666',
+              color: '#ffffff',
               letterSpacing: 1,
               textTransform: 'uppercase',
               cursor: 'pointer',
@@ -178,7 +178,7 @@ export default function ExhibitUploader({ exhibits, onChange }) {
             }}
             onMouseLeave={e => {
               e.currentTarget.style.borderColor = '#333'
-              e.currentTarget.style.color = '#666'
+              e.currentTarget.style.color = '#ffffff'
             }}
           >
             + Add Another Exhibit

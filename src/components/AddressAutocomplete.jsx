@@ -103,7 +103,7 @@ export default function AddressAutocomplete({ label, value, onChange }) {
             <div
               key={i}
               onMouseDown={() => pick(s)}
-              style={{ padding: '12px 16px', color: '#ccc', fontSize: 14, fontFamily: mono, cursor: 'pointer', borderTop: i > 0 ? '1px solid #222' : 'none' }}
+              style={{ padding: '12px 16px', color: '#ffffff', fontSize: 14, fontFamily: mono, cursor: 'pointer', borderTop: i > 0 ? '1px solid #222' : 'none' }}
               onMouseEnter={e => (e.currentTarget.style.background = '#252525')}
               onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
             >
@@ -112,7 +112,7 @@ export default function AddressAutocomplete({ label, value, onChange }) {
           ))}
           <div
             onMouseDown={() => pick(query)}
-            style={{ padding: '12px 16px', color: '#666', fontSize: 13, fontFamily: mono, cursor: 'pointer', borderTop: '1px solid #222', fontStyle: 'italic' }}
+            style={{ padding: '12px 16px', color: '#ffffff', fontSize: 13, fontFamily: mono, cursor: 'pointer', borderTop: '1px solid #222', fontStyle: 'italic' }}
             onMouseEnter={e => (e.currentTarget.style.background = '#252525')}
             onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
           >

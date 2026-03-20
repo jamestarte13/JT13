@@ -93,7 +93,7 @@ export function Lbl({ children }) {
     <label
       style={{
         display: 'block',
-        color: '#aaa',
+        color: '#ffffff',
         fontSize: 11,
         letterSpacing: 2,
         textTransform: 'uppercase',

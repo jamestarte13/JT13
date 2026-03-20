@@ -34,7 +34,7 @@ function StepBar({ current }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: i <= current ? '#111' : '#666',
+              color: i <= current ? '#111' : '#ffffff',
               fontWeight: 700,
               fontSize: 12,
               fontFamily: mono,
@@ -51,7 +51,7 @@ function StepBar({ current }) {
       <div
         style={{
           marginLeft: 12,
-          color: '#888',
+          color: '#ffffff',
           fontSize: 11,
           fontFamily: mono,
           letterSpacing: 2,
@@ -100,7 +100,7 @@ function EmailGate({ onSubmit }) {
         <div style={{ color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: mono, marginBottom: 6 }}>
           Get your free appeal letter
         </div>
-        <div style={{ color: '#666', fontSize: 13, lineHeight: 1.7 }}>
+        <div style={{ color: '#ffffff', fontSize: 13, lineHeight: 1.7 }}>
           Enter your email to access the generator. We&apos;ll also send you a copy of your
           completed letter.
         </div>
@@ -138,7 +138,7 @@ function EmailGate({ onSubmit }) {
       <div
         style={{
           marginTop: 14,
-          color: '#444',
+          color: '#ffffff',
           fontSize: 11,
           textAlign: 'center',
           fontFamily: mono,
@@ -167,14 +167,14 @@ function ViolationTips({ violation }) {
       <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 10 }}>
         📸 Strengthen Your Case
       </div>
-      <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#bbb', lineHeight: 1.7, marginBottom: 10 }}>
+      <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#ffffff', lineHeight: 1.7, marginBottom: 10 }}>
         Have pictures that support your case? Add them above and describe them in the box below.
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {tips.map((tip, i) => (
           <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
             <span style={{ color: Y, fontFamily: mono, fontSize: 11, minWidth: 18, paddingTop: 1 }}>{i + 1}.</span>
-            <span style={{ fontFamily: 'Georgia, serif', fontSize: 12, color: '#888', lineHeight: 1.6 }}>{tip}</span>
+            <span style={{ fontFamily: 'Georgia, serif', fontSize: 12, color: '#ffffff', lineHeight: 1.6 }}>{tip}</span>
           </div>
         ))}
       </div>
@@ -229,13 +229,13 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           {/* Free option */}
           <div style={{ background: '#1f1f23', border: '1px solid #2e2e32', borderRadius: 10, padding: 20, textAlign: 'left' }}>
-            <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 8 }}>THIS LETTER ONLY</div>
+            <div style={{ fontFamily: mono, fontSize: 10, color: '#ffffff', letterSpacing: 2, marginBottom: 8 }}>THIS LETTER ONLY</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>FREE</div>
-            <div style={{ fontFamily: mono, fontSize: 11, color: '#555', marginBottom: 16 }}>First letter only</div>
+            <div style={{ fontFamily: mono, fontSize: 11, color: '#ffffff', marginBottom: 16 }}>First letter only</div>
             {['This appeal letter', 'Submission guide', 'PDF download'].map(f => (
               <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
                 <span style={{ color: '#22c55e', fontSize: 11 }}>✓</span>
-                <span style={{ fontFamily: mono, fontSize: 11, color: '#777' }}>{f}</span>
+                <span style={{ fontFamily: mono, fontSize: 11, color: '#ffffff' }}>{f}</span>
               </div>
             ))}
             <button onClick={onContinueFree} style={{ width: '100%', marginTop: 16, background: 'transparent', color: '#666', border: '1px solid #3f3f46', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', cursor: 'pointer' }}>
@@ -248,11 +248,11 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
             <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL PLAN</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>$39.99</div>
-            <div style={{ fontFamily: mono, fontSize: 11, color: '#666', marginBottom: 16 }}>Per year · unlimited letters</div>
+            <div style={{ fontFamily: mono, fontSize: 11, color: '#ffffff', marginBottom: 16 }}>Per year · unlimited letters</div>
             {['Unlimited appeal letters', 'Submission guide', 'PDF download', 'Denial follow-up template', 'Hearing prep guide'].map(f => (
               <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
                 <span style={{ color: Y, fontSize: 11 }}>✓</span>
-                <span style={{ fontFamily: mono, fontSize: 11, color: '#aaa' }}>{f}</span>
+                <span style={{ fontFamily: mono, fontSize: 11, color: '#ffffff' }}>{f}</span>
               </div>
             ))}
             <button onClick={handleUpgrade} disabled={loading} style={{ width: '100%', marginTop: 16, background: loading ? '#999' : Y, color: '#111', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
@@ -262,7 +262,7 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
         </div>
       </div>
 
-      <div style={{ fontFamily: mono, fontSize: 10, color: '#444', letterSpacing: 1, marginTop: 8 }}>
+      <div style={{ fontFamily: mono, fontSize: 10, color: '#ffffff', letterSpacing: 1, marginTop: 8 }}>
         $39.99/year = $3.33/month · Cancel anytime
       </div>
     </div>
@@ -321,7 +321,7 @@ function PaymentGate({ email, letter, onSuccess }) {
       <div style={{ position: 'absolute', top: 180, left: 0, right: 0, background: 'rgba(12,12,12,0.93)', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a', padding: '20px 16px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           <div style={{ background: '#1f1f23', border: '1px solid #2e2e32', borderRadius: 10, padding: 20, textAlign: 'left' }}>
-            <div style={{ fontFamily: mono, fontSize: 10, color: '#555', letterSpacing: 2, marginBottom: 8 }}>ONE LETTER</div>
+            <div style={{ fontFamily: mono, fontSize: 10, color: '#ffffff', letterSpacing: 2, marginBottom: 8 }}>ONE LETTER</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$9.99</div>
             <button onClick={handlePay} disabled={loading}
               style={{ width: '100%', background: '#3f3f46', color: '#fff', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
@@ -386,10 +386,10 @@ function GuideTab() {
             onMouseLeave={e => (e.currentTarget.style.background = open === i ? '#2c2c30' : '#1f1f23')}
           >
             <span style={{ fontSize: 18 }}>{s.icon}</span>
-            <span style={{ flex: 1, color: '#ddd', fontSize: 13, fontFamily: mono }}>{s.title}</span>
+            <span style={{ flex: 1, color: '#ffffff', fontSize: 13, fontFamily: mono }}>{s.title}</span>
             <span
               style={{
-                color: '#555',
+                color: '#ffffff',
                 fontSize: 16,
                 transform: open === i ? 'rotate(180deg)' : 'none',
                 transition: 'transform 0.2s',
@@ -403,7 +403,7 @@ function GuideTab() {
               style={{
                 padding: '0 18px 18px 50px',
                 background: '#2c2c30',
-                color: '#999',
+                color: '#ffffff',
                 fontSize: 13,
                 lineHeight: 1.8,
                 fontFamily: 'Georgia, serif',
@@ -423,7 +423,7 @@ function GuideTab() {
           borderRadius: 8,
         }}
       >
-        <div style={{ color: '#555', fontSize: 11, fontFamily: mono, lineHeight: 1.8 }}>
+        <div style={{ color: '#ffffff', fontSize: 11, fontFamily: mono, lineHeight: 1.8 }}>
           📞 Questions? Call 311 (NYC) · 🌐 nyc.gov/finance
         </div>
       </div>
@@ -524,7 +524,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
               flex: 1,
               padding: '11px 6px',
               background: tab === t.id ? Y : 'transparent',
-              color: tab === t.id ? '#111' : '#666',
+              color: tab === t.id ? '#111' : '#ffffff',
               border: 'none',
               borderRadius: 6,
               fontFamily: mono,
@@ -617,8 +617,8 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
             }}
           >
             <span style={{ fontSize: 14 }}>✉️</span>
-            <div style={{ color: '#666', fontSize: 11, fontFamily: mono }}>
-              Copy sent to <span style={{ color: '#aaa' }}>{email}</span>
+            <div style={{ color: '#ffffff', fontSize: 11, fontFamily: mono }}>
+              Copy sent to <span style={{ color: '#ffffff' }}>{email}</span>
             </div>
           </div>
         </div>
@@ -631,7 +631,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
         style={{
           width: '100%',
           background: 'transparent',
-          color: '#444',
+          color: '#ffffff',
           border: '1px solid #2e2e32',
           borderRadius: 8,
           padding: '12px',
@@ -770,7 +770,7 @@ export default function AppealPage() {
               border: '1px solid #3f3f46',
               borderRadius: 6,
               padding: '8px 14px',
-              color: '#666',
+              color: '#ffffff',
               fontFamily: mono,
               fontSize: 11,
               letterSpacing: 1,
@@ -843,7 +843,7 @@ export default function AppealPage() {
                 <div style={{ marginBottom: 20 }}>
                   <Lbl>
                     Additional Details{' '}
-                    <span style={{ color: '#555', textTransform: 'none', letterSpacing: 0 }}>(optional)</span>
+                    <span style={{ color: '#ffffff', textTransform: 'none', letterSpacing: 0 }}>(optional)</span>
                   </Lbl>
                   <textarea
                     value={form.extraDetails}
@@ -874,7 +874,7 @@ export default function AppealPage() {
                     style={{
                       flex: 1,
                       background: 'transparent',
-                      color: '#666',
+                      color: '#ffffff',
                       border: '1px solid #3f3f46',
                       borderRadius: 8,
                       padding: '14px',
@@ -923,7 +923,7 @@ export default function AppealPage() {
           />
         )}
 
-        <div style={{ marginTop: 40, paddingTop: 20, borderTop: '1px solid #1e1e1e', color: '#444', fontSize: 10, letterSpacing: 1, lineHeight: 1.8 }}>
+        <div style={{ marginTop: 40, paddingTop: 20, borderTop: '1px solid #1e1e1e', color: '#ffffff', fontSize: 10, letterSpacing: 1, lineHeight: 1.8 }}>
           NOT LEGAL ADVICE — FOR INFORMATIONAL PURPOSES ONLY.
           <br />
           ALWAYS REVIEW YOUR APPEAL BEFORE SUBMITTING.
