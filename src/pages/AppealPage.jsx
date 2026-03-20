@@ -231,7 +231,7 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             <div style={{ fontFamily: mono, fontSize: 10, color: '#ffffff', letterSpacing: 2, marginBottom: 8 }}>THIS LETTER ONLY</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>FREE</div>
             <div style={{ fontFamily: mono, fontSize: 11, color: '#ffffff', marginBottom: 16 }}>First letter only</div>
-            {['This appeal letter', 'Submission guide', 'PDF download'].map(f => (
+            {['This appeal letter', 'PDF download', 'Submit to nyc.gov/finance'].map(f => (
               <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
                 <span style={{ color: '#22c55e', fontSize: 11 }}>✓</span>
                 <span style={{ fontFamily: mono, fontSize: 11, color: '#ffffff' }}>{f}</span>
@@ -248,7 +248,7 @@ function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
             <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL PLAN</div>
             <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>$39.99</div>
             <div style={{ fontFamily: mono, fontSize: 11, color: '#ffffff', marginBottom: 16 }}>Per year · unlimited letters</div>
-            {['Unlimited appeal letters', 'Submission guide', 'PDF download', 'Denial follow-up template', 'Hearing prep guide'].map(f => (
+            {['Unlimited appeal letters', 'PDF download', 'Submit to nyc.gov/finance', 'Denial follow-up template'].map(f => (
               <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
                 <span style={{ color: Y, fontSize: 11 }}>✓</span>
                 <span style={{ fontFamily: mono, fontSize: 11, color: '#ffffff' }}>{f}</span>

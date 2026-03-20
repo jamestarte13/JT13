@@ -480,13 +480,13 @@ function TeaserGuide({ onCTA }) {
               <div
                 style={{ fontFamily: display, fontSize: 26, color: '#fff', letterSpacing: 1, marginBottom: 4 }}
               >
-                GET THE FULL 8-STEP SUBMISSION GUIDE
+                READY TO FIGHT YOUR TICKET?
               </div>
               <div style={{ fontFamily: serif, fontSize: 15, color: '#666' }}>
-                From evidence gathering to what to do if your first appeal is denied.
+                Once your letter is generated, submit it directly to the NYC Department of Finance at nyc.gov/finance.
               </div>
             </div>
-            <YBtn onClick={onCTA}>Generate My Letter + Full Guide →</YBtn>
+            <YBtn onClick={onCTA}>Generate My Letter →</YBtn>
           </div>
         </FadeIn>
       </div>
@@ -580,7 +580,7 @@ function Pricing({ onCTA }) {
       name: 'First Letter',
       price: 'Free',
       desc: 'Your first appeal on us. No card needed.',
-      features: ['1 appeal letter', 'Full 8-step submission guide', 'PDF download', 'Copy to clipboard', 'Email delivery'],
+      features: ['1 appeal letter', 'Direct submission to nyc.gov/finance', 'PDF download', 'Copy to clipboard', 'Email delivery'],
       cta: 'Get Started Free',
       hi: false,
       badge: null,
@@ -589,7 +589,7 @@ function Pricing({ onCTA }) {
       name: 'Pay Per Letter',
       price: '$9.99',
       desc: 'Per letter. No commitment.',
-      features: ['1 appeal letter', 'Full 8-step submission guide', 'PDF download', 'Email delivery', 'Denial follow-up template'],
+      features: ['1 appeal letter', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery', 'Denial follow-up template'],
       cta: 'Buy a Letter',
       hi: false,
       badge: null,
@@ -598,7 +598,7 @@ function Pricing({ onCTA }) {
       name: 'Annual Plan',
       price: '$39.99',
       desc: 'Per year. Unlimited letters.',
-      features: ['Unlimited appeal letters', 'Full 8-step submission guide', 'PDF download', 'Email delivery', 'Denial follow-up template', 'Hearing prep guide', 'Priority support'],
+      features: ['Unlimited appeal letters', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery', 'Denial follow-up template', 'Hearing prep guide', 'Priority support'],
       cta: 'Get Annual Access',
       hi: true,
       badge: 'BEST VALUE',

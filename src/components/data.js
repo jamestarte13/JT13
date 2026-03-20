@@ -113,14 +113,14 @@ export const teaserTips = [
 export const testimonials = [
   { quote: 'Ticket dismissed on the first try. Saved me $115 and maybe 3 hours of stress.', name: 'Marcus T.', location: 'Crown Heights, Brooklyn' },
   { quote: 'I had no idea my expired meter ticket could be fought. Generated my letter in under 2 minutes.', name: 'Priya S.', location: 'Astoria, Queens' },
-  { quote: 'The guide tab told me exactly what to attach. Judge ruled in my favor within 10 days.', name: 'Danny R.', location: 'Hell\'s Kitchen, Manhattan' },
+  { quote: 'So easy to use. Generated my letter, submitted it directly online, and the judge ruled in my favor within 10 days.', name: 'Danny R.', location: 'Hell\'s Kitchen, Manhattan' },
   { quote: 'Got hit with an alternate side ticket even though the sign was completely blocked by a truck. This tool helped me explain that clearly.', name: 'Sandra L.', location: 'Riverdale, Bronx' },
 ]
 
 export const faqs = [
   { q: 'Does this actually work?', a: 'NYC parking appeals have a surprisingly high dismissal rate — especially when the letter is well-written and evidence is included. Our letters cite real NYC Traffic Rules and are formatted exactly as judges expect.' },
   { q: 'How long does the appeal process take?', a: 'If you submit online, a hearing is typically scheduled within 45 days. Once your appeal is received, the DOF puts your case on hold, pausing any late fees. Decisions are usually issued about 10 days after your hearing.' },
-  { q: 'What if my appeal is denied?', a: 'You still have options. If a judge finds you guilty, you have 30 days to file a formal appeal with the NYC DOF Appeals Board. Our full guide (included with every letter) walks you through every step of the escalation process.' },
+  { q: 'What if my appeal is denied?', a: 'You still have options. If a judge finds you guilty, you have 30 days to file a formal appeal with the NYC DOF Appeals Board at nyc.gov/finance.' },
   { q: 'Is my information safe?', a: 'Yes. We collect only your email and the ticket details you provide. We never sell your data or share it with third parties.' },
   { q: 'Can I use this for camera violations?', a: 'This tool is designed for parking summons issued by NYC parking enforcement officers. Camera violations follow a different dispute process — we\'re working on expanding to cover those.' },
   { q: 'Do I need a lawyer?', a: 'Not for most parking appeals. The NYC Parking Violations Bureau is designed for self-representation. Our letters are written at the level of a legal professional but in plain language judges appreciate.' },
