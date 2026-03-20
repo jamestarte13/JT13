@@ -162,30 +162,6 @@ function Hero({ onCTA }) {
               Generate My Free Letter →
             </YBtn>
           </div>
-          <div style={{ display: 'flex', gap: 32, marginTop: 44 }}>
-            {[
-              ['30 sec', 'avg. time'],
-              ['Free', 'first letter'],
-              ['Real', 'NYC law'],
-            ].map(([v, l]) => (
-              <div key={l}>
-                <div style={{ fontFamily: display, fontSize: 30, color: Y, letterSpacing: 2 }}>
-                  {v}
-                </div>
-                <div
-                  style={{
-                    fontFamily: mono,
-                    fontSize: 10,
-                    color: '#555',
-                    letterSpacing: 1,
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  {l}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
         {/* Outcome card */}
         <div>
