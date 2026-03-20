@@ -116,7 +116,7 @@ export default function CalendarPicker({ label, value, onChange }) {
         {/* Day-of-week headers */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', marginBottom: 3 }}>
           {DAY_HDRS.map(d => (
-            <div key={d} style={{ textAlign: 'center', fontFamily: mono, fontSize: 8, color: '#fff', letterSpacing: 0.5, paddingBottom: 4, borderBottom: '1px solid #2e2e32' }}>
+            <div key={d} style={{ textAlign: 'center', fontFamily: mono, fontSize: 11, fontWeight: 700, color: '#ffffff', letterSpacing: 0.5, paddingBottom: 4, borderBottom: '1px solid #2e2e32' }}>
               {d}
             </div>
           ))}
