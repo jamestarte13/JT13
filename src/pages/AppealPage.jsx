@@ -9,7 +9,6 @@ import {
   violationTypes,
   defenseReasons,
   violationTips,
-  guideSteps,
   generateLetter,
 } from '../components/data'
 import { downloadPDF, generatePDFBase64 } from '../lib/pdf'
@@ -343,97 +342,9 @@ function PaymentGate({ email, letter, onSuccess }) {
   )
 }
 
-// ── Guide tab ─────────────────────────────────────────────────────────────────
-function GuideTab() {
-  const [open, setOpen] = useState(0)
-  return (
-    <div>
-      <div
-        style={{
-          marginBottom: 16,
-          padding: '12px 14px',
-          background: '#0f1a00',
-          border: '1px solid #2a4000',
-          borderRadius: 8,
-        }}
-      >
-        <div style={{ color: '#a3e635', fontSize: 12, fontFamily: mono }}>
-          💡 NYC parking appeals have a <strong>high dismissal rate</strong> when submitted
-          correctly.
-        </div>
-      </div>
-      {guideSteps.map((s, i) => (
-        <div
-          key={i}
-          style={{
-            marginBottom: 6,
-            border: `1px solid ${open === i ? '#333' : '#2e2e32'}`,
-            borderRadius: 8,
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            onClick={() => setOpen(open === i ? -1 : i)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-              padding: '14px 18px',
-              cursor: 'pointer',
-              background: open === i ? '#2c2c30' : '#1f1f23',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.background = '#2c2c30')}
-            onMouseLeave={e => (e.currentTarget.style.background = open === i ? '#2c2c30' : '#1f1f23')}
-          >
-            <span style={{ fontSize: 18 }}>{s.icon}</span>
-            <span style={{ flex: 1, color: '#ffffff', fontSize: 13, fontFamily: mono }}>{s.title}</span>
-            <span
-              style={{
-                color: '#ffffff',
-                fontSize: 16,
-                transform: open === i ? 'rotate(180deg)' : 'none',
-                transition: 'transform 0.2s',
-              }}
-            >
-              ›
-            </span>
-          </div>
-          {open === i && (
-            <div
-              style={{
-                padding: '0 18px 18px 50px',
-                background: '#2c2c30',
-                color: '#ffffff',
-                fontSize: 13,
-                lineHeight: 1.8,
-                fontFamily: 'Georgia, serif',
-              }}
-            >
-              {s.content}
-            </div>
-          )}
-        </div>
-      ))}
-      <div
-        style={{
-          marginTop: 16,
-          padding: '12px 14px',
-          background: '#161616',
-          border: '1px solid #2e2e32',
-          borderRadius: 8,
-        }}
-      >
-        <div style={{ color: '#ffffff', fontSize: 11, fontFamily: mono, lineHeight: 1.8 }}>
-          📞 Questions? Call 311 (NYC) · 🌐 nyc.gov/finance
-        </div>
-      </div>
-    </div>
-  )
-}
 
 // ── Result screen ─────────────────────────────────────────────────────────────
 function ResultScreen({ letter, email, form, exhibits, onReset }) {
-  const [tab, setTab] = useState('letter')
   const [copied, setCopied] = useState(false)
   const [pdfLoading, setPdfLoading] = useState(false)
 
@@ -504,63 +415,23 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
 
       <div
         style={{
-          display: 'flex',
-          gap: 3,
-          marginBottom: 18,
-          background: '#161616',
-          padding: 3,
-          borderRadius: 8,
-          border: '1px solid #2e2e32',
+          background: '#fafaf7',
+          border: '1px solid #e0e0d0',
+          borderRadius: 10,
+          padding: 28,
+          marginBottom: 16,
+          fontFamily: 'Georgia, serif',
+          fontSize: 13,
+          lineHeight: 1.9,
+          color: '#2e2e32',
+          whiteSpace: 'pre-wrap',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
         }}
       >
-        {[
-          { id: 'letter', label: '📄 Your Appeal Letter' },
-          { id: 'guide', label: '📋 How To Use This Letter' },
-        ].map(t => (
-          <button
-            key={t.id}
-            onClick={() => setTab(t.id)}
-            style={{
-              flex: 1,
-              padding: '11px 6px',
-              background: tab === t.id ? Y : 'transparent',
-              color: tab === t.id ? '#111' : '#ffffff',
-              border: 'none',
-              borderRadius: 6,
-              fontFamily: mono,
-              fontSize: 10,
-              fontWeight: tab === t.id ? 700 : 400,
-              letterSpacing: 1,
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              textTransform: 'uppercase',
-            }}
-          >
-            {t.label}
-          </button>
-        ))}
+        {letter}
       </div>
 
-      {tab === 'letter' && (
-        <div>
-          <div
-            style={{
-              background: '#fafaf7',
-              border: '1px solid #e0e0d0',
-              borderRadius: 10,
-              padding: 28,
-              marginBottom: 16,
-              fontFamily: 'Georgia, serif',
-              fontSize: 13,
-              lineHeight: 1.9,
-              color: '#2e2e32',
-              whiteSpace: 'pre-wrap',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
-            }}
-          >
-            {letter}
-          </div>
-          <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
+      <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
             <button
               onClick={copy}
               style={{
@@ -621,10 +492,6 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
               Copy sent to <span style={{ color: '#ffffff' }}>{email}</span>
             </div>
           </div>
-        </div>
-      )}
-
-      {tab === 'guide' && <GuideTab />}
 
       <button
         onClick={onReset}
