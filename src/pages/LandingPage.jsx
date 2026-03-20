@@ -228,7 +228,7 @@ function Hero({ onCTA }) {
               fontWeight: 700,
             }}
           >
-            Got a NYC Parking Ticket?
+            Hit with a NYC Parking Ticket?
             <br />
             <span style={{ color: BLUE, fontStyle: 'italic' }}>Fight it in 2 steps.</span>
           </h1>
