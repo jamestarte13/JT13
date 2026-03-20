@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Y, mono } from './tokens'
 
 const MONTHS   = ['January','February','March','April','May','June','July','August','September','October','November','December']
-const DAY_HDRS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+const DAY_HDRS = ['S','M','T','W','T','F','S']
 
 export default function CalendarPicker({ label, value, onChange }) {
   const today   = new Date()
@@ -71,7 +71,7 @@ export default function CalendarPicker({ label, value, onChange }) {
       </label>
 
       {/* Calendar card */}
-      <div style={{ background: '#1f1f23', border: `1px solid #3f3f46`, borderRadius: 10, padding: '10px 10px', width: '50%' }}>
+      <div style={{ background: '#1f1f23', border: `1px solid #3f3f46`, borderRadius: 10, padding: '10px', width: 220, flexShrink: 0 }}>
 
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
