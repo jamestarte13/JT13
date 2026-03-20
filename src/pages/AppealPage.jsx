@@ -190,83 +190,6 @@ function getLetterPreview(letter) {
   return lines.slice(0, bodyStart + 2).join('\n')
 }
 
-// ── Upsell screen ─────────────────────────────────────────────────────────────
-function UpsellScreen({ email, letter, onContinueFree, onUpgrade }) {
-  const [loading, setLoading] = useState(false)
-
-  const handleUpgrade = async () => {
-    setLoading(true)
-    try {
-      await checkoutSession({
-        priceId: PRICES.annual,
-        email,
-        successUrl: `${window.location.origin}/appeal?upgraded=true`,
-        cancelUrl: `${window.location.href}`,
-      })
-    } catch {
-      alert('Payment service unavailable. Please try again.')
-      setLoading(false)
-    }
-  }
-
-  return (
-    <div style={{ position: 'relative', userSelect: 'none', marginBottom: 24 }}>
-
-      {/* Letter paper — height+overflow clipped HERE */}
-      <div style={{ height: 600, overflow: 'hidden', borderRadius: 8, boxShadow: '0 2px 24px rgba(0,0,0,0.5)', background: '#fff', padding: '24px 28px', textAlign: 'left' }}>
-        <div style={{ fontFamily: 'Georgia, serif', fontSize: 13, color: '#1a1a1a', lineHeight: 1.9, whiteSpace: 'pre-wrap', filter: 'blur(3.5px)', userSelect: 'none' }}>
-          {letter}
-        </div>
-      </div>
-
-      {/* Top + bottom fades */}
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 60, borderRadius: '8px 8px 0 0', background: 'linear-gradient(to bottom, rgba(14,14,14,0.4) 0%, transparent 100%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, borderRadius: '0 0 8px 8px', background: 'linear-gradient(to top, rgba(14,14,14,0.4) 0%, transparent 100%)', pointerEvents: 'none' }} />
-
-      {/* Belt — absolute over the letter, centered in the 600px letter height */}
-      <div style={{ position: 'absolute', top: 200, left: 0, right: 0, background: 'rgba(12,12,12,0.93)', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a', padding: '20px 16px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          {/* Free option */}
-          <div style={{ background: '#1f1f23', border: '1px solid #2e2e32', borderRadius: 10, padding: 20, textAlign: 'left' }}>
-            <div style={{ fontFamily: mono, fontSize: 10, color: '#ffffff', letterSpacing: 2, marginBottom: 8 }}>THIS LETTER ONLY</div>
-            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>FREE</div>
-            <div style={{ fontFamily: mono, fontSize: 11, color: '#ffffff', marginBottom: 16 }}>First letter only</div>
-            {['This appeal letter', 'PDF download', 'Submit to nyc.gov/finance'].map(f => (
-              <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
-                <span style={{ color: '#22c55e', fontSize: 11 }}>✓</span>
-                <span style={{ fontFamily: mono, fontSize: 11, color: '#ffffff' }}>{f}</span>
-              </div>
-            ))}
-            <button onClick={onContinueFree} style={{ width: '100%', marginTop: 16, background: 'transparent', color: '#666', border: '1px solid #3f3f46', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', cursor: 'pointer' }}>
-              Continue Free
-            </button>
-          </div>
-
-          {/* Annual option */}
-          <div style={{ background: '#252529', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
-            <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL PLAN</div>
-            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 4 }}>$39.99</div>
-            <div style={{ fontFamily: mono, fontSize: 11, color: '#ffffff', marginBottom: 16 }}>Per year · unlimited letters</div>
-            {['Unlimited appeal letters', 'PDF download', 'Submit to nyc.gov/finance', 'Denial follow-up template'].map(f => (
-              <div key={f} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
-                <span style={{ color: Y, fontSize: 11 }}>✓</span>
-                <span style={{ fontFamily: mono, fontSize: 11, color: '#ffffff' }}>{f}</span>
-              </div>
-            ))}
-            <button onClick={handleUpgrade} disabled={loading} style={{ width: '100%', marginTop: 16, background: loading ? '#999' : Y, color: '#111', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
-              {loading ? 'Redirecting...' : 'Upgrade to Annual →'}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div style={{ fontFamily: mono, fontSize: 10, color: '#ffffff', letterSpacing: 1, marginTop: 8 }}>
-        $39.99/year = $3.33/month · Cancel anytime
-      </div>
-    </div>
-  )
-}
 
 // ── Per-letter payment gate ───────────────────────────────────────────────────
 function PaymentGate({ email, letter, onSuccess }) {
@@ -321,7 +244,7 @@ function PaymentGate({ email, letter, onSuccess }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           <div style={{ background: '#1f1f23', border: '1px solid #2e2e32', borderRadius: 10, padding: 20, textAlign: 'left' }}>
             <div style={{ fontFamily: mono, fontSize: 10, color: '#ffffff', letterSpacing: 2, marginBottom: 8 }}>ONE LETTER</div>
-            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$9.99</div>
+            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$6.99</div>
             <button onClick={handlePay} disabled={loading}
               style={{ width: '100%', background: '#3f3f46', color: '#fff', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
               {loading ? 'Redirecting...' : 'Buy This Letter'}
@@ -330,7 +253,7 @@ function PaymentGate({ email, letter, onSuccess }) {
           <div style={{ background: '#252529', border: `1px solid ${Y}`, borderRadius: 10, padding: 20, textAlign: 'left', position: 'relative' }}>
             <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: Y, color: '#111', fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: '3px 10px', borderRadius: 10, fontFamily: mono, whiteSpace: 'nowrap' }}>BEST VALUE</div>
             <div style={{ fontFamily: mono, fontSize: 10, color: Y, letterSpacing: 2, marginBottom: 8 }}>ANNUAL — UNLIMITED</div>
-            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$39.99/yr</div>
+            <div style={{ fontFamily: display, fontSize: 36, color: '#fff', letterSpacing: 2, marginBottom: 16 }}>$36.99/yr</div>
             <button onClick={handleAnnual} disabled={loading}
               style={{ width: '100%', background: Y, color: '#111', border: 'none', borderRadius: 8, padding: '11px', fontFamily: mono, fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer' }}>
               {loading ? 'Redirecting...' : 'Go Unlimited →'}
@@ -521,7 +444,7 @@ export default function AppealPage() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
-  const [screen, setScreen] = useState('form')   // form | payment | upsell | result
+  const [screen, setScreen] = useState('form')   // form | payment | result
   const [step, setStep] = useState(0)             // 0 = ticket info, 1 = defense
   const [email, setEmail] = useState('')
   const [form, setForm] = useState({
@@ -588,29 +511,22 @@ export default function AppealPage() {
         borough: deriveBorough(form.location),
       }).catch(() => {})
 
-      if (count === 0 || isAnnual) {
-        // Free first letter or annual subscriber
+      if (isAnnual) {
+        // Annual subscriber — generate, email, show result
         await incrementLetterCount(email).catch(() => {})
-        // Generate PDF and send email with attachment
         generatePDFBase64(generatedLetter, form.name, exhibits)
           .then(pdfBase64 => sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter, pdfBase64 }))
           .catch(() => sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter }))
-
-        if (count === 0 && !isAnnual && !isDevBypass) {
-          setScreen('upsell')
-        } else {
-          setScreen('result')
-        }
+        setScreen('result')
       } else {
         // Needs to pay
         setScreen('payment')
       }
     } catch (err) {
       console.error(err)
-      // Fallback: still generate the letter locally
       const generatedLetter = generateLetter(form, exhibits)
       setLetter(generatedLetter)
-      setScreen('upsell')
+      setScreen('payment')
     } finally {
       setGenerating(false)
     }
@@ -771,16 +687,7 @@ export default function AppealPage() {
           <PaymentGate email={email} letter={letter} onSuccess={() => setScreen('result')} />
         )}
 
-        {screen === 'upsell' && (
-          <UpsellScreen
-            email={email}
-            letter={letter}
-            onContinueFree={() => setScreen('result')}
-            onUpgrade={() => {}}
-          />
-        )}
-
-        {screen === 'result' && (
+{screen === 'result' && (
           <ResultScreen
             letter={letter}
             email={email}

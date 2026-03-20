@@ -81,8 +81,8 @@ export async function getDashboardStats() {
   const freeSubs   = subscribers.filter(s => s.plan === 'free')
 
   const totalRevenue =
-    annualSubs.length * 39.99 +
-    submissions.filter(s => s.plan === 'paid').length * 9.99
+    annualSubs.length * 36.99 +
+    submissions.filter(s => s.plan === 'paid').length * 6.99
 
   return {
     totalLetters: submissions.length,
@@ -91,8 +91,8 @@ export async function getDashboardStats() {
     paidPerLetter: paidSubs.length,
     freeUsers: freeSubs.length,
     totalRevenue,
-    mrr: annualSubs.length * (39.99 / 12),
-    arr: annualSubs.length * 39.99,
+    mrr: annualSubs.length * (36.99 / 12),
+    arr: annualSubs.length * 36.99,
     conversionRate: subscribers.length
       ? Math.round(((annualSubs.length + paidSubs.length) / subscribers.length) * 1000) / 10
       : 0,

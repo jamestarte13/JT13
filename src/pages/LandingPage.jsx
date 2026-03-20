@@ -577,28 +577,19 @@ function Testimonials() {
 function Pricing({ onCTA }) {
   const plans = [
     {
-      name: 'First Letter',
-      price: 'Free',
-      desc: 'Your first appeal on us. No card needed.',
-      features: ['1 appeal letter', 'Direct submission to nyc.gov/finance', 'PDF download', 'Copy to clipboard', 'Email delivery'],
-      cta: 'Get Started Free',
-      hi: false,
-      badge: null,
-    },
-    {
       name: 'Pay Per Letter',
-      price: '$9.99',
+      price: '$6.99',
       desc: 'Per letter. No commitment.',
-      features: ['1 appeal letter', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery', 'Denial follow-up template'],
-      cta: 'Buy a Letter',
+      features: ['1 appeal letter', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery'],
+      cta: 'Get Started',
       hi: false,
       badge: null,
     },
     {
       name: 'Annual Plan',
-      price: '$39.99',
+      price: '$36.99',
       desc: 'Per year. Unlimited letters.',
-      features: ['Unlimited appeal letters', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery', 'Denial follow-up template', 'Hearing prep guide', 'Priority support'],
+      features: ['Unlimited appeal letters', 'Direct submission to nyc.gov/finance', 'PDF download', 'Email delivery', 'Denial follow-up template', 'Priority support'],
       cta: 'Get Annual Access',
       hi: true,
       badge: 'BEST VALUE',
@@ -616,7 +607,7 @@ function Pricing({ onCTA }) {
               SIMPLE. FAIR. OBVIOUS.
             </h2>
             <p style={{ fontFamily: serif, fontSize: 19, color: '#666' }}>
-              Spending $10 to fight a $115 fine is the easiest decision you&apos;ll make today.
+              Spending $6.99 to fight a $115 fine is the easiest decision you&apos;ll make today.
             </p>
           </div>
         </FadeIn>
@@ -746,7 +737,7 @@ function Pricing({ onCTA }) {
               letterSpacing: 1,
             }}
           >
-            Annual plan works out to just <span style={{ color: Y }}>$3.33/month</span>. NYC
+            Annual plan works out to just <span style={{ color: Y }}>$3.08/month</span>. NYC
             drivers average 2–3 tickets per year.
           </div>
         </FadeIn>

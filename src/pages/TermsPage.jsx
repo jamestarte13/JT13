@@ -35,7 +35,7 @@ export default function TermsPage() {
           },
           {
             title: 'Pricing and Payments',
-            body: `Your first appeal letter is free. Additional letters are priced at $9.99 per letter. An annual subscription ($39.99/year) provides unlimited letters. Payments are processed by Stripe. All sales are final unless required by law.\n\nAnnual subscriptions auto-renew annually. You may cancel at any time before the renewal date.`,
+            body: `Letters are priced at $6.99 per letter. An annual subscription ($36.99/year) provides unlimited letters. Payments are processed by Stripe. All sales are final unless required by law.\n\nAnnual subscriptions auto-renew annually. You may cancel at any time before the renewal date.`,
           },
           {
             title: 'User Responsibilities',
