@@ -799,11 +799,13 @@ export default function AppealPage() {
           <div>
             {step === 0 && (
               <div>
-                <TInput label="Ticket Number" value={form.ticketNumber} onChange={set('ticketNumber')} placeholder="e.g. 1234567890" />
-                <CalendarPicker label="Date of Violation" value={form.date} onChange={set('date')} />
-                <AddressAutocomplete label="Location / Street" value={form.location} onChange={set('location')} />
-                <TSel label="Violation Type" value={form.violation} onChange={set('violation')} options={violationTypes} />
-                <TInput label="Fine Amount ($)" value={form.amount} onChange={set('amount')} placeholder="e.g. 115" type="number" />
+                <div style={{ maxWidth: 280, margin: '0 auto' }}>
+                  <TInput label="Ticket Number" value={form.ticketNumber} onChange={set('ticketNumber')} placeholder="e.g. 1234567890" />
+                  <CalendarPicker label="Date of Violation" value={form.date} onChange={set('date')} />
+                  <AddressAutocomplete label="Location / Street" value={form.location} onChange={set('location')} />
+                  <TSel label="Violation Type" value={form.violation} onChange={set('violation')} options={violationTypes} />
+                  <TInput label="Fine Amount ($)" value={form.amount} onChange={set('amount')} placeholder="e.g. 115" type="number" />
+                </div>
                 <PBtn onClick={() => setStep(1)} disabled={!canNext0} style={{ width: '100%', marginTop: 8 }}>
                   Next → Your Defense
                 </PBtn>
