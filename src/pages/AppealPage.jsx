@@ -490,9 +490,11 @@ export default function AppealPage() {
 
   const set = k => v => setForm(f => ({ ...f, [k]: v }))
 
-  const canNext0 = form.ticketNumber && form.date && form.location && form.violation && form.amount
+  const isPreview = sessionStorage.getItem('preview') === 'true'
+
+  const canNext0 = isPreview || (form.ticketNumber && form.date && form.location && form.violation && form.amount)
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  const canNext1 = form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim()) && validEmail
+  const canNext1 = isPreview || (form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim()) && validEmail)
 
   const stepNum = step === 0 ? 0 : 1
 
@@ -502,7 +504,6 @@ export default function AppealPage() {
 
   const handleGenerateAttempt = async () => {
     setGenerating(true)
-    const isPreview = sessionStorage.getItem('preview') === 'true'
     try {
       // Preview mode: skip all DB/email operations, go straight to result
       if (isPreview) {
