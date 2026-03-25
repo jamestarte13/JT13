@@ -192,6 +192,22 @@ function Hero({ onCTA }) {
       >
         {/* Left: copy */}
         <div>
+          {/* Editorial lede */}
+          <div style={{ marginBottom: 36 }}>
+            <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 4px' }}>
+              Every year NYC issues 10 million parking tickets.
+            </p>
+            <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 14px' }}>
+              Most people pay without question.
+            </p>
+            <p style={{ fontFamily: serif, fontSize: 22, color: NAVY, fontWeight: 700, lineHeight: 1.5, margin: '0 0 14px' }}>
+              The ones who fight back win nearly 30% of the time —&nbsp;paying absolutely nothing.
+            </p>
+            <p style={{ fontFamily: mono, fontSize: 13, color: BLUE, letterSpacing: 0.5, margin: 0 }}>
+              It takes 2 minutes. We write the letter. You win the case.
+            </p>
+          </div>
+
           <h1
             style={{
               fontFamily: serif,
