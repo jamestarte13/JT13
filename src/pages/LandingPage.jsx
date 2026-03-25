@@ -189,21 +189,21 @@ function Hero({ onCTA }) {
           padding: '3rem',
         }}
       >
-        <p style={{ fontFamily: serif, fontSize: 15, color: MUTED, lineHeight: 1.7, margin: '0 0 6px', fontWeight: 400 }}>
+        <p style={{ fontFamily: serif, fontSize: 20, color: MUTED, lineHeight: 1.7, margin: '0 0 6px', fontWeight: 400 }}>
           Every year NYC issues 16 million parking tickets.
         </p>
-        <p style={{ fontFamily: serif, fontSize: 15, color: MUTED, lineHeight: 1.7, margin: '0 0 2rem', fontWeight: 400 }}>
+        <p style={{ fontFamily: serif, fontSize: 20, color: MUTED, lineHeight: 1.7, margin: '0 0 2rem', fontWeight: 400 }}>
           Only 1 in 10 drivers ever fight back.
         </p>
         <p
           style={{
             fontFamily: serif,
-            fontSize: 36,
+            fontSize: 52,
             color: TEXT,
             fontWeight: 500,
-            lineHeight: 1.2,
+            lineHeight: 1.15,
             margin: '0 0 1.5rem',
-            borderLeft: `3px solid ${TEXT}`,
+            borderLeft: `4px solid ${TEXT}`,
             paddingLeft: '1.25rem',
           }}
         >
@@ -214,14 +214,14 @@ function Hero({ onCTA }) {
             style={{
               background: '#EAF3DE',
               color: '#27500A',
-              padding: '2px 8px',
+              padding: '2px 10px',
               borderRadius: 4,
             }}
           >
             paying nothing.
           </span>
         </p>
-        <p style={{ fontFamily: serif, fontSize: 16, color: MUTED, lineHeight: 1.7, margin: '0 0 2.5rem', fontWeight: 400 }}>
+        <p style={{ fontFamily: serif, fontSize: 20, color: MUTED, lineHeight: 1.7, margin: '0 0 2.5rem', fontWeight: 400 }}>
           It takes 2 minutes. We write the letter. You win the case.
         </p>
       </div>
