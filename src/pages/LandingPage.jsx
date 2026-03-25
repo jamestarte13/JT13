@@ -179,53 +179,6 @@ function Hero({ onCTA }) {
         padding: '100px 32px 90px',
       }}
     >
-      {/* Editorial lede */}
-      <div
-        style={{
-          maxWidth: 1100,
-          margin: '0 auto 56px',
-          background: WHITE,
-          borderRadius: 12,
-          padding: '3rem',
-        }}
-      >
-        <p style={{ fontFamily: serif, fontSize: 20, color: MUTED, lineHeight: 1.7, margin: '0 0 6px', fontWeight: 400 }}>
-          Every year NYC issues 16 million parking tickets.
-        </p>
-        <p style={{ fontFamily: serif, fontSize: 20, color: MUTED, lineHeight: 1.7, margin: '0 0 2rem', fontWeight: 400 }}>
-          Only 1 in 10 drivers ever fight back.
-        </p>
-        <p
-          style={{
-            fontFamily: serif,
-            fontSize: 52,
-            color: TEXT,
-            fontWeight: 500,
-            lineHeight: 1.15,
-            margin: '0 0 1.5rem',
-            borderLeft: `4px solid ${TEXT}`,
-            paddingLeft: '1.25rem',
-          }}
-        >
-          The ones who do win nearly
-          <br />
-          1 in 3 times —{' '}
-          <span
-            style={{
-              background: '#EAF3DE',
-              color: '#27500A',
-              padding: '2px 10px',
-              borderRadius: 4,
-            }}
-          >
-            paying nothing.
-          </span>
-        </p>
-        <p style={{ fontFamily: serif, fontSize: 20, color: MUTED, lineHeight: 1.7, margin: '0 0 2.5rem', fontWeight: 400 }}>
-          It takes 2 minutes. We write the letter. You win the case.
-        </p>
-      </div>
-
       <div
         className="hero-grid"
         style={{
@@ -239,6 +192,32 @@ function Hero({ onCTA }) {
       >
         {/* Left: copy */}
         <div>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              background: BLUE_L,
+              border: `1px solid #bfdbfe`,
+              borderRadius: 20,
+              padding: '6px 16px',
+              marginBottom: 32,
+            }}
+          >
+            <div
+              style={{
+                width: 7,
+                height: 7,
+                borderRadius: '50%',
+                background: BLUE,
+                animation: 'pulse 2s infinite',
+              }}
+            />
+            <span style={{ color: BLUE, fontSize: 12, fontFamily: mono, letterSpacing: 1 }}>
+              2,400+ APPEALS GENERATED
+            </span>
+          </div>
+
           <h1
             style={{
               fontFamily: serif,
@@ -268,6 +247,14 @@ function Hero({ onCTA }) {
             chances of dismissal.
           </p>
 
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+            <CTABtn onClick={onCTA} large>
+              Generate My Appeal Letter →
+            </CTABtn>
+            <span style={{ fontFamily: mono, fontSize: 11, color: MUTED, letterSpacing: 0.5 }}>
+              No account required
+            </span>
+          </div>
         </div>
 
         {/* Right: outcome card styled like an official document */}

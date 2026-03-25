@@ -11,19 +11,19 @@ html {
 }
 
 body {
-  background: #ffffff;
-  color: #1d1d1f;
+  background: #0e0e0e;
+  color: #fff;
   -webkit-font-smoothing: antialiased;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #6e6e73 !important;
+  color: #444 !important;
 }
 
 select option {
-  background: #ffffff;
-  color: #1d1d1f;
+  background: #1a1a1a;
+  color: #fff;
 }
 
 @keyframes pulse {
