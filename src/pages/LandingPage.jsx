@@ -180,17 +180,48 @@ function Hero({ onCTA }) {
       }}
     >
       {/* Editorial lede */}
-      <div style={{ maxWidth: 1100, margin: '0 auto 56px', textAlign: 'center' }}>
-        <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 2px' }}>
-          Every year NYC issues 10 million parking tickets.
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: '0 auto 56px',
+          background: WHITE,
+          borderRadius: 12,
+          padding: '3rem',
+        }}
+      >
+        <p style={{ fontFamily: serif, fontSize: 15, color: MUTED, lineHeight: 1.7, margin: '0 0 6px', fontWeight: 400 }}>
+          Every year NYC issues 16 million parking tickets.
         </p>
-        <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 12px' }}>
-          Most people pay without question.
+        <p style={{ fontFamily: serif, fontSize: 15, color: MUTED, lineHeight: 1.7, margin: '0 0 2rem', fontWeight: 400 }}>
+          Only 1 in 10 drivers ever fight back.
         </p>
-        <p style={{ fontFamily: serif, fontSize: 21, color: NAVY, fontWeight: 700, lineHeight: 1.5, margin: '0 0 12px' }}>
-          The ones who fight back win nearly 30% of the time —&nbsp;paying absolutely nothing.
+        <p
+          style={{
+            fontFamily: serif,
+            fontSize: 36,
+            color: TEXT,
+            fontWeight: 500,
+            lineHeight: 1.2,
+            margin: '0 0 1.5rem',
+            borderLeft: `3px solid ${TEXT}`,
+            paddingLeft: '1.25rem',
+          }}
+        >
+          The ones who do win nearly
+          <br />
+          1 in 3 times —{' '}
+          <span
+            style={{
+              background: '#EAF3DE',
+              color: '#27500A',
+              padding: '2px 8px',
+              borderRadius: 4,
+            }}
+          >
+            paying nothing.
+          </span>
         </p>
-        <p style={{ fontFamily: mono, fontSize: 13, color: BLUE, letterSpacing: 0.5, margin: 0 }}>
+        <p style={{ fontFamily: serif, fontSize: 16, color: MUTED, lineHeight: 1.7, margin: '0 0 2.5rem', fontWeight: 400 }}>
           It takes 2 minutes. We write the letter. You win the case.
         </p>
       </div>
@@ -237,11 +268,6 @@ function Hero({ onCTA }) {
             chances of dismissal.
           </p>
 
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
-            <CTABtn onClick={onCTA} large>
-              Generate My Appeal Letter →
-            </CTABtn>
-          </div>
         </div>
 
         {/* Right: outcome card styled like an official document */}
