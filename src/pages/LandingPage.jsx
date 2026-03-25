@@ -192,32 +192,6 @@ function Hero({ onCTA }) {
       >
         {/* Left: copy */}
         <div>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              background: BLUE_L,
-              border: `1px solid #bfdbfe`,
-              borderRadius: 20,
-              padding: '6px 16px',
-              marginBottom: 32,
-            }}
-          >
-            <div
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: '50%',
-                background: BLUE,
-                animation: 'pulse 2s infinite',
-              }}
-            />
-            <span style={{ color: BLUE, fontSize: 12, fontFamily: mono, letterSpacing: 1 }}>
-              2,400+ APPEALS GENERATED
-            </span>
-          </div>
-
           <h1
             style={{
               fontFamily: serif,
@@ -251,9 +225,6 @@ function Hero({ onCTA }) {
             <CTABtn onClick={onCTA} large>
               Generate My Appeal Letter →
             </CTABtn>
-            <span style={{ fontFamily: mono, fontSize: 11, color: MUTED, letterSpacing: 0.5 }}>
-              No account required
-            </span>
           </div>
         </div>
 
