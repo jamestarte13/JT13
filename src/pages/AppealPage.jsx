@@ -108,6 +108,7 @@ function ViolationTips({ violation }) {
 // ── Per-letter payment gate ───────────────────────────────────────────────────
 function PaymentGate({ email, letter, onSuccess }) {
   const [loading, setLoading] = useState(false)
+  const isPreview = sessionStorage.getItem('preview') === 'true'
 
   const handlePay = async () => {
     setLoading(true)
@@ -279,6 +280,29 @@ function PaymentGate({ email, letter, onSuccess }) {
           </div>
         </div>
       </div>
+
+      {isPreview && (
+        <button
+          onClick={onSuccess}
+          style={{
+            display: 'block',
+            width: '100%',
+            marginTop: 12,
+            padding: '12px',
+            background: 'transparent',
+            border: `1px dashed ${BORDER}`,
+            borderRadius: 8,
+            color: MUTED,
+            fontFamily: mono,
+            fontSize: 11,
+            letterSpacing: 1,
+            cursor: 'pointer',
+            textTransform: 'uppercase',
+          }}
+        >
+          ↓ Preview — Skip Payment
+        </button>
+      )}
     </div>
   )
 }
