@@ -490,7 +490,8 @@ export default function AppealPage() {
 
   const set = k => v => setForm(f => ({ ...f, [k]: v }))
 
-  const isPreview = sessionStorage.getItem('preview') === 'true'
+  const isPreview = sessionStorage.getItem('preview') === 'true' || searchParams.get('preview') === 'true'
+  if (isPreview) sessionStorage.setItem('preview', 'true')
 
   const canNext0 = isPreview || (form.ticketNumber && form.date && form.location && form.violation && form.amount)
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
