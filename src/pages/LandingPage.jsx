@@ -179,6 +179,22 @@ function Hero({ onCTA }) {
         padding: '100px 32px 90px',
       }}
     >
+      {/* Editorial lede */}
+      <div style={{ maxWidth: 1100, margin: '0 auto 56px' }}>
+        <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 2px' }}>
+          Every year NYC issues 10 million parking tickets.
+        </p>
+        <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 12px' }}>
+          Most people pay without question.
+        </p>
+        <p style={{ fontFamily: serif, fontSize: 21, color: NAVY, fontWeight: 700, lineHeight: 1.5, margin: '0 0 12px' }}>
+          The ones who fight back win nearly 30% of the time —&nbsp;paying absolutely nothing.
+        </p>
+        <p style={{ fontFamily: mono, fontSize: 13, color: BLUE, letterSpacing: 0.5, margin: 0 }}>
+          It takes 2 minutes. We write the letter. You win the case.
+        </p>
+      </div>
+
       <div
         className="hero-grid"
         style={{
@@ -399,32 +415,6 @@ function HowItWorks() {
             </h2>
             <p style={{ fontFamily: serif, fontSize: 19, color: MUTED, margin: 0 }}>
               No legal knowledge required.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Editorial lede */}
-        <FadeIn>
-          <div
-            style={{
-              textAlign: 'center',
-              maxWidth: 680,
-              margin: '0 auto 64px',
-              padding: '40px 0 0',
-              borderTop: `1px solid ${BORDER}`,
-            }}
-          >
-            <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 4px' }}>
-              Every year NYC issues 10 million parking tickets.
-            </p>
-            <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 20px' }}>
-              Most people pay without question.
-            </p>
-            <p style={{ fontFamily: serif, fontSize: 22, color: NAVY, fontWeight: 700, lineHeight: 1.5, margin: '0 0 20px' }}>
-              The ones who fight back win nearly 30% of the time —&nbsp;paying absolutely nothing.
-            </p>
-            <p style={{ fontFamily: mono, fontSize: 13, color: BLUE, letterSpacing: 0.5, margin: 0 }}>
-              It takes 2 minutes. We write the letter. You win the case.
             </p>
           </div>
         </FadeIn>
