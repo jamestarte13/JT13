@@ -108,7 +108,6 @@ function ViolationTips({ violation }) {
 // ── Per-letter payment gate ───────────────────────────────────────────────────
 function PaymentGate({ email, letter, onSuccess }) {
   const [loading, setLoading] = useState(false)
-  const isPreview = sessionStorage.getItem('preview') === 'true'
 
   const handlePay = async () => {
     setLoading(true)
@@ -281,28 +280,6 @@ function PaymentGate({ email, letter, onSuccess }) {
         </div>
       </div>
 
-      {isPreview && (
-        <button
-          onClick={onSuccess}
-          style={{
-            display: 'block',
-            width: '100%',
-            marginTop: 12,
-            padding: '12px',
-            background: 'transparent',
-            border: `1px dashed ${BORDER}`,
-            borderRadius: 8,
-            color: MUTED,
-            fontFamily: mono,
-            fontSize: 11,
-            letterSpacing: 1,
-            cursor: 'pointer',
-            textTransform: 'uppercase',
-          }}
-        >
-          ↓ Preview — Skip Payment
-        </button>
-      )}
     </div>
   )
 }
@@ -514,12 +491,9 @@ export default function AppealPage() {
 
   const set = k => v => setForm(f => ({ ...f, [k]: v }))
 
-  const isPreview = sessionStorage.getItem('preview') === 'true' || searchParams.get('preview') === 'true'
-  if (isPreview) sessionStorage.setItem('preview', 'true')
-
-  const canNext0 = isPreview || (form.ticketNumber && form.date && form.location && form.violation && form.amount)
+  const canNext0 = form.ticketNumber && form.date && form.location && form.violation && form.amount
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  const canNext1 = isPreview || (form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim()) && validEmail)
+  const canNext1 = form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim()) && validEmail
 
   const stepNum = step === 0 ? 0 : 1
 
@@ -530,14 +504,6 @@ export default function AppealPage() {
   const handleGenerateAttempt = async () => {
     setGenerating(true)
     try {
-      // Preview mode: skip all DB/email operations, go straight to result
-      if (isPreview) {
-        const generatedLetter = generateLetter(form, exhibits)
-        setLetter(generatedLetter)
-        setScreen('result')
-        return
-      }
-
       const existing = await getSubscriber(email).catch(() => null)
       if (!existing) {
         await upsertSubscriber(email, { plan: 'free', letter_count: 0 }).catch(() => {})
@@ -581,7 +547,7 @@ export default function AppealPage() {
       console.error(err)
       const generatedLetter = generateLetter(form, exhibits)
       setLetter(generatedLetter)
-      setScreen(isPreview ? 'result' : 'payment')
+      setScreen('payment')
     } finally {
       setGenerating(false)
     }
