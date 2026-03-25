@@ -502,7 +502,16 @@ export default function AppealPage() {
 
   const handleGenerateAttempt = async () => {
     setGenerating(true)
+    const isPreview = sessionStorage.getItem('preview') === 'true'
     try {
+      // Preview mode: skip all DB/email operations, go straight to result
+      if (isPreview) {
+        const generatedLetter = generateLetter(form, exhibits)
+        setLetter(generatedLetter)
+        setScreen('result')
+        return
+      }
+
       const existing = await getSubscriber(email).catch(() => null)
       if (!existing) {
         await upsertSubscriber(email, { plan: 'free', letter_count: 0 }).catch(() => {})
@@ -546,7 +555,7 @@ export default function AppealPage() {
       console.error(err)
       const generatedLetter = generateLetter(form, exhibits)
       setLetter(generatedLetter)
-      setScreen('payment')
+      setScreen(isPreview ? 'result' : 'payment')
     } finally {
       setGenerating(false)
     }
