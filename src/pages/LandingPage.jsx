@@ -180,7 +180,7 @@ function Hero({ onCTA }) {
       }}
     >
       {/* Editorial lede */}
-      <div style={{ maxWidth: 1100, margin: '0 auto 56px' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto 56px', textAlign: 'center' }}>
         <p style={{ fontFamily: serif, fontSize: 17, color: MUTED, lineHeight: 1.7, margin: '0 0 2px' }}>
           Every year NYC issues 10 million parking tickets.
         </p>
