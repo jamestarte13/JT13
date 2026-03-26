@@ -465,38 +465,6 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
   )
 }
 
-// ── Preview nav bar ───────────────────────────────────────────────────────────
-const PREVIEW_SCREENS = [
-  { key: 'step0',    label: 'Step 1 — Ticket' },
-  { key: 'step1',    label: 'Step 2 — Defense' },
-  { key: 'payment',  label: 'Payment Gate' },
-  { key: 'result',   label: 'Result' },
-]
-
-function PreviewNav({ screen, step, onJump }) {
-  const current = screen === 'form' ? (step === 0 ? 'step0' : 'step1') : screen
-  return (
-    <div style={{
-      position: 'fixed', bottom: 20, left: '50%', transform: 'translateX(-50%)',
-      background: '#111', borderRadius: 12, padding: '10px 16px',
-      display: 'flex', alignItems: 'center', gap: 8, zIndex: 9999,
-      boxShadow: '0 4px 24px rgba(0,0,0,0.35)',
-    }}>
-      <span style={{ color: '#666', fontSize: 10, fontFamily: 'monospace', letterSpacing: 1, marginRight: 4 }}>PREVIEW</span>
-      {PREVIEW_SCREENS.map(s => (
-        <button key={s.key} onClick={() => onJump(s.key)} style={{
-          background: current === s.key ? '#2563eb' : '#222',
-          color: current === s.key ? '#fff' : '#888',
-          border: 'none', borderRadius: 6, padding: '6px 12px',
-          fontSize: 11, fontFamily: 'monospace', cursor: 'pointer',
-          whiteSpace: 'nowrap', letterSpacing: 0.5,
-        }}>
-          {s.label}
-        </button>
-      ))}
-    </div>
-  )
-}
 
 const PREVIEW_FORM = {
   ticketNumber: '7734829101',
@@ -520,8 +488,12 @@ export default function AppealPage() {
   const isPreview = searchParams.get('preview') === 'true' || sessionStorage.getItem('preview') === 'true'
   if (isPreview) sessionStorage.setItem('preview', 'true')
 
-  const [screen, setScreen] = useState('form')
-  const [step, setStep] = useState(0)
+  const goto = searchParams.get('goto')
+  const initScreen = goto === 'payment' ? 'payment' : goto === 'result' ? 'result' : 'form'
+  const initStep   = goto === 'step1' ? 1 : 0
+
+  const [screen, setScreen] = useState(initScreen)
+  const [step, setStep] = useState(initStep)
   const [email, setEmail] = useState(isPreview ? PREVIEW_EMAIL : '')
   const [form, setForm] = useState(isPreview ? PREVIEW_FORM : {
     ticketNumber: '',
@@ -536,7 +508,11 @@ export default function AppealPage() {
     name: '',
   })
   const [exhibits, setExhibits] = useState([])
-  const [letter, setLetter] = useState('')
+  const [letter, setLetter] = useState(() =>
+    isPreview && (initScreen === 'payment' || initScreen === 'result')
+      ? generateLetter(PREVIEW_FORM, [])
+      : ''
+  )
   const [generating, setGenerating] = useState(false)
 
   const set = k => v => setForm(f => ({ ...f, [k]: v }))
@@ -544,21 +520,6 @@ export default function AppealPage() {
   const canNext0 = isPreview || (form.ticketNumber && form.date && form.location && form.violation && form.amount)
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   const canNext1 = isPreview || (form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim()) && validEmail)
-
-  const handlePreviewJump = key => {
-    if (key === 'step0')   { setScreen('form'); setStep(0) }
-    if (key === 'step1')   { setScreen('form'); setStep(1) }
-    if (key === 'payment') {
-      const l = generateLetter(form, exhibits)
-      setLetter(l)
-      setScreen('payment')
-    }
-    if (key === 'result') {
-      const l = generateLetter(form, exhibits)
-      setLetter(l)
-      setScreen('result')
-    }
-  }
 
   const stepNum = step === 0 ? 0 : 1
 
@@ -633,8 +594,6 @@ export default function AppealPage() {
   }
 
   return (
-    <>
-    {isPreview && <PreviewNav screen={screen} step={step} onJump={handlePreviewJump} />}
     <div
       style={{
         minHeight: '100vh',
@@ -843,7 +802,6 @@ export default function AppealPage() {
         </div>
       </div>
     </div>
-    </>
   )
 }
 
