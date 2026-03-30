@@ -525,8 +525,7 @@ function TeaserGuide({ onCTA }) {
                 margin: 0,
               }}
             >
-              Most drivers don&apos;t realize they have a real shot at getting their ticket dismissed.
-              You just have to know how to fight it. We&apos;re here to make sure you do.
+              Your ticket isn&apos;t a verdict. It&apos;s an opening offer — and you have every right to push back.
             </p>
           </div>
         </FadeIn>
