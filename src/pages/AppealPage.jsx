@@ -520,10 +520,9 @@ export default function AppealPage() {
   const canNext0 = isPreview || (form.ticketNumber && form.date && form.location && form.violation && form.amount)
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   const canNext1 = isPreview || (form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim()) && validEmail)
+  const canSubmit = canNext0 && canNext1
 
-  const stepNum = step === 0 ? 0 : 1
-
-  if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'true') {
+if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'true') {
     if (screen !== 'result' && letter) setScreen('result')
   }
 
@@ -656,118 +655,83 @@ export default function AppealPage() {
             marginBottom: 20,
           }}
         >
-          <StepBar current={stepNum} />
-
           {screen === 'form' && (
             <div>
-              {step === 0 && (
-                <div>
-                  <div style={{ maxWidth: 322, margin: '0 auto' }}>
-                    <TInput label="Ticket Number" value={form.ticketNumber} onChange={set('ticketNumber')} placeholder="e.g. 1234567890" />
-                    <CalendarPicker label="Date of Violation" value={form.date} onChange={set('date')} />
-                    <AddressAutocomplete label="Location / Street" value={form.location} onChange={set('location')} />
-                    <TSel label="Violation Type" value={form.violation} onChange={set('violation')} options={violationTypes} />
-                    <TInput label="Fine Amount ($)" value={form.amount} onChange={set('amount')} placeholder="e.g. 115" type="number" />
-                  </div>
-                  <PBtn onClick={() => setStep(1)} disabled={!canNext0} style={{ width: '100%', marginTop: 8 }}>
-                    Next → Your Defense
-                  </PBtn>
-                </div>
-              )}
+              <TInput label="Ticket Number" value={form.ticketNumber} onChange={set('ticketNumber')} placeholder="e.g. 1234567890" />
+              <CalendarPicker label="Date of Violation" value={form.date} onChange={set('date')} />
+              <AddressAutocomplete label="Location / Street" value={form.location} onChange={set('location')} />
+              <TSel label="Violation Type" value={form.violation} onChange={set('violation')} options={violationTypes} />
+              <TInput label="Fine Amount ($)" value={form.amount} onChange={set('amount')} placeholder="e.g. 115" type="number" />
 
-              {step === 1 && (
-                <div>
-                  <TInput label="Your Full Name" value={form.name} onChange={set('name')} placeholder="e.g. Jane Smith" />
-                  <TInput label="Vehicle Plate Number" value={form.plateNumber} onChange={set('plateNumber')} placeholder="e.g. ABC1234" />
-                  <TSel label="Primary Defense Reason" value={form.defense} onChange={set('defense')} options={defenseReasons} />
-                  {form.defense === 'Other' && (
-                    <div style={{ marginBottom: 20 }}>
-                      <Lbl>Describe Your Defense</Lbl>
-                      <textarea
-                        value={form.otherDefense}
-                        onChange={e => set('otherDefense')(e.target.value)}
-                        placeholder="Explain why this ticket should be dismissed..."
-                        rows={4}
-                        style={{
-                          width: '100%',
-                          background: WHITE,
-                          border: `1px solid ${BORDER}`,
-                          borderRadius: 8,
-                          padding: '14px 16px',
-                          color: TEXT,
-                          fontFamily: serif,
-                          fontSize: 14,
-                          lineHeight: 1.6,
-                          resize: 'vertical',
-                          boxSizing: 'border-box',
-                          outline: 'none',
-                        }}
-                        onFocus={e => (e.target.style.borderColor = BLUE)}
-                        onBlur={e => (e.target.style.borderColor = BORDER)}
-                      />
-                    </div>
-                  )}
-                  <ViolationTips violation={form.violation} />
-                  <ExhibitUploader exhibits={exhibits} onChange={setExhibits} />
-                  <div style={{ marginBottom: 20 }}>
-                    <Lbl>
-                      Additional Details{' '}
-                      <span style={{ color: MUTED, textTransform: 'none', letterSpacing: 0 }}>(optional)</span>
-                    </Lbl>
-                    <textarea
-                      value={form.extraDetails}
-                      onChange={e => set('extraDetails')(e.target.value)}
-                      placeholder="Any extra context..."
-                      rows={4}
-                      style={{
-                        width: '100%',
-                        background: WHITE,
-                        border: `1px solid ${BORDER}`,
-                        borderRadius: 8,
-                        padding: '14px 16px',
-                        color: TEXT,
-                        fontSize: 14,
-                        fontFamily: mono,
-                        outline: 'none',
-                        resize: 'vertical',
-                        boxSizing: 'border-box',
-                      }}
-                      onFocus={e => (e.target.style.borderColor = BLUE)}
-                      onBlur={e => (e.target.style.borderColor = BORDER)}
-                    />
-                  </div>
-                  <TInput label="Your Email" value={email} onChange={setEmail} placeholder="e.g. you@email.com" type="email" />
-                  <div style={{ display: 'flex', gap: 10 }}>
-                    <button
-                      onClick={() => setStep(0)}
-                      style={{
-                        flex: 1,
-                        background: 'transparent',
-                        color: MUTED,
-                        border: `1px solid ${BORDER}`,
-                        borderRadius: 8,
-                        padding: '14px',
-                        fontFamily: mono,
-                        fontSize: 12,
-                        letterSpacing: 2,
-                        textTransform: 'uppercase',
-                        cursor: 'pointer',
-                      }}
-                      onMouseEnter={e => (e.currentTarget.style.color = NAVY)}
-                      onMouseLeave={e => (e.currentTarget.style.color = MUTED)}
-                    >
-                      ← Back
-                    </button>
-                    <PBtn
-                      onClick={handleGenerateAttempt}
-                      disabled={!canNext1 || generating}
-                      style={{ flex: 2 }}
-                    >
-                      {generating ? 'Generating...' : 'Generate Dispute →'}
-                    </PBtn>
-                  </div>
+              <div style={{ borderTop: `1px solid ${BORDER}`, margin: '24px 0' }} />
+
+              <TInput label="Your Full Name" value={form.name} onChange={set('name')} placeholder="e.g. Jane Smith" />
+              <TInput label="Vehicle Plate Number" value={form.plateNumber} onChange={set('plateNumber')} placeholder="e.g. ABC1234" />
+              <TSel label="Primary Defense Reason" value={form.defense} onChange={set('defense')} options={defenseReasons} />
+              {form.defense === 'Other' && (
+                <div style={{ marginBottom: 20 }}>
+                  <Lbl>Describe Your Defense</Lbl>
+                  <textarea
+                    value={form.otherDefense}
+                    onChange={e => set('otherDefense')(e.target.value)}
+                    placeholder="Explain why this ticket should be dismissed..."
+                    rows={4}
+                    style={{
+                      width: '100%',
+                      background: WHITE,
+                      border: `1px solid ${BORDER}`,
+                      borderRadius: 8,
+                      padding: '14px 16px',
+                      color: TEXT,
+                      fontFamily: serif,
+                      fontSize: 14,
+                      lineHeight: 1.6,
+                      resize: 'vertical',
+                      boxSizing: 'border-box',
+                      outline: 'none',
+                    }}
+                    onFocus={e => (e.target.style.borderColor = BLUE)}
+                    onBlur={e => (e.target.style.borderColor = BORDER)}
+                  />
                 </div>
               )}
+              <ViolationTips violation={form.violation} />
+              <ExhibitUploader exhibits={exhibits} onChange={setExhibits} />
+              <div style={{ marginBottom: 20 }}>
+                <Lbl>
+                  Additional Details{' '}
+                  <span style={{ color: MUTED, textTransform: 'none', letterSpacing: 0 }}>(optional)</span>
+                </Lbl>
+                <textarea
+                  value={form.extraDetails}
+                  onChange={e => set('extraDetails')(e.target.value)}
+                  placeholder="Any extra context..."
+                  rows={4}
+                  style={{
+                    width: '100%',
+                    background: WHITE,
+                    border: `1px solid ${BORDER}`,
+                    borderRadius: 8,
+                    padding: '14px 16px',
+                    color: TEXT,
+                    fontSize: 14,
+                    fontFamily: mono,
+                    outline: 'none',
+                    resize: 'vertical',
+                    boxSizing: 'border-box',
+                  }}
+                  onFocus={e => (e.target.style.borderColor = BLUE)}
+                  onBlur={e => (e.target.style.borderColor = BORDER)}
+                />
+              </div>
+              <TInput label="Your Email" value={email} onChange={setEmail} placeholder="e.g. you@email.com" type="email" />
+              <PBtn
+                onClick={handleGenerateAttempt}
+                disabled={!canSubmit || generating}
+                style={{ width: '100%' }}
+              >
+                {generating ? 'Generating...' : 'Generate Dispute Letter →'}
+              </PBtn>
             </div>
           )}
 
