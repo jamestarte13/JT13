@@ -41,7 +41,7 @@ function AuthGate({ onAuth }) {
           ADMIN ACCESS
         </div>
         <div style={{ fontFamily: mono, fontSize: 11, color: '#555', letterSpacing: 2, marginBottom: 32 }}>
-          NYC APPEALWRITER DASHBOARD
+          NYC DISPUTEWRITER DASHBOARD
         </div>
         <input
           type="password"
@@ -389,7 +389,7 @@ function Emails({ stats }) {
     const url  = URL.createObjectURL(blob)
     const a    = document.createElement('a')
     a.href = url
-    a.download = 'appealwriter-emails.csv'
+    a.download = 'disputewriter-emails.csv'
     a.click()
     URL.revokeObjectURL(url)
   }
@@ -509,7 +509,7 @@ function Dashboard() {
               NYC
             </div>
             <span style={{ fontFamily: display, fontSize: 16, letterSpacing: 2, color: '#fff' }}>
-              APPEALWRITER
+              DISPUTEWRITER
             </span>
           </div>
           <div style={{ fontFamily: mono, fontSize: 9, color: '#444', letterSpacing: 2 }}>

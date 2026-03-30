@@ -34,11 +34,11 @@ Or in person at any NYC Finance Business Center, Mon–Fri 8:30am–4:30pm.
 
 REMINDERS:
   • Submit within 30 days of your ticket date — don't wait.
-  • Never pay the ticket before your appeal — it is treated as a guilty plea.
+  • Never pay the ticket before your dispute — it is treated as a guilty plea.
   • Include all evidence (photos, receipts) — copies only, never originals.
 
-Good luck with your appeal!
-— NYC Appeal Writer Team
+Good luck with your dispute!
+— NYC Dispute Writer Team
 nycappealwriter.com
 `
 
@@ -48,10 +48,10 @@ nycappealwriter.com
       : []
 
     const { data, error } = await resend.emails.send({
-      from: 'NYC Appeal Writer <onboarding@resend.dev>',
+      from: 'NYC Dispute Writer <onboarding@resend.dev>',
       to: [to],
-      subject: 'Your NYC Parking Ticket Appeal Letter — NYC Appeal Writer',
-      text: `Dear ${name || 'Driver'},\n\nThank you for using NYC Appeal Writer!\n\nYour completed parking ticket appeal letter is attached to this email as a PDF.\n\n${'='.repeat(60)}\n\n${letterText}\n\n${'='.repeat(60)}\n${whatNow}`,
+      subject: 'Your NYC Parking Ticket Dispute Letter — NYC Dispute Writer',
+      text: `Dear ${name || 'Driver'},\n\nThank you for using NYC Dispute Writer!\n\nYour completed parking ticket dispute letter is attached to this email as a PDF.\n\n${'='.repeat(60)}\n\n${letterText}\n\n${'='.repeat(60)}\n${whatNow}`,
       attachments,
     })
 

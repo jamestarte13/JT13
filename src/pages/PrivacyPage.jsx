@@ -10,7 +10,7 @@ export default function PrivacyPage() {
         <div style={{ maxWidth: 800, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => navigate('/')}>
             <div style={{ background: Y, color: '#111', fontSize: 10, fontWeight: 700, letterSpacing: 3, padding: '3px 8px', borderRadius: 3 }}>NYC</div>
-            <span style={{ fontFamily: display, fontSize: 20, letterSpacing: 2 }}>APPEALWRITER</span>
+            <span style={{ fontFamily: display, fontSize: 20, letterSpacing: 2 }}>DISPUTEWRITER</span>
           </div>
           <button onClick={() => navigate(-1)} style={{ background: 'transparent', border: '1px solid #333', borderRadius: 6, padding: '8px 14px', color: '#666', fontFamily: mono, fontSize: 11, letterSpacing: 1, cursor: 'pointer' }}>← Back</button>
         </div>
@@ -24,11 +24,11 @@ export default function PrivacyPage() {
         {[
           {
             title: 'Information We Collect',
-            body: `We collect the following information when you use NYC Appeal Writer:\n\n• Email address (required to access the letter generator)\n• Parking ticket details you enter: ticket number, violation date, location, violation type, fine amount, plate number\n• Defense reason and any additional details you provide\n• Supporting exhibit files you upload\n\nWe do not collect your name unless you voluntarily enter it in the letter generator.`,
+            body: `We collect the following information when you use NYC Dispute Writer:\n\n• Email address (required to access the letter generator)\n• Parking ticket details you enter: ticket number, violation date, location, violation type, fine amount, plate number\n• Defense reason and any additional details you provide\n• Supporting exhibit files you upload\n\nWe do not collect your name unless you voluntarily enter it in the letter generator.`,
           },
           {
             title: 'How We Use Your Information',
-            body: `We use your information to:\n\n• Generate your parking ticket appeal letter\n• Send you a copy of your completed letter via email\n• Track your letter count to apply the correct pricing tier\n• Process payments via Stripe (for paid letters)\n• Improve the service through aggregated, anonymized analytics`,
+            body: `We use your information to:\n\n• Generate your parking ticket dispute letter\n• Send you a copy of your completed letter via email\n• Track your letter count to apply the correct pricing tier\n• Process payments via Stripe (for paid letters)\n• Improve the service through aggregated, anonymized analytics`,
           },
           {
             title: 'Data Storage',
@@ -44,11 +44,11 @@ export default function PrivacyPage() {
           },
           {
             title: 'Email Communications',
-            body: `By providing your email, you consent to receive a copy of your appeal letter and occasional product updates. You may unsubscribe at any time using the link in any email we send.`,
+            body: `By providing your email, you consent to receive a copy of your dispute letter and occasional product updates. You may unsubscribe at any time using the link in any email we send.`,
           },
           {
             title: 'Not Legal Advice',
-            body: `NYC Appeal Writer provides informational tools only. Nothing on this site constitutes legal advice. We are not a law firm. You should review your appeal letter before submitting it.`,
+            body: `NYC Dispute Writer provides informational tools only. Nothing on this site constitutes legal advice. We are not a law firm. You should review your dispute letter before submitting it.`,
           },
           {
             title: 'Contact',
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
 
       <footer style={{ borderTop: '1px solid #1a1a1a', padding: '24px 32px', textAlign: 'center' }}>
         <div style={{ fontFamily: mono, fontSize: 11, color: '#333', letterSpacing: 1 }}>
-          © 2026 NYC Appeal Writer. All rights reserved.
+          © 2026 NYC Dispute Writer. All rights reserved.
         </div>
       </footer>
     </div>

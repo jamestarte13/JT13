@@ -33,7 +33,7 @@ export const successLikelihood = {
   'I was loading/unloading within legal time':{ pct: 58, label: 'Good',        color: '#facc15', tip: 'You must have been present with the vehicle. A witness statement or delivery receipt helps significantly.' },
   'Vehicle was disabled / mechanical failure':{ pct: 54, label: 'Moderate',    color: '#facc15', tip: 'A repair invoice or roadside assistance record dated the same day will make or break this defense.' },
   'Medical emergency required stopping':      { pct: 51, label: 'Moderate',    color: '#facc15', tip: 'Any documentation — hospital visit, prescription, witness — greatly improves your odds.' },
-  'I was not the driver / vehicle was sold':  { pct: 74, label: 'Strong',      color: '#4ade80', tip: 'Bill of sale or transfer documentation is highly persuasive. Include a copy with your appeal.' },
+  'I was not the driver / vehicle was sold':  { pct: 74, label: 'Strong',      color: '#4ade80', tip: 'Bill of sale or transfer documentation is highly persuasive. Include a copy with your dispute.' },
   'Other':                                    { pct: 38, label: 'Variable',    color: '#f97316', tip: 'Success depends heavily on your specific circumstances. Be as specific and factual as possible.' },
 }
 
@@ -105,7 +105,7 @@ export const violationTips = {
 
 export const teaserTips = [
   { number: '01', icon: '⏰', title: 'Submit Within 30 Days.', body: 'If you miss your deadline you won\'t be eligible to fight. Submit the same week you get it.' },
-  { number: '02', icon: '🚫', title: 'Never Pay Before You Appeal.', body: 'Any payment is treated as a guilty plea. You forfeit your right to contest the moment you pay.' },
+  { number: '02', icon: '🚫', title: 'Never Pay Before You Dispute.', body: 'Any payment is treated as a guilty plea. You forfeit your right to contest the moment you pay.' },
   { number: '03', icon: '📸', title: 'Photos Win Cases.', body: 'A dated photo of a missing or obscured sign will help your case. Document everything immediately before anything changes.' },
   { number: '04', icon: '🔍', title: 'Check for Ticket Errors.', body: 'Incorrect plate number, date, wrong location — any factual error on the ticket is grounds for immediate dismissal.' },
 ]
@@ -118,23 +118,23 @@ export const testimonials = [
 ]
 
 export const faqs = [
-  { q: 'Does this actually work?', a: 'NYC parking appeals have a surprisingly high dismissal rate — especially when the letter is well-written and evidence is included. Our letters cite real NYC Traffic Rules and are formatted exactly as judges expect.' },
-  { q: 'How long does the appeal process take?', a: 'If you submit online, a hearing is typically scheduled within 45 days. Once your appeal is received, the DOF puts your case on hold, pausing any late fees. Decisions are usually issued about 10 days after your hearing.' },
-  { q: 'What if my appeal is denied?', a: 'You still have options. If a judge finds you guilty, you have 30 days to file a formal appeal with the NYC DOF Appeals Board at nyc.gov/finance.' },
+  { q: 'Does this actually work?', a: 'NYC parking disputes have a surprisingly high dismissal rate — especially when the letter is well-written and evidence is included. Our letters cite real NYC Traffic Rules and are formatted exactly as judges expect.' },
+  { q: 'How long does the dispute process take?', a: 'If you submit online, a hearing is typically scheduled within 45 days. Once your dispute is received, the DOF puts your case on hold, pausing any late fees. Decisions are usually issued about 10 days after your hearing.' },
+  { q: 'What if my dispute is denied?', a: 'You still have options. If a judge finds you guilty, you have 30 days to file a formal dispute with the NYC DOF Disputes Board at nyc.gov/finance.' },
   { q: 'Is my information safe?', a: 'Yes. We collect only your email and the ticket details you provide. We never sell your data or share it with third parties.' },
   { q: 'Can I use this for camera violations?', a: 'This tool is designed for parking summons issued by NYC parking enforcement officers. Camera violations follow a different dispute process — we\'re working on expanding to cover those.' },
-  { q: 'Do I need a lawyer?', a: 'Not for most parking appeals. The NYC Parking Violations Bureau is designed for self-representation. Our letters are written at the level of a legal professional but in plain language judges appreciate.' },
+  { q: 'Do I need a lawyer?', a: 'Not for most parking disputes. The NYC Parking Violations Bureau is designed for self-representation. Our letters are written at the level of a legal professional but in plain language judges appreciate.' },
 ]
 
 export const guideSteps = [
-  { icon: '⏰', title: 'Act Within 30 Days — No Exceptions', content: 'You have exactly 30 days from the date on your ticket to submit your appeal. Miss this deadline and you lose the right to contest it entirely. The ticket will go to judgment and penalties will begin accruing. Submit as soon as possible — ideally within the first week.' },
+  { icon: '⏰', title: 'Act Within 30 Days — No Exceptions', content: 'You have exactly 30 days from the date on your ticket to submit your dispute. Miss this deadline and you lose the right to contest it entirely. The ticket will go to judgment and penalties will begin accruing. Submit as soon as possible — ideally within the first week.' },
   { icon: '📸', title: 'Gather Your Evidence First', content: 'Before submitting, collect everything that supports your case. Photos are your most powerful tool — take pictures of the street signs (or lack thereof), the meter, any obstructions, and your car\'s position. Make sure photos are date-and-time stamped. Submit copies only — never originals.' },
-  { icon: '🖥️', title: 'How to Submit Your Appeal', content: 'Online is fastest: go to nyc.gov/finance, navigate to \'Dispute a Ticket\', and upload your letter and evidence directly. By mail: NYC Dept of Finance, Hearings By Mail Unit, P.O. Box 29021, Cadman Plaza Station, Brooklyn, NY 11202-9021. In person: any NYC Finance Business Center Monday–Friday, 8:30am–4:30pm for a same-day decision.' },
-  { icon: '✅', title: 'Double-Check the Ticket for Errors', content: 'Check that your license plate number, vehicle make and model, date, time, and location are all correctly recorded. Any factual error — even a wrong plate digit — can be grounds for automatic dismissal. Note any discrepancies clearly in your appeal letter.' },
-  { icon: '📝', title: 'Writing Tips for a Stronger Appeal', content: 'Keep your letter factual, professional, and concise. Judges respond to evidence, not frustration. Be specific: include exact times, addresses, and what you observed. Corroborate your facts wherever possible with photos, receipts, or witness statements. A sworn statement carries more weight than an unsworn one.' },
+  { icon: '🖥️', title: 'How to Submit Your Dispute', content: 'Online is fastest: go to nyc.gov/finance, navigate to \'Dispute a Ticket\', and upload your letter and evidence directly. By mail: NYC Dept of Finance, Hearings By Mail Unit, P.O. Box 29021, Cadman Plaza Station, Brooklyn, NY 11202-9021. In person: any NYC Finance Business Center Monday–Friday, 8:30am–4:30pm for a same-day decision.' },
+  { icon: '✅', title: 'Double-Check the Ticket for Errors', content: 'Check that your license plate number, vehicle make and model, date, time, and location are all correctly recorded. Any factual error — even a wrong plate digit — can be grounds for automatic dismissal. Note any discrepancies clearly in your dispute letter.' },
+  { icon: '📝', title: 'Writing Tips for a Stronger Dispute', content: 'Keep your letter factual, professional, and concise. Judges respond to evidence, not frustration. Be specific: include exact times, addresses, and what you observed. Corroborate your facts wherever possible with photos, receipts, or witness statements. A sworn statement carries more weight than an unsworn one.' },
   { icon: '📬', title: 'What Happens After You Submit', content: 'If submitted online, a hearing will be scheduled within 45 days. The Department of Finance will put your case on hold, pausing additional fees. You should receive a decision approximately 10 days after your hearing. Check your status at any time on the NYC Finance website using your ticket number.' },
-  { icon: '🏆', title: 'If Your Appeal Is Dismissed', content: 'If a judge finds you guilty, you have 30 days to file a formal appeal with the NYC DOF Appeals Board. Mail to: NYC Dept of Finance, Adjudication Division - Appeals Unit, 66 John Street, 3rd Floor, New York, NY 10038. A decision will be mailed within 60 days.' },
-  { icon: '⚠️', title: 'Important: Don\'t Make These Mistakes', content: 'Never pay the ticket before your appeal — paying is a guilty plea and waives your right to contest. Don\'t miss the 30-day deadline. Don\'t submit original documents — only copies. Don\'t use emotional language. And if outstanding fines exceed $350, your vehicle can be booted while an appeal is pending.' },
+  { icon: '🏆', title: 'If Your Dispute Is Dismissed', content: 'If a judge finds you guilty, you have 30 days to file a formal dispute with the NYC DOF Disputes Board. Mail to: NYC Dept of Finance, Adjudication Division - Disputes Unit, 66 John Street, 3rd Floor, New York, NY 10038. A decision will be mailed within 60 days.' },
+  { icon: '⚠️', title: 'Important: Don\'t Make These Mistakes', content: 'Never pay the ticket before your dispute — paying is a guilty plea and waives your right to contest. Don\'t miss the 30-day deadline. Don\'t submit original documents — only copies. Don\'t use emotional language. And if outstanding fines exceed $350, your vehicle can be booted while an dispute is pending.' },
 ]
 
 export function buildDateOptions() {
@@ -175,7 +175,7 @@ Parking Violations Bureau
 P.O. Box 3600
 New York, NY 10008-3600
 
-Re: Appeal of Parking Summons
+Re: Dispute of Parking Summons
 Summons Number: ${form.ticketNumber}
 Plate Number: ${form.plateNumber || 'On File'}
 Violation Date: ${form.date}
@@ -185,7 +185,7 @@ Fine Amount: $${form.amount}
 
 To Whom It May Concern:
 
-I am writing to formally appeal the above-referenced parking summons issued on ${form.date} at ${form.location}. I respectfully contest this violation on the following grounds:
+I am writing to formally dispute the above-referenced parking summons issued on ${form.date} at ${form.location}. I respectfully contest this violation on the following grounds:
 
 ${defenseText}
 ${extra}

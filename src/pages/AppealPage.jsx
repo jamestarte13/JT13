@@ -318,7 +318,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
       >
         <div style={{ color: '#16a34a', fontSize: 16 }}>✓</div>
         <div style={{ color: '#16a34a', fontSize: 12, letterSpacing: 1, fontFamily: mono }}>
-          APPEAL LETTER GENERATED — READY TO SUBMIT
+          DISPUTE LETTER GENERATED — READY TO SUBMIT
         </div>
       </div>
 
@@ -351,7 +351,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
             textDecoration: 'underline',
           }}
         >
-          → Submit your appeal at nyc.gov/finance
+          → Submit your dispute at nyc.gov/finance
         </a>
       </div>
 
@@ -459,7 +459,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
         onMouseEnter={e => (e.currentTarget.style.color = NAVY)}
         onMouseLeave={e => (e.currentTarget.style.color = MUTED)}
       >
-        Start New Appeal
+        Start New Dispute
       </button>
     </div>
   )
@@ -640,7 +640,7 @@ export default function AppealPage() {
               NYC
             </div>
             <span style={{ fontFamily: display, fontSize: 20, letterSpacing: 2, color: NAVY }}>
-              APPEALWRITER
+              DISPUTEWRITER
             </span>
           </div>
         </div>
@@ -763,7 +763,7 @@ export default function AppealPage() {
                       disabled={!canNext1 || generating}
                       style={{ flex: 2 }}
                     >
-                      {generating ? 'Generating...' : 'Generate Appeal →'}
+                      {generating ? 'Generating...' : 'Generate Dispute →'}
                     </PBtn>
                   </div>
                 </div>
@@ -798,7 +798,7 @@ export default function AppealPage() {
         >
           NOT LEGAL ADVICE — FOR INFORMATIONAL PURPOSES ONLY.
           <br />
-          ALWAYS REVIEW YOUR APPEAL BEFORE SUBMITTING.
+          ALWAYS REVIEW YOUR DISPUTE BEFORE SUBMITTING.
         </div>
       </div>
     </div>

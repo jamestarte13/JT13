@@ -104,7 +104,7 @@ function Nav({ onCTA }) {
             NYC
           </div>
           <span style={{ fontFamily: display, fontSize: 22, letterSpacing: 2, color: NAVY }}>
-            APPEALWRITER
+            DISPUTEWRITER
           </span>
         </div>
         <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
@@ -217,13 +217,13 @@ function Hero({ onCTA }) {
               maxWidth: 420,
             }}
           >
-            Professionally written appeals that cite real NYC Traffic Rules — built to maximize your
+            Professionally written disputes that cite real NYC Traffic Rules — built to maximize your
             chances of dismissal.
           </p>
 
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
             <CTABtn onClick={onCTA} large>
-              Generate My Appeal Letter →
+              Generate My Dispute Letter →
             </CTABtn>
           </div>
         </div>
@@ -293,7 +293,7 @@ function Hero({ onCTA }) {
               {[
                 ['Violation', 'Double Parking'],
                 ['Fine Amount', '$165.00 waived'],
-                ['Decision', 'Signage obstruction — appeal granted'],
+                ['Decision', 'Signage obstruction — dispute granted'],
                 ['Time to Decision', '11 days after submission'],
               ].map(([k, v]) => (
                 <div
@@ -350,7 +350,7 @@ function HowItWorks() {
       title: 'Submit Your Letter',
       body: (
         <>
-          We generate a professionally written appeal citing real NYC Traffic Rules — then submit it
+          We generate a professionally written dispute citing real NYC Traffic Rules — then submit it
           directly via the{' '}
           <a
             href="https://www.nyc.gov/site/finance/vehicles/dispute-web.page"
@@ -525,7 +525,7 @@ function TeaserGuide({ onCTA }) {
                 margin: 0,
               }}
             >
-              Most people lose their appeal not because they were wrong — but because they
+              Most people lose their dispute not because they were wrong — but because they
               didn&apos;t know the rules.
             </p>
           </div>
@@ -728,7 +728,7 @@ function Pricing({ onCTA }) {
       price: '$6.99',
       desc: 'Per letter. No commitment.',
       features: [
-        '1 appeal letter',
+        '1 dispute letter',
         'Direct submission to nyc.gov/finance',
         'PDF download',
         'Email delivery',
@@ -742,7 +742,7 @@ function Pricing({ onCTA }) {
       price: '$36.99',
       desc: 'Per year. Unlimited letters.',
       features: [
-        'Unlimited appeal letters',
+        'Unlimited dispute letters',
         'Direct submission to nyc.gov/finance',
         'PDF download',
         'Email delivery',
@@ -1065,7 +1065,7 @@ function FinalCTA({ onCTA }) {
               lineHeight: 1.65,
             }}
           >
-            Professionally written appeal letters that cite real NYC Traffic Rules — built to
+            Professionally written dispute letters that cite real NYC Traffic Rules — built to
             maximize your chances of dismissal.
           </p>
           <CTABtn onClick={onCTA} large>
@@ -1109,7 +1109,7 @@ function Footer() {
             NYC
           </div>
           <span style={{ fontFamily: display, fontSize: 18, letterSpacing: 2, color: NAVY }}>
-            APPEALWRITER
+            DISPUTEWRITER
           </span>
         </div>
         <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
