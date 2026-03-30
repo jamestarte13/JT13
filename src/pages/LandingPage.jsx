@@ -525,7 +525,7 @@ function TeaserGuide({ onCTA }) {
                 margin: 0,
               }}
             >
-              Your ticket isn&apos;t a verdict. It&apos;s an opening offer — and you have every right to push back.
+              Your ticket isn&apos;t a verdict. You have every right to push back — and we&apos;ll build you the strongest possible case to do it.
             </p>
           </div>
         </FadeIn>
