@@ -525,8 +525,8 @@ function TeaserGuide({ onCTA }) {
                 margin: 0,
               }}
             >
-              Most people lose their dispute not because they were wrong — but because they
-              didn&apos;t know the rules.
+              Most drivers don&apos;t realize they have a real shot at getting their ticket dismissed.
+              You just have to know how to fight it. We&apos;re here to make sure you do.
             </p>
           </div>
         </FadeIn>
