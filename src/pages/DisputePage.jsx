@@ -275,37 +275,60 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
         </div>
       </div>
 
-      {/* What now? */}
+      {/* What Next? */}
       <div
         style={{
-          marginBottom: 18,
-          padding: '14px 16px',
+          marginBottom: 12,
+          padding: '16px 18px',
           background: BLUE_L,
           border: '1px solid #bfdbfe',
           borderRadius: 10,
         }}
       >
-        <div style={{ fontFamily: mono, fontSize: 10, color: BLUE, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 6 }}>
-          What Now?
+        <div style={{ fontFamily: mono, fontSize: 10, color: BLUE, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 12 }}>
+          What Next?
         </div>
-        <div style={{ fontFamily: serif, fontSize: 13, color: TEXT, lineHeight: 1.7, marginBottom: 8 }}>
-          Download your letter and submit it directly to the NYC Department of Finance.
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[
+            'Download your letter below and save it. We\'ve also emailed you a copy so you always have it handy.',
+            <>Submit your dispute at{' '}<a href="https://www.nyc.gov/site/finance/vehicles/parking-violations-hearing-online.page" target="_blank" rel="noopener noreferrer" style={{ color: BLUE }}>nyc.gov/finance</a>{' '}— click \'Dispute a Ticket\', enter your ticket number, and upload your letter and any photos or evidence. It takes less than 5 minutes and can be done from your phone.</>,
+            'Follow the steps on the portal. You\'ll be asked to enter your plate number, select \'Not Guilty\', paste or upload your letter, and attach any supporting evidence. Submit and you\'re done — no court appearance needed.',
+          ].map((text, i) => (
+            <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+              <div style={{ fontFamily: mono, fontSize: 11, color: BLUE, fontWeight: 700, minWidth: 18, paddingTop: 1 }}>{i + 1}.</div>
+              <div style={{ fontFamily: serif, fontSize: 13, color: TEXT, lineHeight: 1.7 }}>{text}</div>
+            </div>
+          ))}
         </div>
-        <a
-          href="https://www.nyc.gov/site/finance/vehicles/parking-violations-hearing-online.page"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-block',
-            fontFamily: mono,
-            fontSize: 11,
-            color: BLUE,
-            letterSpacing: 1,
-            textDecoration: 'underline',
-          }}
-        >
-          → Submit your dispute at nyc.gov/finance
-        </a>
+      </div>
+
+      {/* I Submitted. What Now? */}
+      <div
+        style={{
+          marginBottom: 18,
+          padding: '16px 18px',
+          background: GRAY,
+          border: `1px solid ${BORDER}`,
+          borderRadius: 10,
+        }}
+      >
+        <div style={{ fontFamily: mono, fontSize: 10, color: MUTED, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 12 }}>
+          I Submitted. What Now?
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[
+            'Your case is now on hold. Once the NYC Department of Finance receives your dispute, late fees stop accruing immediately.',
+            'Expect a decision in 10–45 days. Online and mail disputes are reviewed by an administrative law judge who will email you their decision. You don\'t need to appear anywhere.',
+            'If your dispute is dismissed — congratulations, you pay nothing. The violation is wiped entirely.',
+            <>If you\'re found guilty, don\'t give up. You have 30 days from the decision date to file a formal appeal with the NYC DOF Appeals Board at 66 John Street, 3rd Floor, New York, NY 10038.</>,
+            <>If you don\'t hear back within 3 weeks, check your status at{' '}<a href="https://www.nyc.gov/site/finance/vehicles/parking-violations-hearing-online.page" target="_blank" rel="noopener noreferrer" style={{ color: NAVY }}>nyc.gov/finance</a>{' '}using your ticket number or contact the DOF directly.</>,
+          ].map((text, i) => (
+            <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+              <div style={{ fontFamily: mono, fontSize: 11, color: MUTED, fontWeight: 700, minWidth: 18, paddingTop: 1 }}>{i + 1}.</div>
+              <div style={{ fontFamily: serif, fontSize: 13, color: TEXT, lineHeight: 1.7 }}>{text}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Letter body */}
