@@ -360,7 +360,7 @@ function HowItWorks() {
           >
             NYC dispute portal
           </a>
-          , by mail, or in person.
+          , by mail, or in person. We'll also email you a professionally written dispute letter so you always have a copy on hand.
         </>
       ),
     },
@@ -395,7 +395,7 @@ function HowItWorks() {
                 fontWeight: 700,
               }}
             >
-              Two steps. One minute.
+              Two Steps. Made Simple.
             </h2>
             <p style={{ fontFamily: serif, fontSize: 19, color: MUTED, margin: 0 }}>
               No legal knowledge required.
@@ -525,7 +525,7 @@ function TeaserGuide({ onCTA }) {
                 margin: 0,
               }}
             >
-              Your ticket isn&apos;t a verdict. We&apos;ll build you the strongest possible case so you can fight back, and win.
+              Most people lose or never submit a dispute because they don't understand the process. We make it easy.
             </p>
           </div>
         </FadeIn>
