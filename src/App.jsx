@@ -8,8 +8,7 @@ import TermsPage from './pages/TermsPage'
 
 const PREVIEW_SCREENS = [
   { key: 'home',    label: 'Home' },
-  { key: 'step0',   label: 'Step 1 — Ticket' },
-  { key: 'step1',   label: 'Step 2 — Defense' },
+  { key: 'form',    label: 'Form' },
   { key: 'payment', label: 'Payment Gate' },
   { key: 'result',  label: 'Result' },
 ]
@@ -24,7 +23,7 @@ function PreviewNav() {
 
   let current = 'home'
   if (isDispute) {
-    current = goto || 'step0'
+    current = goto || 'form'
   }
 
   const handleJump = key => {
