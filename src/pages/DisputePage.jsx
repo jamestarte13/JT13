@@ -27,53 +27,6 @@ const MUTED  = '#6e6e73'
 const BORDER = '#e5e5e7'
 const SHADOW = '0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.08)'
 
-// ── Step indicator ────────────────────────────────────────────────────────────
-function StepBar({ current }) {
-  const labels = ['Ticket Info', 'Defense']
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', marginBottom: 36 }}>
-      {labels.map((l, i) => (
-        <div key={l} style={{ display: 'flex', alignItems: 'center' }}>
-          <div
-            style={{
-              width: 28,
-              height: 28,
-              borderRadius: '50%',
-              background: i <= current ? NAVY : 'transparent',
-              border: i <= current ? 'none' : `2px solid ${BORDER}`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: i <= current ? WHITE : MUTED,
-              fontWeight: 700,
-              fontSize: 12,
-              fontFamily: mono,
-              transition: 'all 0.3s',
-            }}
-          >
-            {i < current ? '✓' : i + 1}
-          </div>
-          {i < labels.length - 1 && (
-            <div style={{ width: 30, height: 2, background: i < current ? NAVY : BORDER }} />
-          )}
-        </div>
-      ))}
-      <div
-        style={{
-          marginLeft: 12,
-          color: NAVY,
-          fontSize: 11,
-          fontFamily: mono,
-          letterSpacing: 2,
-          textTransform: 'uppercase',
-        }}
-      >
-        {labels[current]}
-      </div>
-    </div>
-  )
-}
-
 // ── Violation tips ─────────────────────────────────────────────────────────────
 function ViolationTips({ violation }) {
   const tips = violationTips[violation] || violationTips['Other']
@@ -490,10 +443,8 @@ export default function DisputePage() {
 
   const goto = searchParams.get('goto')
   const initScreen = goto === 'payment' ? 'payment' : goto === 'result' ? 'result' : 'form'
-  const initStep   = goto === 'step1' ? 1 : 0
 
   const [screen, setScreen] = useState(initScreen)
-  const [step, setStep] = useState(initStep)
   const [email, setEmail] = useState(isPreview ? PREVIEW_EMAIL : '')
   const [form, setForm] = useState(isPreview ? PREVIEW_FORM : {
     ticketNumber: '',
@@ -517,10 +468,13 @@ export default function DisputePage() {
 
   const set = k => v => setForm(f => ({ ...f, [k]: v }))
 
-  const canNext0 = isPreview || (form.ticketNumber && form.date && form.location && form.violation && form.amount)
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  const canNext1 = isPreview || (form.defense && form.name && (form.defense !== 'Other' || form.otherDefense.trim()) && validEmail)
-  const canSubmit = canNext0 && canNext1
+  const canSubmit = isPreview || (
+    form.name && form.plateNumber && form.ticketNumber && form.date &&
+    form.location && form.violation && form.amount &&
+    form.defense && (form.defense !== 'Other' || form.otherDefense.trim()) &&
+    validEmail
+  )
 
 if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'true') {
     if (screen !== 'result' && letter) setScreen('result')
@@ -586,7 +540,6 @@ if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'tru
 
   const resetForm = () => {
     setScreen('form')
-    setStep(0)
     setLetter('')
     setExhibits([])
     setForm({ ticketNumber: '', date: '', location: '', violation: '', plateNumber: '', amount: '', defense: '', otherDefense: '', extraDetails: '', name: '' })
@@ -657,16 +610,13 @@ if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'tru
         >
           {screen === 'form' && (
             <div>
+              <TInput label="Your Full Name" value={form.name} onChange={set('name')} placeholder="e.g. Jane Smith" />
+              <TInput label="Vehicle Plate Number" value={form.plateNumber} onChange={set('plateNumber')} placeholder="e.g. ABC1234" />
               <TInput label="Ticket Number" value={form.ticketNumber} onChange={set('ticketNumber')} placeholder="e.g. 1234567890" />
               <CalendarPicker label="Date of Violation" value={form.date} onChange={set('date')} />
               <AddressAutocomplete label="Location / Street" value={form.location} onChange={set('location')} />
               <TSel label="Violation Type" value={form.violation} onChange={set('violation')} options={violationTypes} />
               <TInput label="Fine Amount ($)" value={form.amount} onChange={set('amount')} placeholder="e.g. 115" type="number" />
-
-              <div style={{ borderTop: `1px solid ${BORDER}`, margin: '24px 0' }} />
-
-              <TInput label="Your Full Name" value={form.name} onChange={set('name')} placeholder="e.g. Jane Smith" />
-              <TInput label="Vehicle Plate Number" value={form.plateNumber} onChange={set('plateNumber')} placeholder="e.g. ABC1234" />
               <TSel label="Primary Defense Reason" value={form.defense} onChange={set('defense')} options={defenseReasons} />
               {form.defense === 'Other' && (
                 <div style={{ marginBottom: 20 }}>
@@ -730,7 +680,7 @@ if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'tru
                 disabled={!canSubmit || creating}
                 style={{ width: '100%' }}
               >
-                {creating ? 'Creating...' : 'Create Dispute Letter →'}
+                {creating ? 'Creating...' : 'Create My Dispute Letter →'}
               </PBtn>
             </div>
           )}
