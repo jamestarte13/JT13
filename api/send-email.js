@@ -39,12 +39,12 @@ REMINDERS:
 
 Good luck with your dispute!
 — NYC Dispute Writer Team
-nycappealwriter.com
+nycdisputewriter.com
 `
 
   try {
     const attachments = pdfBase64
-      ? [{ filename: 'appeal-letter.pdf', content: pdfBase64 }]
+      ? [{ filename: 'dispute-letter.pdf', content: pdfBase64 }]
       : []
 
     const { data, error } = await resend.emails.send({

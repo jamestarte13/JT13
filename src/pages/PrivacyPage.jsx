@@ -28,11 +28,11 @@ export default function PrivacyPage() {
           },
           {
             title: 'How We Use Your Information',
-            body: `We use your information to:\n\n• Generate your parking ticket dispute letter\n• Send you a copy of your completed letter via email\n• Track your letter count to apply the correct pricing tier\n• Process payments via Stripe (for paid letters)\n• Improve the service through aggregated, anonymized analytics`,
+            body: `We use your information to:\n\n• Create your parking ticket dispute letter\n• Send you a copy of your completed letter via email\n• Track your letter count to apply the correct pricing tier\n• Process payments via Stripe (for paid letters)\n• Improve the service through aggregated, anonymized analytics`,
           },
           {
             title: 'Data Storage',
-            body: `Your data is stored securely in Supabase, a cloud database provider. Your ticket information and generated letters are retained to allow you to access your submission history. You may request deletion of your data at any time by emailing us.`,
+            body: `Your data is stored securely in Supabase, a cloud database provider. Your ticket information and created letters are retained to allow you to access your submission history. You may request deletion of your data at any time by emailing us.`,
           },
           {
             title: 'Payments',
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
           },
           {
             title: 'Contact',
-            body: `For privacy requests or questions, email: privacy@nycappealwriter.com`,
+            body: `For privacy requests or questions, email: privacy@nycdisputewriter.com`,
           },
         ].map(s => (
           <div key={s.title} style={{ marginBottom: 40 }}>

@@ -112,8 +112,8 @@ export const teaserTips = [
 
 export const testimonials = [
   { quote: 'Ticket dismissed on the first try. Saved me $115 and maybe 3 hours of stress.', name: 'Marcus T.', location: 'Crown Heights, Brooklyn' },
-  { quote: 'I had no idea my expired meter ticket could be fought. Generated my letter in under 2 minutes.', name: 'Priya S.', location: 'Astoria, Queens' },
-  { quote: 'So easy to use. Generated my letter, submitted it directly online, and the judge ruled in my favor within 10 days.', name: 'Danny R.', location: 'Hell\'s Kitchen, Manhattan' },
+  { quote: 'I had no idea my expired meter ticket could be fought. Created my letter in under 2 minutes.', name: 'Priya S.', location: 'Astoria, Queens' },
+  { quote: 'So easy to use. Created my letter, submitted it directly online, and the judge ruled in my favor within 10 days.', name: 'Danny R.', location: 'Hell\'s Kitchen, Manhattan' },
   { quote: 'Got hit with an alternate side ticket even though the sign was completely blocked by a truck. This tool helped me explain that clearly.', name: 'Sandra L.', location: 'Riverdale, Bronx' },
 ]
 
@@ -157,7 +157,7 @@ export function buildDateOptions() {
   return options
 }
 
-export function generateLetter(form, exhibits = []) {
+export function createLetter(form, exhibits = []) {
   const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
   const defenseText = (form.defense === 'Other' && form.otherDefense?.trim())
     ? form.otherDefense.trim()

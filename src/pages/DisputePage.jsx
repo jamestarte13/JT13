@@ -9,12 +9,12 @@ import {
   violationTypes,
   defenseReasons,
   violationTips,
-  generateLetter,
+  createLetter,
 } from '../components/data'
-import { downloadPDF, generatePDFBase64 } from '../lib/pdf'
+import { downloadPDF, createPDFBase64 } from '../lib/pdf'
 import { getSubscriber, upsertSubscriber, incrementLetterCount, saveSubmission } from '../lib/supabase'
 import { checkoutSession, PRICES } from '../lib/stripe'
-import { sendAppealEmail } from '../lib/email'
+import { sendDisputeEmail } from '../lib/email'
 
 // ── Light-mode tokens (local) ──────────────────────────────────────────────────
 const NAVY   = '#1a2744'
@@ -115,7 +115,7 @@ function PaymentGate({ email, letter, onSuccess }) {
       await checkoutSession({
         priceId: PRICES.perLetter,
         email,
-        successUrl: `${window.location.origin}/appeal?paid=true`,
+        successUrl: `${window.location.origin}/dispute?paid=true`,
         cancelUrl: `${window.location.href}`,
       })
     } catch {
@@ -130,7 +130,7 @@ function PaymentGate({ email, letter, onSuccess }) {
       await checkoutSession({
         priceId: PRICES.annual,
         email,
-        successUrl: `${window.location.origin}/appeal?upgraded=true`,
+        successUrl: `${window.location.origin}/dispute?upgraded=true`,
         cancelUrl: `${window.location.href}`,
       })
     } catch {
@@ -318,7 +318,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
       >
         <div style={{ color: '#16a34a', fontSize: 16 }}>✓</div>
         <div style={{ color: '#16a34a', fontSize: 12, letterSpacing: 1, fontFamily: mono }}>
-          DISPUTE LETTER GENERATED — READY TO SUBMIT
+          DISPUTE LETTER CREATED — READY TO SUBMIT
         </div>
       </div>
 
@@ -416,7 +416,7 @@ function ResultScreen({ letter, email, form, exhibits, onReset }) {
           onMouseEnter={e => !pdfLoading && (e.currentTarget.style.borderColor = BLUE)}
           onMouseLeave={e => (e.currentTarget.style.borderColor = BORDER)}
         >
-          {pdfLoading ? 'Generating...' : '↓ Download PDF'}
+          {pdfLoading ? 'Creating...' : '↓ Download PDF'}
         </button>
       </div>
 
@@ -478,10 +478,10 @@ const PREVIEW_FORM = {
   extraDetails: 'The no parking sign on the block was covered by a tree branch and not visible from my vehicle.',
   name: 'James Tarte',
 }
-const PREVIEW_EMAIL = 'preview@nycappealwriter.com'
+const PREVIEW_EMAIL = 'preview@nycdisputewriter.com'
 
 // ── Main tool ─────────────────────────────────────────────────────────────────
-export default function AppealPage() {
+export default function DisputePage() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
@@ -510,10 +510,10 @@ export default function AppealPage() {
   const [exhibits, setExhibits] = useState([])
   const [letter, setLetter] = useState(() =>
     isPreview && (initScreen === 'payment' || initScreen === 'result')
-      ? generateLetter(PREVIEW_FORM, [])
+      ? createLetter(PREVIEW_FORM, [])
       : ''
   )
-  const [generating, setGenerating] = useState(false)
+  const [creating, setCreating] = useState(false)
 
   const set = k => v => setForm(f => ({ ...f, [k]: v }))
 
@@ -526,11 +526,11 @@ if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'tru
     if (screen !== 'result' && letter) setScreen('result')
   }
 
-  const handleGenerateAttempt = async () => {
-    setGenerating(true)
+  const handleCreateAttempt = async () => {
+    setCreating(true)
     try {
       if (isPreview) {
-        const l = generateLetter(form, exhibits)
+        const l = createLetter(form, exhibits)
         setLetter(l)
         setScreen('result')
         return
@@ -545,8 +545,8 @@ if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'tru
       const isDevBypass = devEmail && email.trim().toLowerCase() === devEmail.trim().toLowerCase()
       const isAnnual = sub?.plan === 'annual' || isDevBypass
 
-      const generatedLetter = generateLetter(form, exhibits)
-      setLetter(generatedLetter)
+      const createdLetter = createLetter(form, exhibits)
+      setLetter(createdLetter)
 
       await saveSubmission({
         email,
@@ -559,7 +559,7 @@ if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'tru
         fine_amount: parseFloat(form.amount) || 0,
         defense_reason: form.defense,
         extra_details: form.extraDetails,
-        letter_text: generatedLetter,
+        letter_text: createdLetter,
         plan: isAnnual ? 'annual' : count === 0 ? 'free' : 'paid',
         exhibit_count: exhibits.length,
         borough: deriveBorough(form.location),
@@ -567,20 +567,20 @@ if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'tru
 
       if (isAnnual) {
         await incrementLetterCount(email).catch(() => {})
-        generatePDFBase64(generatedLetter, form.name, exhibits)
-          .then(pdfBase64 => sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter, pdfBase64 }))
-          .catch(() => sendAppealEmail({ to: email, name: form.name, letterText: generatedLetter }))
+        createPDFBase64(createdLetter, form.name, exhibits)
+          .then(pdfBase64 => sendDisputeEmail({ to: email, name: form.name, letterText: createdLetter, pdfBase64 }))
+          .catch(() => sendDisputeEmail({ to: email, name: form.name, letterText: createdLetter }))
         setScreen('result')
       } else {
         setScreen('payment')
       }
     } catch (err) {
       console.error(err)
-      const generatedLetter = generateLetter(form, exhibits)
-      setLetter(generatedLetter)
+      const createdLetter = createLetter(form, exhibits)
+      setLetter(createdLetter)
       setScreen('payment')
     } finally {
-      setGenerating(false)
+      setCreating(false)
     }
   }
 
@@ -726,11 +726,11 @@ if (searchParams.get('paid') === 'true' || searchParams.get('upgraded') === 'tru
               </div>
               <TInput label="Your Email" value={email} onChange={setEmail} placeholder="e.g. you@email.com" type="email" />
               <PBtn
-                onClick={handleGenerateAttempt}
-                disabled={!canSubmit || generating}
+                onClick={handleCreateAttempt}
+                disabled={!canSubmit || creating}
                 style={{ width: '100%' }}
               >
-                {generating ? 'Generating...' : 'Generate Dispute Letter →'}
+                {creating ? 'Creating...' : 'Create Dispute Letter →'}
               </PBtn>
             </div>
           )}

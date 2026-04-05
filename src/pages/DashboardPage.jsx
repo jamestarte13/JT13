@@ -300,7 +300,7 @@ function Submissions({ submissions }) {
         </div>
         {filtered.length === 0 && (
           <div style={{ padding: '40px 20px', textAlign: 'center', color: '#444', fontFamily: mono, fontSize: 12 }}>
-            No submissions yet. They will appear here once users generate letters.
+            No submissions yet. They will appear here once users create letters.
           </div>
         )}
         {filtered.map((s, i) => (
@@ -358,7 +358,7 @@ function Analytics({ stats }) {
         <SectionHeader title="Funnel Performance" sub="Where users drop off" />
         {[
           { stage: 'Email Gate Completed',   count: stats.emailsCaptured, color: '#888' },
-          { stage: 'Letter Generated',       count: stats.totalLetters,   color: Y },
+          { stage: 'Letter Created',          count: stats.totalLetters,   color: Y },
           { stage: 'Upgraded to Paid',       count: stats.annualSubscribers + stats.paidPerLetter, color: '#4ade80' },
         ].map((s, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 14 }}>

@@ -1,10 +1,10 @@
 import { jsPDF } from 'jspdf'
 
 /**
- * Generate a PDF with the letter on page 1 and each exhibit on its own page.
+ * Create a PDF with the letter on page 1 and each exhibit on its own page.
  * Returns a Blob.
  */
-export async function generatePDF(letterText, name, exhibits = []) {
+export async function createPDF(letterText, name, exhibits = []) {
   const doc = new jsPDF({ unit: 'pt', format: 'letter' })
 
   const margin = 72   // 1 inch
@@ -79,7 +79,7 @@ export async function generatePDF(letterText, name, exhibits = []) {
   return doc.output('blob')
 }
 
-export async function generatePDFBase64(letterText, name, exhibits = []) {
+export async function createPDFBase64(letterText, name, exhibits = []) {
   const doc = new jsPDF({ unit: 'pt', format: 'letter' })
   const margin = 72
   const pageW  = doc.internal.pageSize.getWidth()
@@ -139,11 +139,11 @@ function fileToDataURL(file) {
 }
 
 export async function downloadPDF(letterText, name, exhibits = []) {
-  const blob = await generatePDF(letterText, name, exhibits)
+  const blob = await createPDF(letterText, name, exhibits)
   const url  = URL.createObjectURL(blob)
   const a    = document.createElement('a')
   a.href     = url
-  a.download = `appeal-letter-${name.replace(/\s+/g, '-').toLowerCase()}.pdf`
+  a.download = `dispute-letter-${name.replace(/\s+/g, '-').toLowerCase()}.pdf`
   a.click()
   URL.revokeObjectURL(url)
 }

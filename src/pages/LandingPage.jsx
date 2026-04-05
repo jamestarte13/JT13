@@ -223,7 +223,7 @@ function Hero({ onCTA }) {
 
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
             <CTABtn onClick={onCTA} large>
-              Generate My Dispute Letter →
+              Create My Dispute Letter →
             </CTABtn>
           </div>
         </div>
@@ -350,7 +350,7 @@ function HowItWorks() {
       title: 'Submit Your Letter',
       body: (
         <>
-          We generate a professionally written dispute citing real NYC Traffic Rules — then submit it
+          We create a professionally written dispute citing real NYC Traffic Rules — then submit it
           directly via the{' '}
           <a
             href="https://www.nyc.gov/site/finance/vehicles/dispute-web.page"
@@ -612,7 +612,7 @@ function TeaserGuide({ onCTA }) {
                 Submit directly to the NYC Department of Finance at nyc.gov/finance.
               </div>
             </div>
-            <CTABtn onClick={onCTA}>Generate My Letter →</CTABtn>
+            <CTABtn onClick={onCTA}>Create My Letter →</CTABtn>
           </div>
         </FadeIn>
       </div>
@@ -1068,7 +1068,7 @@ function FinalCTA({ onCTA }) {
             maximize your chances of dismissal.
           </p>
           <CTABtn onClick={onCTA} large>
-            Generate My Free Letter →
+            Create My Free Letter →
           </CTABtn>
         </FadeIn>
       </div>
@@ -1150,7 +1150,7 @@ function Footer() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function LandingPage() {
   const navigate = useNavigate()
-  const goTool = () => navigate('/appeal')
+  const goTool = () => navigate('/dispute')
 
   return (
     <div style={{ background: WHITE, minHeight: '100vh' }}>

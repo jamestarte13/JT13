@@ -1,5 +1,5 @@
 -- ══════════════════════════════════════════════════════════════
--- NYC Appeal Writer — Supabase Schema
+-- NYC Dispute Writer — Supabase Schema
 -- Run this in Supabase > SQL Editor
 -- ══════════════════════════════════════════════════════════════
 

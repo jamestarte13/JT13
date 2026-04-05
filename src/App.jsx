@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
-import AppealPage from './pages/AppealPage'
+import DisputePage from './pages/DisputePage'
 import DashboardPage from './pages/DashboardPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
@@ -18,18 +18,18 @@ function PreviewNav() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const isAppeal = location.pathname === '/appeal'
+  const isDispute = location.pathname === '/dispute'
   const params = new URLSearchParams(location.search)
   const goto = params.get('goto')
 
   let current = 'home'
-  if (isAppeal) {
+  if (isDispute) {
     current = goto || 'step0'
   }
 
   const handleJump = key => {
     if (key === 'home') navigate('/')
-    else navigate(`/appeal?preview=true&goto=${key}`)
+    else navigate(`/dispute?preview=true&goto=${key}`)
   }
 
   return (
@@ -71,7 +71,7 @@ function AppInner() {
       {previewMode && <PreviewNav />}
       <Routes>
         <Route path="/"          element={<LandingPage />} />
-        <Route path="/appeal"    element={<AppealPage />} />
+        <Route path="/dispute"   element={<DisputePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/privacy"   element={<PrivacyPage />} />
         <Route path="/terms"     element={<TermsPage />} />
