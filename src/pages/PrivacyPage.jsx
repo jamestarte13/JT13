@@ -24,7 +24,7 @@ export default function PrivacyPage() {
         {[
           {
             title: 'Information We Collect',
-            body: `We collect the following information when you use NYC Dispute Writer:\n\n• Email address (required to access the letter generator)\n• Parking ticket details you enter: ticket number, violation date, location, violation type, fine amount, plate number\n• Defense reason and any additional details you provide\n• Supporting exhibit files you upload\n\nWe do not collect your name unless you voluntarily enter it in the letter generator.`,
+            body: `We collect the following information when you use NYC Dispute Writer:\n\n• Email address (required to access the letter creator)\n• Parking ticket details you enter: ticket number, violation date, location, violation type, fine amount, plate number\n• Defense reason and any additional details you provide\n• Supporting exhibit files you upload\n\nWe do not collect your name unless you voluntarily enter it in the letter creator.`,
           },
           {
             title: 'How We Use Your Information',
